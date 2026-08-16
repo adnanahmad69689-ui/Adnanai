@@ -4,3 +4,9 @@
 - [x] Replace the `siteConfig.hero.backgroundImage` value with the supplied image URL.
 - [x] Verify desktop and mobile hero framing, overlay contrast, and navigation readability.
 - [x] Save a checkpoint and provide the updated project version.
+
+# Brand Identity Update Checklist
+
+- [x] Set the personal name to Adnan Ahmad in the hero, greeting, and footer.
+- [x] Set Adnan AI as the portfolio brand/monogram and page metadata identity.
+- [x] Verify the desktop hero brand presentation and save the updated checkpoint.

@@ -16,17 +16,17 @@ export const siteConfig = {
   /* ------------------------------- Identity ------------------------------ */
   identity: {
     /** Short monogram shown in the navbar logo (1–3 characters). */
-    monogram: "YN",
+    monogram: "Adnan AI",
     /** Full first name (hero, greeting, footer). */
-    firstName: "Your",
+    firstName: "Adnan",
     /** Last name — rendered in italic accent in the hero. */
-    lastName: "Name",
+    lastName: "Ahmad",
     /** Trailing punctuation after the hero last name. */
     lastNameSuffix: ".",
     /** <title> tag and meta description. */
-    pageTitle: "Your Name | AI Automation Engineer & Flutter Developer",
+    pageTitle: "Adnan AI | AI Automation Engineer & Flutter Developer",
     metaDescription:
-      "Portfolio of an AI automation engineer building end-to-end AI systems, mobile apps, and workflow automations.",
+      "Adnan AI — portfolio of Adnan Ahmad, an AI automation engineer building end-to-end AI systems, mobile apps, and workflow automations.",
     /** City shown in the footer copyright line. */
     location: "Your City, Country",
     /** Footer tagline. */
@@ -39,7 +39,7 @@ export const siteConfig = {
   hero: {
     /** Background portrait. Recommended: 1600×900, subject on the RIGHT. */
     backgroundImage: "/manus-storage/hero-user-portrait_ed976720.webp",
-    backgroundAlt: "Portrait of Your Name seated with a laptop",
+    backgroundAlt: "Portrait of Adnan Ahmad seated with a laptop",
     /** Rotating words under the big name (cycles every 2.5s). */
     rotatingWords: ["AI SYSTEMS", "AUTOMATION", "AGENTS", "WORKFLOWS"],
     /** Small tagline above the big name. */
