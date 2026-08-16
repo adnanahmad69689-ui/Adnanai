@@ -15,3 +15,8 @@
 
 - [x] Standardize the visible brand name to the exact casing: Adnan Ai.
 - [x] Verify the revised hero branding and save the updated checkpoint.
+
+# Location Update Checklist
+
+- [x] Set the visible location to KPK, Peshawar, Pakistan.
+- [x] Verify the updated location and save the revised project checkpoint.

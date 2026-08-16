@@ -28,7 +28,7 @@ export const siteConfig = {
     metaDescription:
       "Adnan Ai — portfolio of Adnan Ahmad, an AI automation engineer building end-to-end AI systems, mobile apps, and workflow automations.",
     /** City shown in the footer copyright line. */
-    location: "Your City, Country",
+    location: "KPK, Peshawar, Pakistan",
     /** Footer tagline. */
     roles: "AI Automation Engineer · Flutter Developer · YouTube Creator",
     /** Copyright year (auto-computed if left as null). */
@@ -46,7 +46,7 @@ export const siteConfig = {
     tagline: "AI AUTOMATION ENGINEER · FLUTTER DEVELOPER · STARTUP FOUNDER",
     /** Short bio under the rotating word. */
     description:
-      "Building end-to-end AI automation systems, mobile applications, and AI-driven workflows. Based in Your City — available for remote roles worldwide.",
+      "Building end-to-end AI automation systems, mobile applications, and AI-driven workflows. Based in KPK, Peshawar, Pakistan — available for remote roles worldwide.",
     /** Right-side panel: three service lines. */
     services: ["AI Automation", "Flutter Dev", "Prompt Engineering"],
     /** Right-side panel: three small stats. */
@@ -154,7 +154,7 @@ export const siteConfig = {
       "When I'm not building for clients, I document everything on YouTube: full build series, honest breakdowns of what worked, and the exact workflows you can copy for your own business.",
     ],
     info: [
-      { label: "Location", value: "Your City, Country" },
+      { label: "Location", value: "KPK, Peshawar, Pakistan" },
       { label: "Email", value: "you@example.com", href: "mailto:you@example.com" },
       { label: "Phone", value: "+91 00000 00000", href: "tel:+910000000000" },
       { label: "LinkedIn", value: "/in/your-handle", href: "https://linkedin.com/in/your-handle" },
