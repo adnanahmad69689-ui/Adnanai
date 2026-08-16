@@ -90,3 +90,6 @@ A dark, premium personal portfolio for a builder of AI/automation systems — co
 - The centered blurred pill navigation is a non-negotiable signature motif. It carries the monogram, section navigation, active state, notification control, and lime-contact CTA at desktop sizes; the corresponding full-screen menu appears only below 1024px.
 - Neon lime is reserved for prime actions, selected navigation, key metrics, pipeline energy, and italic display emphasis. Supporting labels, body text, and secondary chrome remain muted graphite or warm cream.
 - Portfolio proof is framed as substantiated case-study outcomes rather than simulated reviews, ratings, or endorsements. The resulting cards retain the dense dark-panel system without asserting customer speech.
+- Every service/system card must retain a compact category signal, outcome-oriented title, practical detail, and a restrained lime accent so no surface reads as an empty decorative slab.
+- The hero scroll story is deliberately compressed to avoid extended black pauses; each following section arrives with a clear visual anchor and asymmetric editorial rhythm.
+- Adnan AI copy should sound like an engineered automation advisor: concise, specific, and centered on reducing manual handoffs and turning workflows into operating systems.

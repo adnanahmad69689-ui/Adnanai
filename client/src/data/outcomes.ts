@@ -1,7 +1,4 @@
-/**
- * Outcome cards are case-study summaries, not testimonials or ratings.
- * Replace these only with substantiated project outcomes before publishing.
- */
+/** Service-focus cards. These describe Adnan AI offerings, not customer testimonials or claimed outcomes. */
 export interface Outcome {
   tag: string;
   metric: string;
@@ -13,30 +10,27 @@ export interface Outcome {
 
 export const outcomes: Outcome[] = [
   {
-    tag: "LEAD OPS",
-    metric: "15+ hrs",
-    metricLabel: "saved each week",
-    title: "Lead acquisition & follow-up workflow",
-    detail:
-      "A structured n8n system centralizes incoming leads, scores opportunities, and triggers timely follow-up actions.",
-    accent: "#3b82f6",
+    tag: "WEB",
+    metric: "WEB",
+    metricLabel: "AI web development",
+    title: "A stronger digital first impression",
+    detail: "Premium, responsive web experiences that explain your offer, support your sales process, and make the next action clear.",
+    accent: "#a8ff3e",
   },
   {
-    tag: "SUPPORT OPS",
-    metric: "35%",
-    metricLabel: "fewer repeated tickets",
-    title: "Customer support AI agent",
-    detail:
-      "An AI-assisted intake layer classifies routine questions, prepares replies, and routes complex requests to the right owner.",
-    accent: "#8b5cf6",
+    tag: "FLOW",
+    metric: "FLOW",
+    metricLabel: "AI automation",
+    title: "Workflows built around real operations",
+    detail: "Thoughtful automation that connects routine steps, keeps context moving, and gives teams a clearer operating rhythm.",
+    accent: "#61d8ff",
   },
   {
-    tag: "BOOKING OPS",
-    metric: "24/7",
-    metricLabel: "booking availability",
-    title: "WhatsApp booking automation",
-    detail:
-      "An automated reservation flow confirms requests, updates availability, and keeps operational data in sync.",
-    accent: "#10b981",
+    tag: "AGENT",
+    metric: "AGENT",
+    metricLabel: "AI agents",
+    title: "AI support with a defined purpose",
+    detail: "Practical AI agents that help with specific tasks, approved knowledge, communication, and internal decision support.",
+    accent: "#c89bff",
   },
 ];

@@ -32,3 +32,15 @@
 
 - [x] Inspect the custom cursor animation settings.
 - [x] Increase cursor tracking speed and verify the interaction.
+
+# Adnan AI Performance and Content Optimization Checklist
+
+- [x] Audit routes, data files, components, assets, dependencies, and runtime behavior for cloned or unsupported content.
+- [x] Remove the YouTube section, navigation entry, data, external thumbnails, and links.
+- [x] Remove every social presence except the Instagram contact link.
+- [x] Replace cloned personal/brand references with Adnan AI and `Adnanuop@gmail.com`.
+- [x] Replace unsupported client claims, awards, statistics, and testimonials with neutral service-focused copy.
+- [x] Add AI Web Development, AI Automation, and AI Agents at relevant hero, service, about, and CTA placements.
+- [x] Optimize rendered image assets, font loading, motion, bundle usage, and lazy loading.
+- [x] Validate desktop, tablet, mobile, navigation, links, email/Instagram controls, SEO, and runtime health.
+- [x] Save and deliver the optimized project checkpoint.

@@ -4,10 +4,7 @@
  * reference site's hashchange-based routing).
  */
 import { useEffect, useState } from "react";
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import ErrorBoundary from "./components/ErrorBoundary";
-import { ThemeProvider } from "./contexts/ThemeContext";
 import { CustomCursor } from "./components/CustomCursor";
 import { Navbar } from "./components/Navbar";
 import { N8nProjects } from "./components/N8nProjects";
@@ -56,15 +53,9 @@ function AppContent() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark">
-        <TooltipProvider>
-          <Toaster />
-          <AppContent />
-        </TooltipProvider>
-      </ThemeProvider>
+      <AppContent />
     </ErrorBoundary>
   );
 }
 
 export default App;
-

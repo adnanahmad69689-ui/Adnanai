@@ -1,61 +1,37 @@
-/**
- * Scroll-reveal hook: animates all `.reveal-item` descendants into view with
- * a stagger, once, when they cross 88% of the viewport. Mirrors the reference
- * site's GSAP batch reveal. Respects prefers-reduced-motion.
- */
+/** Native scroll reveals with one IntersectionObserver and CSS transitions. */
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function useReveal<T extends HTMLElement>(options: {
-  stagger?: number;
-  y?: number;
-  duration?: number;
-} = {}) {
-  const { stagger = 0.12, y = 40, duration = 0.75 } = options;
+export function useReveal<T extends HTMLElement>(options: { stagger?: number } = {}) {
+  const { stagger = 0.06 } = options;
   const ref = useRef<T>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const items = el.querySelectorAll<HTMLElement>(".reveal-item");
+    const root = ref.current;
+    if (!root) return;
+    const items = Array.from(root.querySelectorAll<HTMLElement>(".reveal-item"));
     if (!items.length) return;
-
-    const mm = gsap.matchMedia();
-    mm.add(
-      {
-        reducedMotion: "(prefers-reduced-motion: reduce)",
-        normalMotion: "(prefers-reduced-motion: no-preference)",
-      },
-      (ctx) => {
-        const { reducedMotion } = ctx.conditions as { reducedMotion: boolean };
-        if (reducedMotion) {
-          gsap.set(items, { opacity: 1, y: 0 });
-          return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      items.forEach((item) => item.classList.add("is-revealed"));
+      return;
+    }
+    items.forEach((item, index) => {
+      item.classList.add("reveal-managed");
+      item.style.setProperty("--reveal-delay", `${Math.min(index, 8) * stagger}s`);
+    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("is-revealed");
+          observer.unobserve(entry.target);
         }
-        gsap.set(items, { opacity: 0, y });
-        ScrollTrigger.batch(items, {
-          start: "top 88%",
-          once: true,
-          onEnter: (batch) => {
-            gsap.to(batch, {
-              opacity: 1,
-              y: 0,
-              duration,
-              ease: "power3.out",
-              stagger,
-            });
-          },
-        });
-      }
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
     );
-
-    return () => {
-      mm.revert();
-    };
-  }, [stagger, y, duration]);
+    items.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, [stagger]);
 
   return ref;
 }

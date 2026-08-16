@@ -1,7 +1,4 @@
-/**
- * Client outcomes section. This deliberately uses project case-study summaries
- * rather than simulated customer testimonials, ratings, or reviews.
- */
+/** Service-focus section. It contains no customer reviews, ratings, or unsupported outcome claims. */
 import { siteConfig } from "../data/siteConfig";
 import { outcomes } from "../data/outcomes";
 
@@ -17,7 +14,7 @@ export function Reviews() {
             <h2 className="reviews-heading">
               {cfg.headingLead} <em>{cfg.headingEm}</em> {cfg.headingTail}
             </h2>
-            <span className="outcomes-summary-chip">CASE-STUDY PATTERNS</span>
+            <span className="outcomes-summary-chip">ADNAN AI SERVICES</span>
           </div>
           <p className="reviews-subtitle">{cfg.subtitle}</p>
         </div>
@@ -38,7 +35,7 @@ export function Reviews() {
               <p className="outcome-detail">{outcome.detail}</p>
               <div className="outcome-card-footer">
                 <span className="outcome-footer-mark">◇</span>
-                <span>Automation case-study format</span>
+                <span>Adnan AI service focus</span>
               </div>
             </article>
           ))}

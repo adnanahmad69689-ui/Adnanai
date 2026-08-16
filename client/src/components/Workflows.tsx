@@ -6,20 +6,6 @@
 import { siteConfig, mailto } from "../data/siteConfig";
 import { homeWorkflows, type Workflow } from "../data/projects";
 import { PipelineOverlay } from "./PipelineOverlay";
-import { useCountUp } from "../hooks/useCountUp";
-
-function Metric({ value, suffix, label }: { value: number; suffix: string; label: string }) {
-  const { ref, display } = useCountUp(value, 2000);
-  return (
-    <div className="metric-item">
-      <span className="metric-number" ref={ref}>
-        {display}
-        {suffix}
-      </span>
-      <span className="metric-label">{label}</span>
-    </div>
-  );
-}
 
 export function WorkflowCard({ workflow }: { workflow: Workflow }) {
   const { workflows } = siteConfig;
@@ -35,6 +21,7 @@ export function WorkflowCard({ workflow }: { workflow: Workflow }) {
             alt={workflow.title}
             className="workflow-img"
             loading="lazy"
+            decoding="async"
             src={workflow.image}
           />
           <PipelineOverlay />
@@ -81,12 +68,9 @@ export function Workflows() {
           <p className="workflows-subtitle">{workflows.subtitle}</p>
         </div>
 
-        <div className="live-metrics-bar reveal-item">
-          {workflows.metrics.map((m, i) => (
-            <div key={m.label} style={{ display: "contents" }}>
-              {i > 0 && <div className="metrics-divider" />}
-              <Metric value={m.value} suffix={m.suffix} label={m.label} />
-            </div>
+        <div className="service-pillars reveal-item" aria-label="Adnan AI core services">
+          {workflows.pillars.map((pillar) => (
+            <span key={pillar} className="service-pillar">{pillar}</span>
           ))}
         </div>
 

@@ -1,32 +1,20 @@
-/** Custom cursor: immediate accent dot + ring, desktop only (CSS hides on touch). */
-import { useEffect, useState } from "react";
+/** GPU-friendly desktop cursor: direct DOM updates avoid React re-renders on mousemove. */
+import { useEffect, useRef } from "react";
 
 export function CustomCursor() {
-  const [dot, setDot] = useState({ x: -100, y: -100 });
-  const [ring, setRing] = useState({ x: -100, y: -100 });
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      setDot({ x: e.clientX, y: e.clientY });
-      // Keep the ring in lockstep with the pointer—no trailing timeout.
-      setRing({ x: e.clientX, y: e.clientY });
+    const onMove = (event: MouseEvent) => {
+      const transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+      if (dotRef.current) dotRef.current.style.transform = transform;
+      if (ringRef.current) ringRef.current.style.transform = transform;
     };
     window.addEventListener("mousemove", onMove, { passive: true });
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-    };
+    return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
-  return (
-    <>
-      <div
-        className="custom-cursor"
-        style={{ left: dot.x, top: dot.y, transform: "translate(-50%, -50%)" }}
-      />
-      <div
-        className="custom-cursor-ring"
-        style={{ left: ring.x, top: ring.y, transform: "translate(-50%, -50%)" }}
-      />
-    </>
-  );
+  const initialStyle = { transform: "translate3d(-100px, -100px, 0)" };
+  return <><div ref={dotRef} className="custom-cursor" style={initialStyle} /><div ref={ringRef} className="custom-cursor-ring" style={initialStyle} /></>;
 }

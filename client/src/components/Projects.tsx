@@ -69,6 +69,7 @@ export function Projects() {
                   alt={project.mockupImageAlt}
                   className="mockup-img"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="mockup-overlay-card">

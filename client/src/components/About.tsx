@@ -50,6 +50,7 @@ export function About() {
                 alt={about.imageAlt}
                 className="about-img tilt-content"
                 loading="lazy"
+                decoding="async"
               />
               <div
                 className="glare-effect"

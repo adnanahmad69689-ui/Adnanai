@@ -24,13 +24,13 @@ export const siteConfig = {
     /** Kept empty so the visible identity remains exactly “Adnan Ai”. */
     lastNameSuffix: "",
     /** <title> tag and meta description. */
-    pageTitle: "Adnan Ai | AI Automation Engineer & Flutter Developer",
+    pageTitle: "Adnan Ai | AI Web Development, Automation & Agents",
     metaDescription:
       "Adnan Ai — portfolio of Adnan Ai, an AI automation engineer building end-to-end AI systems, mobile apps, and workflow automations.",
     /** City shown in the footer copyright line. */
     location: "KPK, Peshawar, Pakistan",
     /** Footer tagline. */
-    roles: "AI Automation Engineer · Flutter Developer · YouTube Creator",
+    roles: "AI Web Development · AI Automation · AI Agents",
     /** Copyright year (auto-computed if left as null). */
     copyrightYear: null as number | null,
   },
@@ -41,55 +41,47 @@ export const siteConfig = {
     backgroundImage: "/manus-storage/hero-user-portrait_ed976720.webp",
     backgroundAlt: "Portrait of Adnan Ai seated with a laptop",
     /** Rotating words under the big name (cycles every 2.5s). */
-    rotatingWords: ["AI SYSTEMS", "AUTOMATION", "AGENTS", "WORKFLOWS"],
+    rotatingWords: ["AI WEB DEVELOPMENT", "AI AUTOMATION", "AI AGENTS"],
     /** Small tagline above the big name. */
-    tagline: "AI AUTOMATION ENGINEER · FLUTTER DEVELOPER · STARTUP FOUNDER",
+    tagline: "AI WEB DEVELOPMENT · AI AUTOMATION · AI AGENTS",
     /** Short bio under the rotating word. */
     description:
-      "Building end-to-end AI automation systems, mobile applications, and AI-driven workflows. Based in KPK, Peshawar, Pakistan — available for remote roles worldwide.",
+      "Adnan AI builds clear, capable digital systems for businesses that want better websites, smarter automation, and practical AI agents. Based in KPK, Peshawar, Pakistan — available remotely.",
     /** Right-side panel: three service lines. */
-    services: ["AI Automation", "Flutter Dev", "Prompt Engineering"],
+    services: ["AI Web Development", "AI Automation", "AI Agents"],
     /** Right-side panel: three small stats. */
     stats: [
-      { value: "Top 6", label: "iHub Gujarat" },
-      { value: "6+", label: "Projects built" },
-      { value: "3x", label: "Videos / week" },
+      { value: "WEB", label: "AI Web Development" },
+      { value: "FLOW", label: "AI Automation" },
+      { value: "AGENT", label: "AI Agents" },
     ],
     /** Scroll-phase-2 (the "What I build" panel that appears on scroll). */
     phase2: {
       label: "WHAT I BUILD",
-      headingLead: "AI that replaces",
-      headingEm: "manual work.",
+      headingLead: "AI systems built for",
+      headingEm: "real work.",
       description:
-        "I design systems where AI handles the repetitive — lead generation, follow-ups, data pipelines, agent workflows — so humans can focus on what actually matters.",
+        "From client-ready websites to dependable workflows and AI agents, every system is designed around a useful next step for your business.",
       primaryCta: { label: "See Projects ↓", target: "projects" },
       secondaryCta: { label: "LET'S TALK →", mailto: true },
       stats: [
-        { value: "Top 6", label: "iHub Gujarat Startup Program" },
-        { value: "500+", label: "Leads / Month fully automated" },
-        { value: "40%", label: "Follow-up time reduced via n8n" },
+        { value: "WEB", label: "AI Web Development" },
+        { value: "FLOW", label: "AI Automation" },
+        { value: "AGENT", label: "AI Agents" },
       ],
     },
   },
 
   /* ------------------------------- Contact ------------------------------- */
   contact: {
-    email: "you@example.com",
-    phone: "+91 00000 00000",
-    phoneHref: "tel:+910000000000",
-    linkedin: "https://linkedin.com/in/your-handle",
-    linkedinLabel: "linkedin.com/in/your-handle",
-    github: "https://github.com/your-handle",
-    githubLabel: "github.com/your-handle",
-    youtube: "https://youtube.com/@your-channel",
-    youtubeLabel: "@your-channel",
-    instagram: "https://instagram.com/your-handle",
-    instagramLabel: "@your-handle",
+    email: "Adnanuop@gmail.com",
+    instagram: "https://instagram.com/",
+    instagramLabel: "Instagram",
     /** Heading parts for the contact card. */
-    headingLead: "Let's build",
-    headingEm: "together.",
+    headingLead: "Let’s build something",
+    headingEm: "useful.",
     subtext:
-      "Have a manual process eating your team's time? A product idea that needs an engineer? Or just want to talk AI? My inbox is open — I reply within 24 hours.",
+      "Need an AI-powered website, a smoother business workflow, or an AI agent tailored to a real task? Send an email or start a conversation on Instagram.",
   },
 
   /* ------------------------------ Navigation ----------------------------- */
@@ -99,7 +91,6 @@ export const siteConfig = {
       { id: "skills", label: "Skills" },
       { id: "projects", label: "Projects" },
       { id: "experience", label: "Experience" },
-      { id: "youtube", label: "YouTube" },
     ],
     contactLabel: "Contact",
     /** Notification bell popup content. */
@@ -117,159 +108,137 @@ export const siteConfig = {
 
   /* ------------------------------- Workflows ----------------------------- */
   workflows: {
-    label: "Real Results",
-    headingLead: "Manual Work Is Costing You —",
-    headingEm: "Here's the Proof",
+    label: "Capabilities",
+    headingLead: "Systems designed to make work",
+    headingEm: "simpler.",
     subtitle:
-      "Real n8n automations I've built for real businesses. Measurable outcomes. No fluff.",
-    metrics: [
-      { value: 15, suffix: "+", label: "Automations Delivered" },
-      { value: 500, suffix: "+", label: "Hours Saved / Month" },
-      { value: 99, suffix: "%", label: "Automation Accuracy" },
-    ],
-    showMoreLabel: "Show More Workflows",
-    trustedByLabel: "Built with",
-    trustedBy: ["✦ n8n Workflows", "✦ AI Agents", "✦ Flutter Apps"],
-    ctaHeading: "Ready to automate your business?",
+      "Explore practical starting points for AI web development, automation, and agent-based workflows — shaped around the way your business actually operates.",
+    pillars: ["AI Web Development", "AI Automation", "AI Agents"],
+    showMoreLabel: "Explore System Patterns",
+    trustedByLabel: "Core Services",
+    trustedBy: ["✦ AI Web Development", "✦ AI Automation", "✦ AI Agents"],
+    ctaHeading: "Ready to design a better system?",
     ctaSub:
-      "Tell me your biggest manual task. I'll show you the automation in 15 minutes — free.",
-    ctaButton: "Book Your Free 15-min Audit",
-    ctaSubject: "Free Automation Audit",
+      "Tell Adnan AI where work feels slower than it should. Together, we can define the right digital next step.",
+    ctaButton: "Start a Conversation",
+    ctaSubject: "Adnan AI — Project enquiry",
     ctaBody:
-      "Hi,\n\nI'd like a free 15-minute automation audit. Here's my biggest manual pain point:\n\n[Describe your task]\n\nThanks!",
-    cardCta: "I need this automation",
+      "Hi Adnan AI,\n\nI’d like to discuss an AI website, an automation, or an AI agent for my business.\n\nHere is the problem I want to solve:\n\n[Describe your task]\n\nThanks!",
+    cardCta: "Discuss this system",
   },
 
   /* -------------------------------- About -------------------------------- */
   about: {
     label: "About",
-    headingLead: "I build AI systems that",
-    headingEm: "actually work.",
+    headingLead: "Adnan AI builds systems that support",
+    headingEm: "better work.",
     /** Portrait image. Recommended: 3:4 vertical, ~600×800. */
-    image: "/manus-storage/key_achievement_a171bb70.png",
-    imageAlt: "Portrait",
+    image: "/manus-storage/hero-user-portrait_ed976720.webp",
+    imageAlt: "Portrait of Adnan Ai",
     bio: [
-      "I'm an AI automation engineer and mobile developer who turns repetitive business processes into self-running systems. My work sits at the intersection of AI agents, workflow automation (n8n), and cross-platform app development with Flutter.",
-      "Over the past year I've shipped production automations for hospitals, pharmacies, real-estate agencies, and restaurants — each one measured by hours saved and revenue recovered, not by how clever the tech stack looks.",
-      "When I'm not building for clients, I document everything on YouTube: full build series, honest breakdowns of what worked, and the exact workflows you can copy for your own business.",
+      "Adnan AI helps businesses turn ideas and operational pain points into practical digital systems. The focus is clear communication, thoughtful implementation, and technology that earns its place in the workflow.",
+      "Core work spans AI web development, AI automation, and AI agents — from the customer-facing website through to the systems that keep the work moving behind it.",
+      "Every engagement begins with the real task at hand, then turns it into a focused plan with the right balance of design, engineering, and automation.",
     ],
     info: [
       { label: "Location", value: "KPK, Peshawar, Pakistan" },
-      { label: "Email", value: "you@example.com", href: "mailto:you@example.com" },
-      { label: "Phone", value: "+91 00000 00000", href: "tel:+910000000000" },
-      { label: "LinkedIn", value: "/in/your-handle", href: "https://linkedin.com/in/your-handle" },
-      { label: "GitHub", value: "@your-handle", href: "https://github.com/your-handle" },
-      { label: "YouTube", value: "@your-channel", href: "https://youtube.com/@your-channel" },
-      { label: "Education", value: "B.Tech, Computer Science" },
-      { label: "Availability", value: "Open to Remote Roles", highlight: true },
+      { label: "Email", value: "Adnanuop@gmail.com", href: "mailto:Adnanuop@gmail.com" },
+      { label: "Instagram", value: "Instagram", href: "https://instagram.com/" },
+      { label: "Availability", value: "Available for client projects", highlight: true },
     ],
-    achievementsTitle: "Key Achievements",
+    achievementsTitle: "What Adnan AI Can Build",
     achievements: [
-      "Top 6 Finalist — State Startup Funding Program (state-wide applicant pool)",
-      "Invited Startup Founder — National Innovation Summit 2026",
-      "AI Lead Generation System — 500+ leads/month fully automated pipeline",
-      "40% reduction in lead follow-up times via custom n8n AI workflow integrations",
+      "AI-powered websites designed to communicate clearly and convert attention into action",
+      "Automated workflows that connect routine business steps into a dependable system",
+      "AI agents that support research, intake, response, and internal operations",
     ],
   },
 
   /* -------------------------------- Skills ------------------------------- */
   skills: {
-    label: "Technical Skills",
-    headingLead: "Tools &",
-    headingEm: "Technologies",
+    label: "Services",
+    headingLead: "What Adnan AI",
+    headingEm: "builds",
   },
 
   /* --------------------------- Featured project -------------------------- */
   project: {
-    label: "Founder & Startup Showcase",
-    titleLead: "Book Your",
-    titleEm: "Pitch",
-    badges: ["🏆 TOP 6 FINALIST AT STARTUP ACCELERATOR", "SUMMIT '26 INVITEE"],
+    label: "Adnan AI Service Framework",
+    titleLead: "Build a smarter",
+    titleEm: "digital system",
+    badges: ["AI WEB DEVELOPMENT", "AI AUTOMATION", "AI AGENTS"],
     tagline:
-      "A premium startup platform built to streamline scheduling and communications between founders and venture capital investors.",
+      "A focused approach to designing customer-facing digital experiences and the AI-powered systems that make them more useful.",
     description:
-      "As the Founder and Lead Developer, I conceptualized and built the product from scratch. I directed the entire product lifecycle, designed comprehensive UI/UX flows in Figma for both the Mobile App and the Web Console, and developed the app architecture using cross-platform tools and secure databases.",
+      "Adnan AI combines interface design, practical development, and automation thinking to help businesses move from a rough idea to a clear, client-ready system.",
     highlights: [
       {
-        title: "Investor Matchmaker:",
-        text: "Automates investor filtering based on industry preferences, ticket size, and funding stage, removing weeks of manual outreach.",
+        title: "AI Web Development:",
+        text: "Professional websites and web experiences designed around clear positioning, useful interactions, and real business goals.",
       },
       {
-        title: "Full-Stack Architecture:",
-        text: "Engineered using Flutter and Firebase, featuring secure user roles, real-time messaging, and scheduling workflows.",
+        title: "AI Automation:",
+        text: "Connected workflows that reduce repetitive hand-offs and give your team a more reliable operating rhythm.",
       },
       {
-        title: "Figma UI/UX Prototypes:",
-        text: "Designed interactive dashboards and user flows for both startups and investors, focused on ease of navigation and onboarding.",
+        title: "AI Agents:",
+        text: "Purpose-built AI assistants that help with defined tasks, knowledge, communication, and operational support.",
       },
     ],
-    techStack: ["Figma", "Flutter", "Firebase", "Product Strategy", "n8n Automation"],
-    ctaLabel: "Discuss the Project",
-    ctaSubject: "Project Collaboration",
+    techStack: ["AI Web Development", "AI Automation", "AI Agents"],
+    ctaLabel: "Discuss Your Project",
+    ctaSubject: "Adnan AI — Project enquiry",
     ctaBody:
-      "Hi,\n\nI saw your startup project in your portfolio and would love to discuss your work or potential collaboration.\n\nThanks!",
+      "Hi Adnan AI,\n\nI’d like to discuss a project for my business.\n\nThanks!",
     /** Mockup frame */
-    mockupUrl: "yourproject.com",
-    mockupImage: "/manus-storage/project_mockup_c6eecde7.png",
+    mockupUrl: "adnanai.com",
+    mockupImage: "/manus-storage/project_mockup_c33efae9.webp",
     mockupImageAlt: "Project platform preview",
-    overlayBadge: "🏆 ACCELERATOR PROJECT",
-    overlayStat: "Top 6 Finalist",
-    overlaySub: "State Accelerator (Innovation Summit 2026)",
+    overlayBadge: "ADNAN AI SYSTEMS",
+    overlayStat: "Built around your workflow",
+    overlaySub: "AI web development · automation · agents",
   },
 
   /* ------------------------------ Experience ----------------------------- */
   experience: {
     label: "Experience",
-    headingLead: "Where I've",
-    headingEm: "Worked",
-  },
-
-  /* -------------------------------- YouTube ------------------------------ */
-  youtube: {
-    label: "YouTube Content",
-    headingLead: "Watch Me",
-    headingEm: "Build",
-    headingTail: "In Public",
-    subtitle:
-      "Step-by-step build series and technical tutorials targeting developers, freelancers, and businesses looking to leverage AI.",
-    showMoreLabel: "Subscribe & Watch More",
-    channelUrl: "https://youtube.com/@your-channel",
+    headingLead: "How Adnan AI",
+    headingEm: "works",
   },
 
   /* -------------------------------- Reviews ------------------------------ */
   reviews: {
-    label: "Client Outcomes",
-    headingLead: "Systems That",
-    headingEm: "Perform",
+    label: "Service Focus",
+    headingLead: "Built to make your work",
+    headingEm: "clearer.",
     headingTail: "",
     subtitle:
-      "Selected workflow patterns designed around measurable operational improvement. Replace with substantiated case-study results as your portfolio grows.",
+      "Adnan AI brings together focused web development, thoughtful automation, and practical AI agents to support real business needs.",
   },
 
   /* ----------------------------- n8n subpage ----------------------------- */
   n8nPage: {
     backLabel: "Back to Portfolio",
     label: "All Automations",
-    headingLead: "My n8n",
-    headingEm: "Workflows Gallery",
+    headingLead: "AI System",
+    headingEm: "Patterns",
     subtitle:
-      "A comprehensive gallery of custom-built n8n workflows designed to eliminate manual data entry, streamline operations, and boost efficiency.",
-    ctaHeading: "Want a custom workflow built for your business?",
+      "A gallery of practical system patterns for AI web development, automation, and agent-based business workflows.",
+    ctaHeading: "Want an AI system designed for your business?",
     ctaSub:
-      "Let's dissect your manual workflow. I'll outline the n8n automation flow for you in 15 minutes — completely free.",
-    ctaButton: "Book Your Free 15-min Audit",
+      "Tell Adnan AI what needs to work better. The next step can be a useful website, an automation, or an AI agent.",
+    ctaButton: "Start a Conversation",
   },
 
   /* -------------------------------- Assets ------------------------------- */
   assets: {
     workflowImages: [
-      "/manus-storage/workflow1_7236b0f9.png",
-      "/manus-storage/workflow2_0adf79c8.png",
-      "/manus-storage/workflow3_9c42ebbc.png",
-      "/manus-storage/workflow4_1c05db5f.png",
-      "/manus-storage/workflow5_d958436a.png",
+      "/manus-storage/workflow1_0887ad0d.webp",
+      "/manus-storage/workflow2_46b1798c.webp",
+      "/manus-storage/workflow3_42af2773.webp",
+      "/manus-storage/workflow4_0b6e7ec4.webp",
+      "/manus-storage/workflow5_b809a451.webp",
     ],
-    logoMark: "/manus-storage/logo_mark_ba82f168.png",
   },
 } as const;
 

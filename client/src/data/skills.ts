@@ -1,4 +1,4 @@
-/** Skill categories shown in the Skills section grid. */
+/** Service categories shown in the portfolio grid. These describe offerings, not unverified credentials. */
 export interface SkillCategory {
   title: string;
   tags: string[];
@@ -6,46 +6,19 @@ export interface SkillCategory {
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: "AI & Automation",
-    tags: [
-      "Claude AI",
-      "OpenAI API",
-      "LangChain",
-      "OpenClaw",
-      "Prompt Engineering",
-      "AI Agents",
-      "n8n",
-      "Make.com",
-      "Zapier",
-      "Docker",
-      "MediaPipe",
-    ],
+    title: "AI Web Development",
+    tags: ["Premium Websites", "Responsive UX", "Conversion-focused Pages", "Client Enquiry Flows"],
   },
   {
-    title: "Programming",
-    tags: ["Python", "JavaScript", "Dart", "Kotlin", "React", "Pandas", "REST APIs"],
+    title: "AI Automation",
+    tags: ["Workflow Mapping", "Task Routing", "Data Handoffs", "Operational Systems"],
   },
   {
-    title: "Mobile Dev",
-    tags: [
-      "Flutter",
-      "Android (Kotlin)",
-      "MVVM Architecture",
-      "Firebase",
-      "Google Maps SDK",
-      "Push Notifications",
-    ],
+    title: "AI Agents",
+    tags: ["Knowledge Assistants", "Lead Intake", "Support Workflows", "Human-in-the-loop Design"],
   },
   {
-    title: "Backend & Database",
-    tags: ["Firebase", "Supabase", "SQL", "NoSQL", "REST APIs", "Postman"],
-  },
-  {
-    title: "Cloud & DevOps",
-    tags: ["Vercel", "GCP", "GitHub", "CI/CD"],
-  },
-  {
-    title: "Design & Tools",
-    tags: ["Figma", "Canva", "Airtable", "CRM Tools", "Google Workspace"],
+    title: "System Design",
+    tags: ["Discovery", "Clear Scope", "Practical Delivery", "Maintainable Foundations"],
   },
 ];

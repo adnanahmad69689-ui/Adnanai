@@ -1,4 +1,4 @@
-/** Experience timeline entries. */
+/** Service approach entries, written without unsupported employment or award claims. */
 export interface ExperienceEntry {
   role: string;
   date: string;
@@ -9,25 +9,25 @@ export interface ExperienceEntry {
 
 export const experienceEntries: ExperienceEntry[] = [
   {
-    role: "AI Content Creator & Educator",
-    date: "Oct 2025 – Present",
-    company: "YouTube — @your-channel",
-    companyType: "Content Creation · AI Education",
+    role: "AI Web Development",
+    date: "From positioning to launch",
+    company: "Adnan AI",
+    companyType: "Web Strategy · UI/UX · Development",
     bullets: [
-      "Producing long-form build series that take viewers from idea to deployed AI automation.",
-      "Breaking down real client workflows — architecture, costs, and measurable outcomes.",
-      "Growing a community of developers and freelancers learning practical AI automation.",
+      "Clarify the offer, audience, and client journey before interface decisions are made.",
+      "Create responsive websites that pair premium visual design with a clear reason to take action.",
+      "Keep pages lightweight, accessible, and ready to evolve as the business grows.",
     ],
   },
   {
-    role: "Founder & Product Developer",
-    date: "Dec 2024 – Present",
-    company: "Your Startup",
-    companyType: "Startup · Product",
+    role: "AI Automation & Agents",
+    date: "From discovery to a working system",
+    company: "Adnan AI",
+    companyType: "Workflow Design · AI Agents · Operations",
     bullets: [
-      "Designed and built a founder–investor scheduling platform end to end.",
-      "Led UI/UX design in Figma and shipped cross-platform apps with Flutter + Firebase.",
-      "Top 6 finalist in a state-wide startup funding program; invited to a national summit.",
+      "Map the real manual steps before selecting tools or automating anything.",
+      "Design focused automations and AI agents around a defined task, approved context, and useful hand-offs.",
+      "Prioritize systems that remain understandable and maintainable after the first launch.",
     ],
   },
 ];
