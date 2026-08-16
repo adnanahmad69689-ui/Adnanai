@@ -1,4 +1,4 @@
-/** Custom cursor: accent dot + trailing ring, desktop only (CSS hides on touch). */
+/** Custom cursor: immediate accent dot + ring, desktop only (CSS hides on touch). */
 import { useEffect, useState } from "react";
 
 export function CustomCursor() {
@@ -6,18 +6,14 @@ export function CustomCursor() {
   const [ring, setRing] = useState({ x: -100, y: -100 });
 
   useEffect(() => {
-    let raf = 0;
     const onMove = (e: MouseEvent) => {
       setDot({ x: e.clientX, y: e.clientY });
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        setTimeout(() => setRing({ x: e.clientX, y: e.clientY }), 60);
-      });
+      // Keep the ring in lockstep with the pointer—no trailing timeout.
+      setRing({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => {
       window.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(raf);
     };
   }, []);
 
@@ -34,4 +30,3 @@ export function CustomCursor() {
     </>
   );
 }
-

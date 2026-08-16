@@ -27,3 +27,8 @@
 - [x] Shift the desktop hero image framing right to reveal more of the laptop.
 - [x] Move hero overlay labels away from the portrait’s face and neck.
 - [x] Verify desktop and mobile framing, then save the revised project checkpoint.
+
+# Cursor Responsiveness Checklist
+
+- [x] Inspect the custom cursor animation settings.
+- [x] Increase cursor tracking speed and verify the interaction.
