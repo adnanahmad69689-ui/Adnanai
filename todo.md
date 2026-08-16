@@ -44,3 +44,9 @@
 - [x] Optimize rendered image assets, font loading, motion, bundle usage, and lazy loading.
 - [x] Validate desktop, tablet, mobile, navigation, links, email/Instagram controls, SEO, and runtime health.
 - [x] Save and deliver the optimized project checkpoint.
+
+# Workflow Gallery Expansion Checklist
+
+- [x] Preserve the current four Capabilities cards without changes.
+- [x] Add new neutral automation system patterns inspired by the reference portfolio.
+- [x] Verify the expanded system-pattern gallery and save the updated checkpoint.

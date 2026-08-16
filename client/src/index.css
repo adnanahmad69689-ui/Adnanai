@@ -2595,11 +2595,6 @@
   .n8n-info { gap: 0.65rem; padding: 1.25rem; }
 }
 
-.workflow-card, .n8n-card {
-  content-visibility: auto;
-  contain-intrinsic-size: 520px;
-}
-
 .error-fallback {
   min-height: 100vh;
   display: grid;
