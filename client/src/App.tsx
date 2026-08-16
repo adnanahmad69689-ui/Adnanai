@@ -1,38 +1,65 @@
+/**
+ * App shell: dark theme, custom cursor, skip link, navbar, and hash routing
+ * between the home page and the #n8n-projects gallery page (mirrors the
+ * reference site's hashchange-based routing).
+ */
+import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { CustomCursor } from "./components/CustomCursor";
+import { Navbar } from "./components/Navbar";
+import { N8nProjects } from "./components/N8nProjects";
 import Home from "./pages/Home";
 
+function AppContent() {
+  const [page, setPage] = useState<"home" | "n8n">("home");
 
-function Router() {
+  useEffect(() => {
+    const onHash = () => {
+      const hash = window.location.hash;
+      if (hash === "#n8n-projects") {
+        setPage("n8n");
+        window.scrollTo(0, 0);
+      } else {
+        setPage("home");
+        if (hash && hash !== "#") {
+          const id = hash.replace("#", "");
+          setTimeout(() => {
+            const el = document.getElementById(id);
+            if (el) {
+              const top = el.offsetTop - 20;
+              window.scrollTo({ top, behavior: "smooth" });
+            }
+          }, 100);
+        }
+      }
+    };
+    window.addEventListener("hashchange", onHash);
+    onHash();
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
   return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
+    <div className="App">
+      <CustomCursor />
+      <a href="#main" className="skip-to-content">
+        Skip to content
+      </a>
+      <Navbar />
+      {page === "n8n" ? <N8nProjects /> : <Home />}
+    </div>
   );
 }
-
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
 
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <AppContent />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
@@ -40,3 +67,4 @@ function App() {
 }
 
 export default App;
+

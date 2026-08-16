@@ -1,25 +1,35 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
 /**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+ * Home page: composes all portfolio sections in reference order and wires
+ * the global scroll-reveal hook.
  */
-export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+import { Hero } from "../components/Hero";
+import { Workflows } from "../components/Workflows";
+import { About } from "../components/About";
+import { Skills } from "../components/Skills";
+import { Projects } from "../components/Projects";
+import { Experience } from "../components/Experience";
+import { YouTube } from "../components/YouTube";
+import { Reviews } from "../components/Reviews";
+import { Contact } from "../components/Contact";
+import { Footer } from "../components/Footer";
+import { useReveal } from "../hooks/useReveal";
 
+export default function Home() {
+  const ref = useReveal<HTMLDivElement>();
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
+    <div ref={ref}>
+      <Hero />
+      <main id="main">
+        <Workflows />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <YouTube />
+        <Reviews />
+        <Contact />
       </main>
+      <Footer />
     </div>
   );
 }
