@@ -50,3 +50,9 @@
 - [x] Preserve the current four Capabilities cards without changes.
 - [x] Add new neutral automation system patterns inspired by the reference portfolio.
 - [x] Verify the expanded system-pattern gallery and save the updated checkpoint.
+
+# About Portrait Update Checklist
+
+- [x] Copy and optimize the supplied About portrait for persistent portfolio use.
+- [x] Replace the centralized About portrait asset with the supplied image.
+- [x] Verify desktop and mobile framing, then save the updated project checkpoint.

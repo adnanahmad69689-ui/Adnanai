@@ -133,8 +133,8 @@ export const siteConfig = {
     headingLead: "Adnan AI builds systems that support",
     headingEm: "better work.",
     /** Portrait image. Recommended: 3:4 vertical, ~600×800. */
-    image: "/manus-storage/hero-user-portrait_ed976720.webp",
-    imageAlt: "Portrait of Adnan Ai",
+    image: "/manus-storage/adnan-ai-about-portrait_e8b8b5da.webp",
+    imageAlt: "Portrait of Adnan Ai holding a laptop in a studio lounge",
     bio: [
       "Adnan AI helps businesses turn ideas and operational pain points into practical digital systems. The focus is clear communication, thoughtful implementation, and technology that earns its place in the workflow.",
       "Core work spans AI web development, AI automation, and AI agents — from the customer-facing website through to the systems that keep the work moving behind it.",
