@@ -1,4 +1,4 @@
-# AI Automation Portfolio Recreation
+# Adnan Ai Portfolio Recreation
 
 This repository contains a high-fidelity React/TypeScript recreation of a dark, neon-lime personal portfolio. It is intentionally built as a reusable starter rather than a hard-coded clone: personal identity, contact details, projects, skills, experience, workflow cards, video cards, and visual assets are centralized for replacement.
 

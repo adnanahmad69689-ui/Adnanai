@@ -16,7 +16,7 @@ export const siteConfig = {
   /* ------------------------------- Identity ------------------------------ */
   identity: {
     /** Short monogram shown in the navbar logo (1–3 characters). */
-    monogram: "Adnan AI",
+    monogram: "Adnan Ai",
     /** Full first name (hero, greeting, footer). */
     firstName: "Adnan",
     /** Last name — rendered in italic accent in the hero. */
@@ -24,9 +24,9 @@ export const siteConfig = {
     /** Trailing punctuation after the hero last name. */
     lastNameSuffix: ".",
     /** <title> tag and meta description. */
-    pageTitle: "Adnan AI | AI Automation Engineer & Flutter Developer",
+    pageTitle: "Adnan Ai | AI Automation Engineer & Flutter Developer",
     metaDescription:
-      "Adnan AI — portfolio of Adnan Ahmad, an AI automation engineer building end-to-end AI systems, mobile apps, and workflow automations.",
+      "Adnan Ai — portfolio of Adnan Ahmad, an AI automation engineer building end-to-end AI systems, mobile apps, and workflow automations.",
     /** City shown in the footer copyright line. */
     location: "Your City, Country",
     /** Footer tagline. */
