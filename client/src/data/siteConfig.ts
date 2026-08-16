@@ -19,14 +19,14 @@ export const siteConfig = {
     monogram: "Adnan Ai",
     /** Full first name (hero, greeting, footer). */
     firstName: "Adnan",
-    /** Last name — rendered in italic accent in the hero. */
-    lastName: "Ahmad",
-    /** Trailing punctuation after the hero last name. */
-    lastNameSuffix: ".",
+    /** Second word of the visible personal identity, rendered in italic accent. */
+    lastName: "Ai",
+    /** Kept empty so the visible identity remains exactly “Adnan Ai”. */
+    lastNameSuffix: "",
     /** <title> tag and meta description. */
     pageTitle: "Adnan Ai | AI Automation Engineer & Flutter Developer",
     metaDescription:
-      "Adnan Ai — portfolio of Adnan Ahmad, an AI automation engineer building end-to-end AI systems, mobile apps, and workflow automations.",
+      "Adnan Ai — portfolio of Adnan Ai, an AI automation engineer building end-to-end AI systems, mobile apps, and workflow automations.",
     /** City shown in the footer copyright line. */
     location: "KPK, Peshawar, Pakistan",
     /** Footer tagline. */
@@ -39,7 +39,7 @@ export const siteConfig = {
   hero: {
     /** Background portrait. Recommended: 1600×900, subject on the RIGHT. */
     backgroundImage: "/manus-storage/hero-user-portrait_ed976720.webp",
-    backgroundAlt: "Portrait of Adnan Ahmad seated with a laptop",
+    backgroundAlt: "Portrait of Adnan Ai seated with a laptop",
     /** Rotating words under the big name (cycles every 2.5s). */
     rotatingWords: ["AI SYSTEMS", "AUTOMATION", "AGENTS", "WORKFLOWS"],
     /** Small tagline above the big name. */
