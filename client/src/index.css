@@ -359,6 +359,9 @@
   overflow: hidden;
   white-space: nowrap;
 }
+@media (max-width: 1023px) {
+  .navigation-top { display: none; }
+}
 .nav-inner {
   display: flex;
   align-items: center;
@@ -936,7 +939,8 @@
 }
 
 @media (width <= 768px) {
-  .hero-bg-image { object-position: 85% top !important; }
+  /* The supplied portrait is centered further left than the original asset. */
+  .hero-bg-image { object-position: 68% top !important; }
   .hero-phase2-stats { display: none !important; }
   .hero-phase2-left { max-width: 100% !important; }
   .hero-greeting { top: 1.5rem !important; left: 1.25rem !important; }

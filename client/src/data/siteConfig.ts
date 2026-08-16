@@ -38,8 +38,8 @@ export const siteConfig = {
   /* -------------------------------- Hero --------------------------------- */
   hero: {
     /** Background portrait. Recommended: 1600×900, subject on the RIGHT. */
-    backgroundImage: "/manus-storage/hero_image_96542c22.png",
-    backgroundAlt: "Portrait",
+    backgroundImage: "/manus-storage/hero-user-portrait_ed976720.webp",
+    backgroundAlt: "Portrait of Your Name seated with a laptop",
     /** Rotating words under the big name (cycles every 2.5s). */
     rotatingWords: ["AI SYSTEMS", "AUTOMATION", "AGENTS", "WORKFLOWS"],
     /** Small tagline above the big name. */
