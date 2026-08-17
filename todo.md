@@ -189,3 +189,9 @@
 - [x] Inspect the public Aqualume Vercel website and prepare its project visual.
 - [x] Add the Aqualume live website card with its verified public link.
 - [x] Verify the two-card Websites collection and save the updated checkpoint.
+
+# Website Card Order and Framing Checklist
+
+- [x] Move Aqualume to the first Website card position.
+- [x] Refine both live website screenshot frames to eliminate visible blank margins.
+- [x] Verify the polished two-card Websites section on desktop and mobile, then save the updated checkpoint.
