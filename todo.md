@@ -91,3 +91,15 @@
 - [x] Optimize the supplied website screenshots for persistent portfolio use.
 - [x] Add a static website-project demo card with an accurate private/demo label and no unverified live link.
 - [x] Verify desktop and mobile presentation, then save the updated project checkpoint.
+
+# Three-Format Project Content Plan Checklist
+
+- [x] Define required content and safe publishing rules for private websites, public 3D sites, and AI workflows.
+- [x] Define one consistent visual structure and CTA approach across the three project formats.
+- [x] Sequence the first staged additions without modifying the portfolio until assets and copy are approved.
+
+# Sample Project Collection Checklist
+
+- [x] Define clearly labeled sample-only website, 3D-site, and AI-system entries with no fake claims or client identities.
+- [x] Add the sample project collection using existing visual assets and consistent card treatment.
+- [x] Verify the collection across desktop and mobile, then save the updated checkpoint.
