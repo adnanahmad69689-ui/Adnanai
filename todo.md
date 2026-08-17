@@ -178,3 +178,14 @@
 
 - [x] Remove the private dental demo screenshot card from Websites.
 - [x] Verify that the N A Metal live-link card remains and save the updated checkpoint.
+
+# Business Knowledge Assistant Removal Checklist
+
+- [x] Remove the KNOW / Connected context / Business Knowledge Assistant card.
+- [ ] Verify the remaining AI Systems cards and save the updated checkpoint.
+
+# Aqualume Live Website Checklist
+
+- [x] Inspect the public Aqualume Vercel website and prepare its project visual.
+- [x] Add the Aqualume live website card with its verified public link.
+- [x] Verify the two-card Websites collection and save the updated checkpoint.

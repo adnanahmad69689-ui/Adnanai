@@ -27,4 +27,16 @@ export const sampleProjects: PortfolioProject[] = [
     imageAlt: "N A Metal website hero showing an event and exhibition fabrication stage",
     url: "https://n-a-metal-lr1v.vercel.app/",
   },
+  {
+    id: "aqualume-live",
+    label: "LIVE CONCEPT WEBSITE · AQUALUME",
+    title: "Aqualume water website",
+    description: "A public luxury-water concept website built around a cinematic bottle hero, product storytelling, and refined specification-led content.",
+    details: ["Cinematic product hero", "Brand story and product specs", "Public website link included"],
+    status: "Live concept site · public website available",
+    action: "Visit live site ↗",
+    image: "/manus-storage/aqualume-live-site-optimized_db5c3637.webp",
+    imageAlt: "Aqualume water website hero with glass water bottle and Pure Clarity headline",
+    url: "https://1st-water-website.vercel.app/",
+  },
 ];

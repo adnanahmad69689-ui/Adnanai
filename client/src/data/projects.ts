@@ -44,15 +44,6 @@ export const homeWorkflows: Workflow[] = [
     metric: "AGENT",
     metricLabel: "Defined task support",
   },
-  {
-    id: 4,
-    title: "Business Knowledge Assistant",
-    image: w4,
-    problem: "Useful business knowledge is often scattered across documents, notes, and conversations.",
-    solution: "A structured knowledge workflow can make approved information easier to find, review, and apply.",
-    metric: "KNOW",
-    metricLabel: "Connected context",
-  },
 ];
 
 export const allWorkflows: Workflow[] = [
