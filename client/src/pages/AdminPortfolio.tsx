@@ -1,4 +1,5 @@
 import { useAuth } from "@/_core/hooks/useAuth";
+import { CustomCursor } from "@/components/CustomCursor";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -302,5 +303,10 @@ function AdminPortfolioContent() {
 }
 
 export default function AdminPortfolio() {
-  return <DashboardLayout><AdminPortfolioContent /></DashboardLayout>;
+  return (
+    <>
+      <CustomCursor />
+      <DashboardLayout><AdminPortfolioContent /></DashboardLayout>
+    </>
+  );
 }

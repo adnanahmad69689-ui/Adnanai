@@ -23,3 +23,7 @@ The connected owner-browser extension was unavailable during verification, so it
 ## Both content types
 
 The controlled end-to-end check was repeated for both `website` and `ai_system` records. Each temporary item used the same secure image-upload procedure, was created as a draft, kept out of its public query, edited and published, reflected in the public query, reordered, returned to draft, and deleted. A final database query returned no temporary verification records.
+
+## Admin cursor
+
+The existing raw-pointer dot-and-ring cursor is now mounted in the `/admin` page wrapper. Its fixed elements remain non-interactive, so they do not intercept form fields, upload labels, buttons, or sidebar controls. The cursor remains hidden by the existing touch and narrow-screen media query; mobile admin rendering was checked at 375px and retained a usable management layout.

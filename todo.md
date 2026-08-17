@@ -222,4 +222,10 @@
 - [ ] Perform a browser-level admin mutation flow and confirm the public portfolio updates, then restore the baseline content.
 - [ ] Verify secure admin access, content operations, public rendering, desktop/mobile behavior, and runtime health.
 - [x] Create Vercel migration documentation with Vercel deployment, data, auth, storage, environment, and SPA-routing steps.
-- [ ] Save the completed admin-enabled checkpoint.
+- [x] Save the completed admin-enabled checkpoint.
+
+# Admin Cursor Consistency Checklist
+
+- [x] Enable the existing fast dot-and-ring cursor on the private admin dashboard without interfering with forms, uploads, or controls.
+- [x] Verify desktop cursor layering against interactive admin controls and confirm the mobile media rule hides it.
+- [x] Save the admin cursor update checkpoint.
