@@ -1,19 +1,19 @@
 /**
- * App shell: dark theme, custom cursor, skip link, navbar, and hash routing
- * between the home page and the #n8n-projects gallery page (mirrors the
- * reference site's hashchange-based routing).
+ * App shell: public portfolio and a private owner-only admin route.
  */
 import { lazy, Suspense, useEffect, useState } from "react";
+import { useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { CustomCursor } from "./components/CustomCursor";
 import { Navbar } from "./components/Navbar";
 import Home from "./pages/Home";
 
 const N8nProjects = lazy(() =>
-  import("./components/N8nProjects").then((module) => ({ default: module.N8nProjects }))
+  import("./components/N8nProjects").then((module) => ({ default: module.N8nProjects })),
 );
+const AdminPortfolio = lazy(() => import("./pages/AdminPortfolio"));
 
-function AppContent() {
+function PublicPortfolio() {
   const [page, setPage] = useState<"home" | "n8n">("home");
 
   useEffect(() => {
@@ -26,12 +26,9 @@ function AppContent() {
         setPage("home");
         if (hash && hash !== "#") {
           const id = hash.replace("#", "");
-          setTimeout(() => {
-            const el = document.getElementById(id);
-            if (el) {
-              const top = el.offsetTop - 20;
-              window.scrollTo({ top, behavior: "smooth" });
-            }
+          window.setTimeout(() => {
+            const element = document.getElementById(id);
+            if (element) window.scrollTo({ top: element.offsetTop - 20, behavior: "smooth" });
           }, 100);
         }
       }
@@ -44,9 +41,7 @@ function AppContent() {
   return (
     <div className="App">
       <CustomCursor />
-      <a href="#main" className="skip-to-content">
-        Skip to content
-      </a>
+      <a href="#main" className="skip-to-content">Skip to content</a>
       <Navbar />
       {page === "n8n" ? (
         <Suspense fallback={<main className="route-loading">Loading AI system patterns…</main>}>
@@ -57,12 +52,24 @@ function AppContent() {
   );
 }
 
-function App() {
-  return (
-    <ErrorBoundary>
-      <AppContent />
-    </ErrorBoundary>
-  );
+function AppContent() {
+  const [location, setLocation] = useLocation();
+
+  useEffect(() => {
+    const returnPath = sessionStorage.getItem("adnan-ai-admin-return-path");
+    if (location === "/" && returnPath === "/admin") {
+      sessionStorage.removeItem("adnan-ai-admin-return-path");
+      setLocation(returnPath);
+    }
+  }, [location, setLocation]);
+
+  return location === "/admin" ? (
+    <Suspense fallback={<main className="route-loading">Loading portfolio controls…</main>}>
+      <AdminPortfolio />
+    </Suspense>
+  ) : <PublicPortfolio />;
 }
 
-export default App;
+export default function App() {
+  return <ErrorBoundary><AppContent /></ErrorBoundary>;
+}

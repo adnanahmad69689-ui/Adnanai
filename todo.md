@@ -206,3 +206,20 @@
 
 - [x] Remove the Adnan Ai Project Website entry from Websites.
 - [x] Verify the retained Aqualume and N A Metal cards and save the updated checkpoint.
+
+# Database-Backed Admin Dashboard Checklist
+
+- [x] Define Website and AI System database fields, ownership policy, existing-content migration, and Vercel portability boundaries.
+- [x] Upgrade to secure database and user-management capabilities.
+- [x] Implement owner-only Website and AI System CRUD plus migration of current entries.
+- [x] Build the private admin dashboard for drafts, publishing, ordering, editing, and deletion.
+- [x] Connect the public portfolio to the managed database content without changing its premium layout.
+- [x] Add loading, empty, and graceful error states for all public managed-content queries.
+- [ ] Verify authenticated owner access and post-login routing to the private admin dashboard.
+- [x] Exercise and restore end-to-end Website and AI System create, edit, delete, reorder, draft/publish, image-upload, and public-reflection workflows.
+- [x] Exercise and restore the full AI System management flow, including immediate public-gallery reflection.
+- [x] Verify the shared secure image-upload path for both Website and AI System content types.
+- [ ] Perform a browser-level admin mutation flow and confirm the public portfolio updates, then restore the baseline content.
+- [ ] Verify secure admin access, content operations, public rendering, desktop/mobile behavior, and runtime health.
+- [x] Create Vercel migration documentation with Vercel deployment, data, auth, storage, environment, and SPA-routing steps.
+- [ ] Save the completed admin-enabled checkpoint.

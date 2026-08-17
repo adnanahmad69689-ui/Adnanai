@@ -4,10 +4,29 @@
  * social proof strip, and the gradient audit CTA.
  */
 import { siteConfig, mailto } from "../data/siteConfig";
-import { homeWorkflows, type Workflow } from "../data/projects";
+import { trpc } from "@/lib/trpc";
+import { useMemo } from "react";
+
+type Workflow = {
+  id: number;
+  title: string;
+  imageUrl: string;
+  imageAlt: string;
+  label: string;
+  description: string;
+  trigger: string | null;
+  aiProcess: string | null;
+  output: string | null;
+};
+
+function getMetric(label: string) {
+  const [metric = "AI", ...rest] = label.split("·");
+  return { metric: metric.trim(), metricLabel: rest.join("·").trim() || "System pattern" };
+}
 
 export function WorkflowCard({ workflow }: { workflow: Workflow }) {
   const { workflows } = siteConfig;
+  const { metric, metricLabel } = getMetric(workflow.label);
   const href = mailto(
     `I need ${workflow.title}`,
     `Hi,\n\nI saw your ${workflow.title} workflow and I need this for my business.\n\nCan you help me set it up?\n\nThanks!`
@@ -17,27 +36,27 @@ export function WorkflowCard({ workflow }: { workflow: Workflow }) {
       <div className="workflow-card-inner">
         <div className="workflow-img-container">
           <img
-            alt={workflow.title}
+            alt={workflow.imageAlt}
             className="workflow-img"
             loading="lazy"
             decoding="async"
-            src={workflow.image}
+            src={workflow.imageUrl}
           />
         </div>
         <div className="workflow-info">
           <div className="wf-metric-badge">
-            <span className="wf-metric-value">{workflow.metric}</span>
-            <span className="wf-metric-label">{workflow.metricLabel}</span>
+            <span className="wf-metric-value">{metric}</span>
+            <span className="wf-metric-label">{metricLabel}</span>
           </div>
           <h3 className="wf-title">{workflow.title}</h3>
           <div className="wf-details">
             <div className="wf-problem">
               <span className="wf-icon wf-icon-x">✕</span>
-              <span className="wf-detail-text">{workflow.problem}</span>
+              <span className="wf-detail-text">{workflow.trigger ?? workflow.description}</span>
             </div>
             <div className="wf-solution">
               <span className="wf-icon wf-icon-check">✓</span>
-              <span className="wf-detail-text">{workflow.solution}</span>
+              <span className="wf-detail-text">{workflow.aiProcess ?? workflow.output ?? workflow.description}</span>
             </div>
           </div>
           <a className="wf-card-cta" href={href}>
@@ -54,6 +73,9 @@ export function WorkflowCard({ workflow }: { workflow: Workflow }) {
 
 export function Workflows() {
   const { workflows } = siteConfig;
+  const aiSystemQuery = useMemo(() => ({ kind: "ai_system" as const }), []);
+  const { data: rawWorkflows, isLoading, isError } = trpc.portfolio.list.useQuery(aiSystemQuery);
+  const workflowsToFeature = ((rawWorkflows ?? []) as Workflow[]).slice(0, 3);
   return (
     <section id="ai-systems" className="workflows-section">
       <div className="workflows-bg-glow" />
@@ -73,9 +95,12 @@ export function Workflows() {
         </div>
 
         <div className="workflows-gallery">
-          {homeWorkflows.map((w) => (
+          {isLoading ? <p className="workflows-loading">Loading AI systems…</p> : null}
+          {isError ? <p className="workflows-loading">AI system patterns are temporarily unavailable. Please check back shortly.</p> : null}
+          {workflowsToFeature.map((w) => (
             <WorkflowCard key={w.id} workflow={w} />
           ))}
+          {!isLoading && !isError && workflowsToFeature.length === 0 ? <p className="workflows-loading">AI system patterns will appear here when published.</p> : null}
         </div>
 
         <div className="show-more-container">

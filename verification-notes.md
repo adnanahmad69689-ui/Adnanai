@@ -1,0 +1,25 @@
+# Admin Dashboard Verification Notes
+
+## Responsive checks
+
+Desktop and mobile checks confirmed that the public portfolio continues to render the managed Website and AI System records. The AI System gallery shows all 13 published patterns, while the homepage highlights the first three published items.
+
+The `/admin` dashboard rendered for the owner account on desktop and mobile. The dashboard displays the two migrated Website cards, provides Website and AI System tabs, shows draft/published status, supports ordering/edit/delete controls, and keeps the creation form usable at narrow widths.
+
+## Runtime checks
+
+TypeScript validation passed after the full-stack upgrade and after connecting public content queries. The server tests passed, including the administrator access-control test. Public screenshot capture logs showed missing session-cookie notices for anonymous public pages, which is expected because public portfolio queries do not require authentication.
+
+## Controlled end-to-end content check
+
+A temporary Website record was created through the administrator tRPC procedures using the owner role. The check uploaded a valid PNG to managed storage, saved the record as a draft, confirmed that it was absent from the public Website query, edited and published it, confirmed its immediate appearance in the public query, changed its display order, returned it to draft, and deleted it. A final database query confirmed that no temporary portfolio records remain. The uploaded object was left unreferenced after the record deletion, consistent with the managed-storage lifecycle.
+
+## Remaining browser acceptance check
+
+The sandbox browser correctly reached the Manus OAuth login screen from `/admin`, but it has no owner session and cannot complete the external account login. The application code preserves `/admin` as the post-login destination through session storage, and the owner-role procedure is covered by the live workflow check. The owner should complete one sign-in in their regular browser after delivery to confirm the real account session and redirect behavior.
+
+The connected owner-browser extension was unavailable during verification, so it was disabled again and the sandbox browser was used. The sandbox login route was confirmed to open the expected Manus OAuth screen without exposing any portfolio management content to an unauthenticated session.
+
+## Both content types
+
+The controlled end-to-end check was repeated for both `website` and `ai_system` records. Each temporary item used the same secure image-upload procedure, was created as a draft, kept out of its public query, edited and published, reflected in the public query, reordered, returned to draft, and deleted. A final database query returned no temporary verification records.
