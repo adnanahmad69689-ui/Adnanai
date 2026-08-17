@@ -56,3 +56,9 @@
 - [x] Copy and optimize the supplied About portrait for persistent portfolio use.
 - [x] Replace the centralized About portrait asset with the supplied image.
 - [x] Verify desktop and mobile framing, then save the updated project checkpoint.
+
+# Second Performance Pass Checklist
+
+- [x] Measure current critical asset sizes, bundle composition, and page rendering hotspots.
+- [x] Apply safe additional loading, rendering, and delivery optimizations.
+- [x] Validate the optimized site on desktop and mobile, then save the updated project checkpoint.

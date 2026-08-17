@@ -29,3 +29,7 @@ The default UI runtime, Framer Motion, GSAP, unneeded Radix/UI packages, icon li
 ## Final Validation
 
 TypeScript checks and the production build pass. The final production bundle is **480.53 kB JavaScript (131.29 kB gzip)** and **56.29 kB CSS (11.92 kB gzip)**. Desktop and mobile home/gallery captures were reviewed, the visible contact targets resolve to the supplied email plus the Instagram destination, the active WebP assets respond through the storage proxy, metadata and SVG favicon are present, and the fresh browser-console check reports no errors.
+
+## Second Performance Pass
+
+The generated document was carrying a **368.24 kB** inline runtime payload. That injector and its package were removed, reducing the initial HTML document to **1.49 kB** (**0.75 kB gzip**) while preserving the portfolio UI. The full AI System Patterns route now loads through a separate **8.06 kB** async JavaScript chunk rather than blocking the home page. The hero portrait is explicitly preloaded, and the initial production application bundle is now **477.03 kB** (**132.37 kB gzip**) with **56.34 kB CSS** (**11.91 kB gzip**). Local checks reported a 200 HTML response in 0.005 s and the hero request began through the storage proxy in 0.032 s.

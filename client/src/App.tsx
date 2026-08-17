@@ -3,12 +3,15 @@
  * between the home page and the #n8n-projects gallery page (mirrors the
  * reference site's hashchange-based routing).
  */
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { CustomCursor } from "./components/CustomCursor";
 import { Navbar } from "./components/Navbar";
-import { N8nProjects } from "./components/N8nProjects";
 import Home from "./pages/Home";
+
+const N8nProjects = lazy(() =>
+  import("./components/N8nProjects").then((module) => ({ default: module.N8nProjects }))
+);
 
 function AppContent() {
   const [page, setPage] = useState<"home" | "n8n">("home");
@@ -45,7 +48,11 @@ function AppContent() {
         Skip to content
       </a>
       <Navbar />
-      {page === "n8n" ? <N8nProjects /> : <Home />}
+      {page === "n8n" ? (
+        <Suspense fallback={<main className="route-loading">Loading AI system patterns…</main>}>
+          <N8nProjects />
+        </Suspense>
+      ) : <Home />}
     </div>
   );
 }

@@ -2616,6 +2616,8 @@
 .reveal-managed { transition: opacity 420ms cubic-bezier(0.23, 1, 0.32, 1) var(--reveal-delay, 0s), transform 420ms cubic-bezier(0.23, 1, 0.32, 1) var(--reveal-delay, 0s); }
 .reveal-managed.is-revealed { opacity: 1; transform: translate3d(0, 0, 0); }
 
+.route-loading { min-height: 100vh; display: grid; place-items: center; background: #080808; color: rgba(240, 236, 230, 0.72); font-family: "Space Grotesk", sans-serif; }
+
 /* ============================ Reduced motion ============================= */
 
 @media (prefers-reduced-motion: reduce) {
