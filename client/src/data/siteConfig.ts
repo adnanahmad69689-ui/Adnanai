@@ -161,46 +161,6 @@ export const siteConfig = {
     headingEm: "builds",
   },
 
-  /* --------------------------- Featured project -------------------------- */
-  project: {
-    label: "Website Project Demo",
-    titleLead: "N A Metal",
-    titleEm: "UI demo",
-    badges: ["PRIVATE BUILD", "MATERIALS UI", "WEBSITE DEMO"],
-    tagline:
-      "A desktop materials-information interface demo built around product discovery, resource navigation, and detailed content layouts.",
-    description:
-      "This private website demo presents a structured materials resource page, prominent search and enquiry controls, layered navigation, and a clear multi-column footer experience.",
-    highlights: [
-      {
-        title: "Product discovery:",
-        text: "A visible SKU and product search interface paired with clear primary actions.",
-      },
-      {
-        title: "Resource structure:",
-        text: "Material information, category navigation, and readable detail content organized for quick scanning.",
-      },
-      {
-        title: "Footer experience:",
-        text: "A communication signup area and grouped service, resource, legal, and company navigation.",
-      },
-    ],
-    techStack: ["Responsive UI", "Search Interface", "Content Architecture"],
-    ctaLabel: "Request a Private Demo",
-    ctaSubject: "Adnan AI — N A Metal website demo",
-    ctaBody:
-      "Hi Adnan AI,\n\nI’d like to request more details about the N A Metal website demo.\n\nThanks!",
-    /** Mockup frame */
-    mockupUrl: "private demo · preview on request",
-    mockupImage: "/manus-storage/metal-material-demo-overview_7d3cffb2.webp",
-    mockupImageAlt: "N A Metal materials information page interface demo",
-    secondaryImage: "/manus-storage/metal-material-demo-footer_6f8d6d62.webp",
-    secondaryImageAlt: "N A Metal website footer and communications signup interface demo",
-    overlayBadge: "PRIVATE WEBSITE DEMO",
-    overlayStat: "Materials resource interface",
-    overlaySub: "Search · navigation · content · footer",
-  },
-
   /* ------------------------------ Experience ----------------------------- */
   experience: {
     label: "Experience",

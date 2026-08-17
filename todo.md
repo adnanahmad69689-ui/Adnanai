@@ -110,3 +110,8 @@
 - [x] Inspect the public N A Metal website and derive only verifiable feature descriptions.
 - [x] Replace the sample private-site, 3D-site, and AI-system cards with the supplied project entries.
 - [x] Verify desktop and mobile presentation, then save the updated project checkpoint.
+
+# Obsolete Demo Removal Checklist
+
+- [x] Remove the old Website Project Demo / N A Metal UI demo section.
+- [x] Verify the retained N A Metal live project remains visible, then save the updated checkpoint.

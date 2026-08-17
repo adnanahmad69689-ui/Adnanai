@@ -6,7 +6,6 @@ import { Hero } from "../components/Hero";
 import { Workflows } from "../components/Workflows";
 import { About } from "../components/About";
 import { Skills } from "../components/Skills";
-import { Projects } from "../components/Projects";
 import { SampleProjectCollection } from "../components/SampleProjectCollection";
 import { Experience } from "../components/Experience";
 import { Reviews } from "../components/Reviews";
@@ -23,7 +22,6 @@ export default function Home() {
         <Workflows />
         <About />
         <Skills />
-        <Projects />
         <SampleProjectCollection />
         <Experience />
         <Reviews />
