@@ -195,3 +195,9 @@
 - [x] Move Aqualume to the first Website card position.
 - [x] Refine both live website screenshot frames to eliminate visible blank margins.
 - [x] Verify the polished two-card Websites section on desktop and mobile, then save the updated checkpoint.
+
+# Adnan Ai Project Website Checklist
+
+- [x] Create a premium project visual and accurate summary for the Adnan Ai portfolio website.
+- [x] Add the Adnan Ai Project Website as a public live Websites entry.
+- [x] Verify the expanded Website collection and save the updated checkpoint.

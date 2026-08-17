@@ -28,6 +28,18 @@ export const sampleProjects: PortfolioProject[] = [
     url: "https://1st-water-website.vercel.app/",
   },
   {
+    id: "adnan-ai-portfolio-live",
+    label: "LIVE PORTFOLIO WEBSITE · ADNAN AI",
+    title: "Adnan Ai Project Website",
+    description: "A personal AI portfolio designed to present AI Web Development, AI Automation, AI Agents, public website work, and workflow systems in one editorial experience.",
+    details: ["Responsive portfolio interface", "Websites and AI Systems sections", "Optimized visuals and motion"],
+    status: "Live portfolio · public website available",
+    action: "Visit portfolio ↗",
+    image: "/manus-storage/adnan-ai-project-website_3465fe57.webp",
+    imageAlt: "Adnan Ai portfolio hero with personal brand identity and service positioning",
+    url: "https://portfoliorec-xt4vpvin.manus.space/",
+  },
+  {
     id: "na-metal-live",
     label: "LIVE WEBSITE · N A METAL",
     title: "N A Metal website",
