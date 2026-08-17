@@ -138,3 +138,9 @@
 - [x] Audit every main section for background changes, empty gaps, and inconsistent spacing.
 - [x] Apply a consistent dark background system and corrected section rhythm.
 - [x] Verify desktop/mobile visual consistency and save the polished checkpoint.
+
+# Section Divider System Checklist
+
+- [x] Define the shared horizontal divider style for each main section boundary.
+- [x] Apply the divider treatment throughout the portfolio without affecting cards or the hero.
+- [x] Verify the divider system on desktop/mobile and save the updated checkpoint.

@@ -2726,6 +2726,21 @@ main { position: relative; background: var(--color-bg); }
   .reviews-section { padding: 3.75rem 0; }
   .contact-section { padding-top: 3.75rem; padding-bottom: 3.75rem; }
 }
+/* A shared horizon line makes each completed section read as a deliberate chapter. */
+main > section { position: relative; }
+main > section::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  right: clamp(1rem, 5vw, 5rem);
+  bottom: 0;
+  left: clamp(1rem, 5vw, 5rem);
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.06) 12%, rgba(168, 255, 62, 0.45) 50%, rgba(255, 255, 255, 0.06) 88%, transparent 100%);
+  box-shadow: 0 0 14px rgba(168, 255, 62, 0.1);
+}
+main > section:last-child::after { display: none; }
 /* ============================ Reduced motion ============================= */
 
 @media (prefers-reduced-motion: reduce) {
