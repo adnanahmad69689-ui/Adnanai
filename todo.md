@@ -144,3 +144,8 @@
 - [x] Define the shared horizontal divider style for each main section boundary.
 - [x] Apply the divider treatment throughout the portfolio without affecting cards or the hero.
 - [x] Verify the divider system on desktop/mobile and save the updated checkpoint.
+
+# Service Card Copy Refinement Checklist
+
+- [x] Replace the current service tags with concise, title-matched wording.
+- [x] Verify the revised three-card presentation and save the updated checkpoint.

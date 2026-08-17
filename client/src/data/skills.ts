@@ -7,14 +7,14 @@ export interface SkillCategory {
 export const skillCategories: SkillCategory[] = [
   {
     title: "AI Web Development",
-    tags: ["Premium Websites", "Responsive UX", "Conversion-focused Pages", "Client Enquiry Flows"],
+    tags: ["Business Websites", "Responsive Design", "Conversion CTAs"],
   },
   {
     title: "AI Automation",
-    tags: ["Workflow Mapping", "Task Routing", "Data Handoffs", "Operational Systems"],
+    tags: ["Workflow Design", "Task Automation", "System Integration"],
   },
   {
     title: "AI Agents",
-    tags: ["Knowledge Assistants", "Lead Intake", "Support Workflows", "Human-in-the-loop Design"],
+    tags: ["Knowledge Agents", "Lead Agents", "Support Agents"],
   },
 ];
