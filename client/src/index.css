@@ -241,7 +241,8 @@
 .skip-to-content:focus { top: 16px; }
 
 /* Custom cursor (desktop only) */
-.custom-cursor {
+.custom-cursor,
+.custom-cursor-ring {
   position: fixed;
   top: 0;
   left: 0;
@@ -257,8 +258,14 @@
   height: 8px;
   background: var(--color-accent);
 }
+.custom-cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-accent);
+  opacity: 0.6;
+}
 @media (hover: none), (width <= 1024px) {
-  .custom-cursor { display: none; }
+  .custom-cursor, .custom-cursor-ring { display: none; }
 }
 @media (hover: hover) and (width > 1024px) {
   body { cursor: none; }

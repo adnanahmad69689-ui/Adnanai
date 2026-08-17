@@ -74,3 +74,9 @@
 - [x] Remove the decorative cursor ring and its extra DOM/style work.
 - [x] Keep a single direct pointer-following cursor indicator.
 - [x] Validate the simplified cursor and save the updated checkpoint.
+
+# Previous Cursor Style Restoration Checklist
+
+- [x] Restore the dot-and-ring cursor style from the previous version.
+- [x] Keep the restored cursor on direct high-speed pointer tracking.
+- [x] Validate the restored cursor and save the updated checkpoint.
