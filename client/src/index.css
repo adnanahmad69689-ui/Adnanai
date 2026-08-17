@@ -1489,6 +1489,7 @@
 
 .skills-section {
   padding: var(--space-3xl) var(--container-pad);
+  padding-bottom: 4.5rem;
 }
 .skills-container {
   max-width: var(--container-max);
@@ -1835,7 +1836,7 @@
 }
 
 /* ======================== Sample Project Collection ======================= */
-.sample-projects-section { position: relative; padding: 110px 2rem; background: #090909; overflow: hidden; }
+.sample-projects-section { position: relative; padding: 4.75rem 2rem 6.5rem; background: #090909; overflow: hidden; border-top: 1px solid rgba(168,255,62,.18); box-shadow: inset 0 42px 80px rgba(168,255,62,.025); }
 .sample-projects-section::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 80% 15%, rgba(168,255,62,.055), transparent 24%), linear-gradient(130deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: auto, 34px 34px; pointer-events: none; }
 .sample-projects-container { position: relative; max-width: 1180px; margin: 0 auto; }
 .sample-projects-intro { max-width: 670px; margin-bottom: 3.5rem; }
@@ -1859,6 +1860,8 @@
 .sample-project-content { padding: 1.3rem; }.sample-project-label { display: block; margin-bottom: .7rem; color: var(--color-accent); font: 700 8px "Space Grotesk", sans-serif; letter-spacing: .13em; }.sample-project-content h3 { margin: 0 0 .65rem; color: #f5f2ed; font: 600 1.7rem/.95 "Cormorant Garamond", serif; }.sample-project-content p { min-height: 67px; margin: 0 0 .9rem; color: rgba(245,242,237,.59); font: 400 .82rem/1.55 "Space Grotesk", sans-serif; }.sample-project-content ul { display: grid; gap: .45rem; margin: 0 0 1.25rem; padding: 0; list-style: none; color: rgba(245,242,237,.78); font: 500 .7rem/1.35 "Space Grotesk", sans-serif; }.sample-project-content li::first-letter { color: var(--color-accent); }.sample-project-footer { display: grid; gap: .75rem; padding-top: .9rem; border-top: 1px solid rgba(255,255,255,.08); color: rgba(245,242,237,.48); font: 500 .63rem/1.35 "Space Grotesk", sans-serif; }.sample-project-action { color: var(--color-accent); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
 @media (width <= 968px) { .sample-projects-grid { grid-template-columns: 1fr; }.sample-preview { min-height: 250px; }.sample-project-content p { min-height: 0; }.sample-projects-section { padding: 85px 1.5rem; } }
 @media (width <= 480px) { .sample-projects-section { padding: 65px 1rem; }.sample-projects-intro { margin-bottom: 2rem; }.sample-project-content { padding: 1.1rem; }.sample-preview { min-height: 215px; } }
+@media (width <= 968px) { .skills-section { padding-bottom: 4rem; }.sample-projects-section { padding-top: 4rem; padding-bottom: 5rem; } }
+@media (width <= 480px) { .skills-section { padding-bottom: 3.25rem; }.sample-projects-section { padding-top: 3.25rem; padding-bottom: 4rem; } }
 @media (width <= 968px) { .sample-project-image { min-height: 250px; height: 250px; } }
 @media (width <= 480px) { .sample-project-image { min-height: 215px; height: 215px; } }
 

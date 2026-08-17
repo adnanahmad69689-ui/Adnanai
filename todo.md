@@ -126,3 +126,9 @@
 
 - [x] Remove the System Design service card and its displayed tags.
 - [x] Verify the remaining services layout and save the updated checkpoint.
+
+# Services-to-Websites Transition Checklist
+
+- [x] Identify and remove the excess vertical whitespace below the Services cards.
+- [x] Add a compact premium transition into the Websites section.
+- [x] Verify desktop/mobile spacing and save the updated checkpoint.
