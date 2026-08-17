@@ -1,4 +1,4 @@
-/** GPU-friendly desktop cursor: direct DOM updates avoid React re-renders on mousemove. */
+/** Raw pointer-event cursor: direct composited updates avoid render-cycle and mouse-event lag. */
 import { useEffect, useRef } from "react";
 
 export function CustomCursor() {
@@ -6,13 +6,15 @@ export function CustomCursor() {
   const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onMove = (event: MouseEvent) => {
-      const transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+    const onMove = (event: Event) => {
+      const { clientX, clientY } = event as PointerEvent;
+      const transform = `translate3d(${clientX}px, ${clientY}px, 0) translate(-50%, -50%)`;
       if (dotRef.current) dotRef.current.style.transform = transform;
       if (ringRef.current) ringRef.current.style.transform = transform;
     };
-    window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
+    const eventName = "onpointerrawupdate" in window ? "pointerrawupdate" : "pointermove";
+    window.addEventListener(eventName, onMove, { passive: true });
+    return () => window.removeEventListener(eventName, onMove);
   }, []);
 
   const initialStyle = { transform: "translate3d(-100px, -100px, 0)" };

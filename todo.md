@@ -62,3 +62,9 @@
 - [x] Measure current critical asset sizes, bundle composition, and page rendering hotspots.
 - [x] Apply safe additional loading, rendering, and delivery optimizations.
 - [x] Validate the optimized site on desktop and mobile, then save the updated project checkpoint.
+
+# Cursor Latency Correction Checklist
+
+- [x] Inspect the cursor update path for remaining lag.
+- [x] Remove any remaining interpolation or render-cycle delay from cursor tracking.
+- [x] Verify immediate desktop cursor tracking and save the corrected checkpoint.

@@ -250,6 +250,8 @@
   z-index: 10000;
   border-radius: 50%;
   mix-blend-mode: difference;
+  will-change: transform;
+  contain: layout paint style;
 }
 .custom-cursor {
   width: 8px;
