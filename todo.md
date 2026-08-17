@@ -68,3 +68,9 @@
 - [x] Inspect the cursor update path for remaining lag.
 - [x] Remove any remaining interpolation or render-cycle delay from cursor tracking.
 - [x] Verify immediate desktop cursor tracking and save the corrected checkpoint.
+
+# Maximum Cursor Responsiveness Checklist
+
+- [x] Remove the decorative cursor ring and its extra DOM/style work.
+- [x] Keep a single direct pointer-following cursor indicator.
+- [x] Validate the simplified cursor and save the updated checkpoint.
