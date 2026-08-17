@@ -103,3 +103,10 @@
 - [x] Define clearly labeled sample-only website, 3D-site, and AI-system entries with no fake claims or client identities.
 - [x] Add the sample project collection using existing visual assets and consistent card treatment.
 - [x] Verify the collection across desktop and mobile, then save the updated checkpoint.
+
+# Supplied Project Entry Checklist
+
+- [x] Optimize the supplied N A Metal, dental website, and AI workflow visuals for persistent portfolio use.
+- [x] Inspect the public N A Metal website and derive only verifiable feature descriptions.
+- [x] Replace the sample private-site, 3D-site, and AI-system cards with the supplied project entries.
+- [x] Verify desktop and mobile presentation, then save the updated project checkpoint.

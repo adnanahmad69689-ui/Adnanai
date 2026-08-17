@@ -1,49 +1,54 @@
-/**
- * Sample-only entries used to preview portfolio formats. Replace these with
- * real project facts, assets, and links before presenting them as live work.
- */
-export type SampleProjectFormat = "private-site" | "live-3d" | "ai-system";
-
-export interface SampleProject {
+/** Portfolio entries built only from the supplied public link and project screenshots. */
+export interface PortfolioProject {
   id: string;
-  format: SampleProjectFormat;
   label: string;
   title: string;
   description: string;
   details: string[];
   status: string;
   action: string;
+  image: string;
+  imageAlt: string;
+  secondaryImage?: string;
+  secondaryImageAlt?: string;
+  url?: string;
 }
 
-export const sampleProjects: SampleProject[] = [
+export const sampleProjects: PortfolioProject[] = [
   {
-    id: "private-website",
-    format: "private-site",
-    label: "SAMPLE FORMAT · PRIVATE WEBSITE",
-    title: "Private website presentation",
-    description: "Use this structure when a website cannot be shared publicly but screenshots can demonstrate the interface.",
-    details: ["One polished primary screenshot", "Two or three factual features", "Private-demo email action"],
-    status: "Private build — demo available on request",
-    action: "Replace with your screenshot",
+    id: "na-metal-live",
+    label: "LIVE WEBSITE · N A METAL",
+    title: "N A Metal website",
+    description: "A public website for metal fabrication, event and exhibition work, display environments, and immersive installations.",
+    details: ["Full-screen event fabrication hero", "Service navigation across eight offerings", "Public website link included"],
+    status: "Public project · live website available",
+    action: "Visit live site ↗",
+    image: "/manus-storage/na-metal-live-site_c6242a42.webp",
+    imageAlt: "N A Metal website hero showing an event and exhibition fabrication stage",
+    url: "https://n-a-metal-lr1v.vercel.app/",
   },
   {
-    id: "live-3d",
-    format: "live-3d",
-    label: "SAMPLE FORMAT · PUBLIC 3D SITE",
-    title: "Interactive 3D website",
-    description: "Use this structure when a public site has immersive scenes, product exploration, or high-impact interaction.",
-    details: ["Strong 3D hero still", "Short interaction summary", "Single public-link action"],
-    status: "Public link ready when supplied",
-    action: "Add your live URL",
+    id: "dental-website",
+    label: "PRIVATE WEBSITE · VISUAL DEMO",
+    title: "Dental practice website",
+    description: "A patient-facing dental website visual demo with clear service navigation, appointment emphasis, and an editorial homepage layout.",
+    details: ["Clear patient navigation", "Prominent appointment call-to-action", "Practice and service presentation"],
+    status: "Private visual demo · no public link supplied",
+    action: "Request private preview",
+    image: "/manus-storage/dental-site-hero_b7e6dbdb.webp",
+    imageAlt: "Dental practice homepage visual demo with appointment call to action",
+    secondaryImage: "/manus-storage/dental-site-overview_00b60f8c.webp",
+    secondaryImageAlt: "Dental practice website content layout visual demo",
   },
   {
-    id: "ai-system",
-    format: "ai-system",
-    label: "SAMPLE FORMAT · AI WORKFLOW",
-    title: "AI agent or automation",
-    description: "Use this structure to show the trigger, process, and output of a private or shareable business system.",
-    details: ["Clear trigger → process → output", "Tools or knowledge source", "Human approval where relevant"],
-    status: "Private system — details on request",
-    action: "Replace with your workflow",
+    id: "ai-agent-routing",
+    label: "AI WORKFLOW · AGENT ROUTING",
+    title: "Create-user routing agent",
+    description: "An AI workflow map that routes create-user form submissions through an agent, role check, and downstream Slack actions.",
+    details: ["Create-user form trigger", "AI agent with chat memory", "Role check and Slack actions"],
+    status: "Workflow image supplied · details on request",
+    action: "Request workflow details",
+    image: "/manus-storage/ai-workflow-system-map_4713bbef.webp",
+    imageAlt: "AI workflow showing user creation form submission, AI agent routing, role check, and Slack actions",
   },
 ];
