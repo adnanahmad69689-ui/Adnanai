@@ -80,3 +80,14 @@
 - [x] Restore the dot-and-ring cursor style from the previous version.
 - [x] Keep the restored cursor on direct high-speed pointer tracking.
 - [x] Validate the restored cursor and save the updated checkpoint.
+
+# Live Website Portfolio Review Checklist
+
+- [ ] Inspect the supplied live Vercel website for design, purpose, and verifiable features.
+- [ ] Prepare a proposed portfolio card and case-study outline for approval without modifying the portfolio.
+
+# Demo Website Project Checklist
+
+- [x] Optimize the supplied website screenshots for persistent portfolio use.
+- [x] Add a static website-project demo card with an accurate private/demo label and no unverified live link.
+- [x] Verify desktop and mobile presentation, then save the updated project checkpoint.

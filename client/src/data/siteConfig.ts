@@ -163,40 +163,42 @@ export const siteConfig = {
 
   /* --------------------------- Featured project -------------------------- */
   project: {
-    label: "Adnan AI Service Framework",
-    titleLead: "Build a smarter",
-    titleEm: "digital system",
-    badges: ["AI WEB DEVELOPMENT", "AI AUTOMATION", "AI AGENTS"],
+    label: "Website Project Demo",
+    titleLead: "N A Metal",
+    titleEm: "UI demo",
+    badges: ["PRIVATE BUILD", "MATERIALS UI", "WEBSITE DEMO"],
     tagline:
-      "A focused approach to designing customer-facing digital experiences and the AI-powered systems that make them more useful.",
+      "A desktop materials-information interface demo built around product discovery, resource navigation, and detailed content layouts.",
     description:
-      "Adnan AI combines interface design, practical development, and automation thinking to help businesses move from a rough idea to a clear, client-ready system.",
+      "This private website demo presents a structured materials resource page, prominent search and enquiry controls, layered navigation, and a clear multi-column footer experience.",
     highlights: [
       {
-        title: "AI Web Development:",
-        text: "Professional websites and web experiences designed around clear positioning, useful interactions, and real business goals.",
+        title: "Product discovery:",
+        text: "A visible SKU and product search interface paired with clear primary actions.",
       },
       {
-        title: "AI Automation:",
-        text: "Connected workflows that reduce repetitive hand-offs and give your team a more reliable operating rhythm.",
+        title: "Resource structure:",
+        text: "Material information, category navigation, and readable detail content organized for quick scanning.",
       },
       {
-        title: "AI Agents:",
-        text: "Purpose-built AI assistants that help with defined tasks, knowledge, communication, and operational support.",
+        title: "Footer experience:",
+        text: "A communication signup area and grouped service, resource, legal, and company navigation.",
       },
     ],
-    techStack: ["AI Web Development", "AI Automation", "AI Agents"],
-    ctaLabel: "Discuss Your Project",
-    ctaSubject: "Adnan AI — Project enquiry",
+    techStack: ["Responsive UI", "Search Interface", "Content Architecture"],
+    ctaLabel: "Request a Private Demo",
+    ctaSubject: "Adnan AI — N A Metal website demo",
     ctaBody:
-      "Hi Adnan AI,\n\nI’d like to discuss a project for my business.\n\nThanks!",
+      "Hi Adnan AI,\n\nI’d like to request more details about the N A Metal website demo.\n\nThanks!",
     /** Mockup frame */
-    mockupUrl: "adnanai.com",
-    mockupImage: "/manus-storage/project_mockup_c33efae9.webp",
-    mockupImageAlt: "Project platform preview",
-    overlayBadge: "ADNAN AI SYSTEMS",
-    overlayStat: "Built around your workflow",
-    overlaySub: "AI web development · automation · agents",
+    mockupUrl: "private demo · preview on request",
+    mockupImage: "/manus-storage/metal-material-demo-overview_7d3cffb2.webp",
+    mockupImageAlt: "N A Metal materials information page interface demo",
+    secondaryImage: "/manus-storage/metal-material-demo-footer_6f8d6d62.webp",
+    secondaryImageAlt: "N A Metal website footer and communications signup interface demo",
+    overlayBadge: "PRIVATE WEBSITE DEMO",
+    overlayStat: "Materials resource interface",
+    overlaySub: "Search · navigation · content · footer",
   },
 
   /* ------------------------------ Experience ----------------------------- */

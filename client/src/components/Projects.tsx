@@ -77,6 +77,15 @@ export function Projects() {
                 <div className="overlay-stat">{project.overlayStat}</div>
                 <div className="overlay-sub">{project.overlaySub}</div>
               </div>
+              <figure className="project-secondary-preview">
+                <figcaption>Footer &amp; communications view</figcaption>
+                <img
+                  src={project.secondaryImage}
+                  alt={project.secondaryImageAlt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
             </div>
           </div>
         </div>
