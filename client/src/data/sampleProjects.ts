@@ -27,17 +27,4 @@ export const sampleProjects: PortfolioProject[] = [
     imageAlt: "N A Metal website hero showing an event and exhibition fabrication stage",
     url: "https://n-a-metal-lr1v.vercel.app/",
   },
-  {
-    id: "dental-website",
-    label: "PRIVATE WEBSITE · VISUAL DEMO",
-    title: "Dental practice website",
-    description: "A patient-facing dental website visual demo with clear service navigation, appointment emphasis, and an editorial homepage layout.",
-    details: ["Clear patient navigation", "Prominent appointment call-to-action", "Practice and service presentation"],
-    status: "Private visual demo · no public link supplied",
-    action: "Request private preview",
-    image: "/manus-storage/dental-site-hero_b7e6dbdb.webp",
-    imageAlt: "Dental practice homepage visual demo with appointment call to action",
-    secondaryImage: "/manus-storage/dental-site-overview_00b60f8c.webp",
-    secondaryImageAlt: "Dental practice website content layout visual demo",
-  },
 ];

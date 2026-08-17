@@ -173,3 +173,8 @@
 
 - [x] Remove the AI System example card and its unused styles.
 - [x] Verify the retained AI Systems cards and save the updated checkpoint.
+
+# Live Website Only Checklist
+
+- [x] Remove the private dental demo screenshot card from Websites.
+- [x] Verify that the N A Metal live-link card remains and save the updated checkpoint.
