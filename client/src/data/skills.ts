@@ -17,8 +17,4 @@ export const skillCategories: SkillCategory[] = [
     title: "AI Agents",
     tags: ["Knowledge Assistants", "Lead Intake", "Support Workflows", "Human-in-the-loop Design"],
   },
-  {
-    title: "System Design",
-    tags: ["Discovery", "Clear Scope", "Practical Delivery", "Maintainable Foundations"],
-  },
 ];

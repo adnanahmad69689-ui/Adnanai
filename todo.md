@@ -121,3 +121,8 @@
 - [x] Define the current live/private website and AI system grouping without introducing a database.
 - [x] Implement separate Websites and AI Systems project areas with clear section hierarchy.
 - [x] Verify desktop/mobile presentation and save the static review checkpoint.
+
+# System Design Service Removal Checklist
+
+- [x] Remove the System Design service card and its displayed tags.
+- [x] Verify the remaining services layout and save the updated checkpoint.
