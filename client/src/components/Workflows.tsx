@@ -5,7 +5,6 @@
  */
 import { siteConfig, mailto } from "../data/siteConfig";
 import { homeWorkflows, type Workflow } from "../data/projects";
-import { PipelineOverlay } from "./PipelineOverlay";
 
 export function WorkflowCard({ workflow }: { workflow: Workflow }) {
   const { workflows } = siteConfig;
@@ -24,7 +23,6 @@ export function WorkflowCard({ workflow }: { workflow: Workflow }) {
             decoding="async"
             src={workflow.image}
           />
-          <PipelineOverlay />
         </div>
         <div className="workflow-info">
           <div className="wf-metric-badge">
@@ -73,6 +71,30 @@ export function Workflows() {
             <span key={pillar} className="service-pillar">{pillar}</span>
           ))}
         </div>
+
+        <article className="workflow-example reveal-item" aria-label="Sample AI system presentation format">
+          <figure className="workflow-example-visual">
+            <img
+              src="/manus-storage/ai-workflow-system-dashboard_85bc0a32.webp"
+              alt="Example AI workflow dashboard with agent routing and connected systems"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Sample presentation format — not a client claim</figcaption>
+          </figure>
+          <div className="workflow-example-content">
+            <span className="workflow-example-label">AI SYSTEM EXAMPLE</span>
+            <h3>Lead Routing Assistant</h3>
+            <p>Use this compact structure when presenting a real workflow to a prospective client.</p>
+            <dl className="workflow-example-steps">
+              <div><dt>Trigger</dt><dd>New enquiry arrives</dd></div>
+              <div><dt>AI Process</dt><dd>Classifies the request and prepares next-step context</dd></div>
+              <div><dt>Output</dt><dd>Routes a ready-to-review handoff to the right owner</dd></div>
+              <div><dt>Approval</dt><dd>Human review before outreach</dd></div>
+            </dl>
+            <a className="workflow-example-cta" href={mailto("Adnan AI — AI System enquiry", "Hi Adnan Ai,\n\nI would like to discuss an AI system for my business.\n\nThanks!")}>Request system details →</a>
+          </div>
+        </article>
 
         <div className="workflows-gallery">
           {homeWorkflows.map((w) => (

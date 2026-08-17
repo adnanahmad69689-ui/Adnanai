@@ -162,3 +162,9 @@
 - [x] Ensure the Knowledge Assistant badge text displays fully.
 - [x] Remove the Create-user Routing Agent card from AI Systems.
 - [x] Verify the revised gallery and save the updated checkpoint.
+
+# AI System Example Card Checklist
+
+- [x] Define a clearly labeled sample workflow with Trigger, AI Process, Output, and approval guidance.
+- [x] Add the sample card without presenting it as a real client system or offering a fake live link.
+- [x] Verify desktop/mobile presentation and save the updated checkpoint.
