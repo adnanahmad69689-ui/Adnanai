@@ -115,3 +115,9 @@
 
 - [x] Remove the old Website Project Demo / N A Metal UI demo section.
 - [x] Verify the retained N A Metal live project remains visible, then save the updated checkpoint.
+
+# Static Project Grouping Checklist
+
+- [x] Define the current live/private website and AI system grouping without introducing a database.
+- [x] Implement separate Websites and AI Systems project areas with clear section hierarchy.
+- [x] Verify desktop/mobile presentation and save the static review checkpoint.

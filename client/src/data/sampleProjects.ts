@@ -40,15 +40,4 @@ export const sampleProjects: PortfolioProject[] = [
     secondaryImage: "/manus-storage/dental-site-overview_00b60f8c.webp",
     secondaryImageAlt: "Dental practice website content layout visual demo",
   },
-  {
-    id: "ai-agent-routing",
-    label: "AI WORKFLOW · AGENT ROUTING",
-    title: "Create-user routing agent",
-    description: "An AI workflow map that routes create-user form submissions through an agent, role check, and downstream Slack actions.",
-    details: ["Create-user form trigger", "AI agent with chat memory", "Role check and Slack actions"],
-    status: "Workflow image supplied · details on request",
-    action: "Request workflow details",
-    image: "/manus-storage/ai-workflow-system-map_4713bbef.webp",
-    imageAlt: "AI workflow showing user creation form submission, AI agent routing, role check, and Slack actions",
-  },
 ];

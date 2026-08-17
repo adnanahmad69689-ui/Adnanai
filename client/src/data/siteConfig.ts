@@ -89,7 +89,8 @@ export const siteConfig = {
     links: [
       { id: "about", label: "About" },
       { id: "skills", label: "Skills" },
-      { id: "projects", label: "Projects" },
+      { id: "projects", label: "Websites" },
+      { id: "ai-systems", label: "AI Systems" },
       { id: "experience", label: "Experience" },
     ],
     contactLabel: "Contact",
@@ -108,7 +109,7 @@ export const siteConfig = {
 
   /* ------------------------------- Workflows ----------------------------- */
   workflows: {
-    label: "Capabilities",
+    label: "AI Systems",
     headingLead: "Systems designed to make work",
     headingEm: "simpler.",
     subtitle:

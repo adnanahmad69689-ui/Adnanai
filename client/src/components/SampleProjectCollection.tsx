@@ -1,4 +1,4 @@
-/** Evidence-based portfolio project collection from the user-supplied site and screenshots. */
+/** Evidence-based website collection from the user-supplied site and screenshots. */
 import { mailto } from "../data/siteConfig";
 import { sampleProjects } from "../data/sampleProjects";
 
@@ -6,9 +6,9 @@ export function SampleProjectCollection() {
   return <section className="sample-projects-section" aria-labelledby="sample-projects-heading">
     <div className="sample-projects-container">
       <div className="sample-projects-intro reveal-item">
-        <span className="section-label">Selected project formats</span>
-        <h2 id="sample-projects-heading">Websites and <em>AI systems.</em></h2>
-        <p>Public links appear only where supplied. Private work is shown through visual evidence and an enquiry action.</p>
+        <span className="section-label">Websites</span>
+        <h2 id="sample-projects-heading">Built for the <em>browser.</em></h2>
+        <p>Public links appear only where supplied. Private website work is shown through visual evidence and an enquiry action.</p>
       </div>
       <div className="sample-projects-grid">
         {sampleProjects.map((project) => <article key={project.id} className="sample-project-card reveal-item">

@@ -53,6 +53,15 @@ export const homeWorkflows: Workflow[] = [
     metric: "KNOW",
     metricLabel: "Connected context",
   },
+  {
+    id: 5,
+    title: "Create-user Routing Agent",
+    image: "/manus-storage/ai-workflow-system-map_4713bbef.webp",
+    problem: "New user requests can require consistent routing, role checks, and follow-up actions across several tools.",
+    solution: "This supplied workflow routes a create-user form submission through an AI agent, memory, role checking, and downstream Slack actions.",
+    metric: "ROUTE",
+    metricLabel: "AI system workflow",
+  },
 ];
 
 export const allWorkflows: Workflow[] = [

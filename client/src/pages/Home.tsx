@@ -19,10 +19,10 @@ export default function Home() {
     <div ref={ref}>
       <Hero />
       <main id="main">
-        <Workflows />
         <About />
         <Skills />
         <SampleProjectCollection />
+        <Workflows />
         <Experience />
         <Reviews />
         <Contact />

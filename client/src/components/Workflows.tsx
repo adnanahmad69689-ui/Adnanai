@@ -57,7 +57,7 @@ export function WorkflowCard({ workflow }: { workflow: Workflow }) {
 export function Workflows() {
   const { workflows } = siteConfig;
   return (
-    <section id="workflows" className="workflows-section">
+    <section id="ai-systems" className="workflows-section">
       <div className="workflows-bg-glow" />
       <div className="workflows-container">
         <div className="workflows-heading-block reveal-item">
