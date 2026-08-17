@@ -168,3 +168,8 @@
 - [x] Define a clearly labeled sample workflow with Trigger, AI Process, Output, and approval guidance.
 - [x] Add the sample card without presenting it as a real client system or offering a fake live link.
 - [x] Verify desktop/mobile presentation and save the updated checkpoint.
+
+# AI System Example Removal Checklist
+
+- [x] Remove the AI System example card and its unused styles.
+- [x] Verify the retained AI Systems cards and save the updated checkpoint.
