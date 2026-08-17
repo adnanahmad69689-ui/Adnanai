@@ -2675,6 +2675,8 @@
 .workflow-img { object-position: center; opacity: 1; }
 .workflow-img-container .pipeline-overlay { display: none; }
 .workflow-info { padding: 1.35rem 1.5rem 1.5rem; }
+.wf-metric-badge { max-width: 100%; flex-wrap: nowrap; white-space: nowrap; }
+.wf-metric-label { overflow: visible; white-space: nowrap; }
 @media (width <= 768px) {
   .workflow-img-container { aspect-ratio: 16 / 10.8; }
   .workflow-info { padding: 1.25rem 1.35rem 1.35rem; }

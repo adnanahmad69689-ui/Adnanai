@@ -156,3 +156,9 @@
 - [x] Create dashboard-focused workflow crops and update the displayed asset URLs.
 - [x] Reduce workflow card size slightly while preserving clearer, larger visuals than website cards.
 - [x] Verify desktop/mobile AI Systems clarity and save the updated checkpoint.
+
+# AI Systems Badge and Card Correction Checklist
+
+- [x] Ensure the Knowledge Assistant badge text displays fully.
+- [x] Remove the Create-user Routing Agent card from AI Systems.
+- [x] Verify the revised gallery and save the updated checkpoint.
