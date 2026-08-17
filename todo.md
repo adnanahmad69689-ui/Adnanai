@@ -201,3 +201,8 @@
 - [x] Create a premium project visual and accurate summary for the Adnan Ai portfolio website.
 - [x] Add the Adnan Ai Project Website as a public live Websites entry.
 - [x] Verify the expanded Website collection and save the updated checkpoint.
+
+# Adnan Ai Project Website Removal Checklist
+
+- [x] Remove the Adnan Ai Project Website entry from Websites.
+- [x] Verify the retained Aqualume and N A Metal cards and save the updated checkpoint.
