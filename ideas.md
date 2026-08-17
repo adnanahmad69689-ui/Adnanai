@@ -93,3 +93,6 @@ A dark, premium personal portfolio for a builder of AI/automation systems — co
 - Every service/system card must retain a compact category signal, outcome-oriented title, practical detail, and a restrained lime accent so no surface reads as an empty decorative slab.
 - The hero scroll story is deliberately compressed to avoid extended black pauses; each following section arrives with a clear visual anchor and asymmetric editorial rhythm.
 - Adnan AI copy should sound like an engineered automation advisor: concise, specific, and centered on reducing manual handoffs and turning workflows into operating systems.
+- The portfolio uses one continuous graphite-black canvas. Sections are differentiated through card depth, restrained texture, and thin dividers rather than abrupt background swaps.
+- Neon lime is the only expressive brand accent; cyan is limited to technical pipeline details and purple is not used as a competing category color.
+- The desktop navigation remains a visible centered glass pill while scrolling, and the hero prioritizes one dominant personal wordmark with one restrained secondary service phrase.

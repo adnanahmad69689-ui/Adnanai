@@ -2668,6 +2668,64 @@
 
 .route-loading { min-height: 100vh; display: grid; place-items: center; background: #080808; color: rgba(240, 236, 230, 0.72); font-family: "Space Grotesk", sans-serif; }
 
+/* ========================= Final Visual Consistency Pass ========================= */
+/* One continuous graphite canvas; each section is differentiated by content, not a new background. */
+main { position: relative; background: var(--color-bg); }
+.about-section, .skills-section, .sample-projects-section, .workflows-section, .experience-section, .reviews-section, .contact-section, .footer {
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.035);
+}
+.about-section { padding: 6rem var(--container-pad); }
+.skills-section { padding-top: 5.5rem; padding-bottom: 5.25rem; }
+.sample-projects-section {
+  padding: 5.5rem 2rem 6rem;
+  border-top-color: rgba(168, 255, 62, 0.12);
+  box-shadow: inset 0 30px 70px rgba(168, 255, 62, 0.018);
+}
+.workflows-section { padding: 6.5rem 2rem; }
+.experience-section { padding: 6rem var(--container-pad); }
+.reviews-section { padding: 6rem 0; }
+.contact-section { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+
+/* Keep the floating nav as a persistent desktop brand object rather than collapsing it on scroll. */
+.navigation-top {
+  top: 18px;
+  height: 58px;
+  padding: 0 12px;
+  background: rgba(9, 9, 9, 0.9);
+  border-color: rgba(168, 255, 62, 0.16);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.56), inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+.navigation-top.collapsed { width: auto; }
+.navigation-top.collapsed .nav-links { max-width: none; opacity: 1; overflow: visible; pointer-events: auto; }
+.navigation-top.collapsed .nav-cta-wrapper { width: auto; opacity: 1; pointer-events: auto; }
+.nav-logo { min-width: 86px; padding: 0 10px; letter-spacing: 0.1em; }
+.nav-link { padding: 0 12px; color: rgba(240, 236, 230, 0.68); }
+
+/* Editorial hero: one dominant wordmark and one restrained service phrase. */
+.hero-section { height: 145vh; }
+.hero-right-panel { display: none; }
+.hero-rotating { margin-top: 0.9rem; font-size: clamp(1.35rem, 3.1vw, 3rem); color: rgba(255, 255, 255, 0.24); letter-spacing: 0.01em; }
+.hero-tagline { color: rgba(168, 255, 62, 0.72); }
+
+@media (width <= 768px) {
+  .about-section { padding: 4.25rem 1.25rem; }
+  .skills-section { padding-top: 4rem; padding-bottom: 4rem; }
+  .sample-projects-section { padding: 4rem 1.25rem 4.5rem; }
+  .workflows-section { padding: 4.5rem 1.25rem; }
+  .experience-section { padding: 4.25rem 1.25rem; }
+  .reviews-section { padding: 4.25rem 0; }
+  .contact-section { padding-top: 4.25rem; padding-bottom: 4.25rem; }
+  .hero-section { height: 125vh; }
+}
+@media (width <= 480px) {
+  .about-section, .experience-section { padding: 3.75rem 1rem; }
+  .skills-section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .sample-projects-section { padding: 3.5rem 1rem 4rem; }
+  .workflows-section { padding: 4rem 1rem; }
+  .reviews-section { padding: 3.75rem 0; }
+  .contact-section { padding-top: 3.75rem; padding-bottom: 3.75rem; }
+}
 /* ============================ Reduced motion ============================= */
 
 @media (prefers-reduced-motion: reduce) {

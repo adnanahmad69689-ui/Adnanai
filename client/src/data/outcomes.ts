@@ -23,7 +23,7 @@ export const outcomes: Outcome[] = [
     metricLabel: "AI automation",
     title: "Workflows built around real operations",
     detail: "Thoughtful automation that connects routine steps, keeps context moving, and gives teams a clearer operating rhythm.",
-    accent: "#61d8ff",
+    accent: "#a8ff3e",
   },
   {
     tag: "AGENT",
@@ -31,6 +31,6 @@ export const outcomes: Outcome[] = [
     metricLabel: "AI agents",
     title: "AI support with a defined purpose",
     detail: "Practical AI agents that help with specific tasks, approved knowledge, communication, and internal decision support.",
-    accent: "#c89bff",
+    accent: "#a8ff3e",
   },
 ];

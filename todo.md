@@ -132,3 +132,9 @@
 - [x] Identify and remove the excess vertical whitespace below the Services cards.
 - [x] Add a compact premium transition into the Websites section.
 - [x] Verify desktop/mobile spacing and save the updated checkpoint.
+
+# Full Visual Consistency Pass Checklist
+
+- [x] Audit every main section for background changes, empty gaps, and inconsistent spacing.
+- [x] Apply a consistent dark background system and corrected section rhythm.
+- [x] Verify desktop/mobile visual consistency and save the polished checkpoint.
