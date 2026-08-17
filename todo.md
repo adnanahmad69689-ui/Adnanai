@@ -149,3 +149,10 @@
 
 - [x] Replace the current service tags with concise, title-matched wording.
 - [x] Verify the revised three-card presentation and save the updated checkpoint.
+
+# AI Systems Workflow Framing Checklist
+
+- [x] Inspect the active workflow image assets and current card proportions.
+- [x] Create dashboard-focused workflow crops and update the displayed asset URLs.
+- [x] Reduce workflow card size slightly while preserving clearer, larger visuals than website cards.
+- [x] Verify desktop/mobile AI Systems clarity and save the updated checkpoint.

@@ -196,11 +196,11 @@ export const siteConfig = {
   /* -------------------------------- Assets ------------------------------- */
   assets: {
     workflowImages: [
-      "/manus-storage/workflow1_0887ad0d.webp",
-      "/manus-storage/workflow2_46b1798c.webp",
-      "/manus-storage/workflow3_42af2773.webp",
-      "/manus-storage/workflow4_0b6e7ec4.webp",
-      "/manus-storage/workflow5_b809a451.webp",
+      "/manus-storage/workflow1-dashboard_f2dd664f.webp",
+      "/manus-storage/workflow2-dashboard_fe9dd248.webp",
+      "/manus-storage/workflow3-dashboard_967223f5.webp",
+      "/manus-storage/workflow4-dashboard_e6a1c00a.webp",
+      "/manus-storage/workflow5-dashboard_3422b1b5.webp",
     ],
   },
 } as const;
