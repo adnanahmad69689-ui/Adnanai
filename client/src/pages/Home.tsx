@@ -1,33 +1,29 @@
 /**
- * Home page: composes all portfolio sections in reference order and wires
- * the global scroll-reveal hook.
+ * Home page: prioritizes the hero, then loads the non-critical portfolio
+ * sections once the visitor begins leaving the first viewport.
  */
+import { lazy, Suspense, useRef } from "react";
 import { Hero } from "../components/Hero";
-import { Workflows } from "../components/Workflows";
-import { About } from "../components/About";
-import { Skills } from "../components/Skills";
-import { SampleProjectCollection } from "../components/SampleProjectCollection";
-import { Experience } from "../components/Experience";
-import { Reviews } from "../components/Reviews";
-import { Contact } from "../components/Contact";
-import { Footer } from "../components/Footer";
-import { useReveal } from "../hooks/useReveal";
+import { useNearViewport } from "../hooks/useNearViewport";
+
+const PortfolioSections = lazy(() => import("../components/PortfolioSections"));
 
 export default function Home() {
-  const ref = useReveal<HTMLDivElement>();
+  const deferredContentRef = useRef<HTMLDivElement>(null);
+  const shouldLoadSections = useNearViewport(deferredContentRef);
+
   return (
-    <div ref={ref}>
+    <div>
       <Hero />
       <main id="main">
-        <About />
-        <Skills />
-        <SampleProjectCollection />
-        <Workflows />
-        <Experience />
-        <Reviews />
-        <Contact />
+        <div ref={deferredContentRef}>
+          {shouldLoadSections ? (
+            <Suspense fallback={<div className="route-loading" aria-live="polite">Loading portfolio…</div>}>
+              <PortfolioSections />
+            </Suspense>
+          ) : null}
+        </div>
       </main>
-      <Footer />
     </div>
   );
 }

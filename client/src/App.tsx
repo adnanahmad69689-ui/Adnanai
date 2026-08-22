@@ -8,10 +8,8 @@ import { CustomCursor } from "./components/CustomCursor";
 import { Navbar } from "./components/Navbar";
 import Home from "./pages/Home";
 
-const N8nProjects = lazy(() =>
-  import("./components/N8nProjects").then((module) => ({ default: module.N8nProjects })),
-);
-const AdminPortfolio = lazy(() => import("./pages/AdminPortfolio"));
+const N8nRoute = lazy(() => import("./pages/N8nRoute"));
+const AdminRoute = lazy(() => import("./pages/AdminRoute"));
 
 function PublicPortfolio() {
   const [page, setPage] = useState<"home" | "n8n">("home");
@@ -45,7 +43,7 @@ function PublicPortfolio() {
       <Navbar />
       {page === "n8n" ? (
         <Suspense fallback={<main className="route-loading">Loading AI system patterns…</main>}>
-          <N8nProjects />
+          <N8nRoute />
         </Suspense>
       ) : <Home />}
     </div>
@@ -64,8 +62,8 @@ function AppContent() {
   }, [location, setLocation]);
 
   return location === "/admin" ? (
-    <Suspense fallback={<main className="route-loading">Loading portfolio controls…</main>}>
-      <AdminPortfolio />
+      <Suspense fallback={<main className="route-loading">Loading portfolio controls…</main>}>
+      <AdminRoute />
     </Suspense>
   ) : <PublicPortfolio />;
 }

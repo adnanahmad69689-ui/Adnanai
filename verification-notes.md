@@ -27,3 +27,11 @@ The controlled end-to-end check was repeated for both `website` and `ai_system` 
 ## Admin cursor
 
 The existing raw-pointer dot-and-ring cursor is now mounted in the `/admin` page wrapper. Its fixed elements remain non-interactive, so they do not intercept form fields, upload labels, buttons, or sidebar controls. The cursor remains hidden by the existing touch and narrow-screen media query; mobile admin rendering was checked at 375px and retained a usable management layout.
+
+The owner subsequently reported viewing the admin dashboard while requesting the same cursor there, which confirms that the real owner browser reached the protected admin workspace. The remaining acceptance task is to exercise a browser-level content mutation and observe the public update.
+
+## Retained content review
+
+The live N A Metal public site was revisited and confirmed to expose the evidence used in its managed portfolio record: event and exhibition fabrication, custom metalwork, display environments, immersive installations, and the eight listed service areas. The database check confirmed that no AI System record with a Business Knowledge Assistant title or KNOW label remains. A sandbox route check was redirected to the protected admin login by a stored post-login path, so the managed-content database result is the authoritative removal verification for this browser session.
+
+After clearing the stored admin return path, the public AI Systems gallery loaded successfully and displayed the 13 managed workflow patterns. The visible gallery began with AI Web Experience & Lead Intake, Workflow Discovery & Routing, and AI Support Agent Blueprint; no Knowledge Assistant or KNOW-labelled item was present. This confirms that the remaining public gallery is intact after the removal.

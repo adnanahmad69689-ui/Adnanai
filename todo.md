@@ -83,8 +83,8 @@
 
 # Live Website Portfolio Review Checklist
 
-- [ ] Inspect the supplied live Vercel website for design, purpose, and verifiable features.
-- [ ] Prepare a proposed portfolio card and case-study outline for approval without modifying the portfolio.
+- [x] Inspect the supplied live Vercel website for design, purpose, and verifiable features.
+- [x] Prepare a proposed portfolio card and case-study outline for approval without modifying the portfolio.
 
 # Demo Website Project Checklist
 
@@ -182,7 +182,7 @@
 # Business Knowledge Assistant Removal Checklist
 
 - [x] Remove the KNOW / Connected context / Business Knowledge Assistant card.
-- [ ] Verify the remaining AI Systems cards and save the updated checkpoint.
+- [x] Verify the remaining AI Systems cards and save the updated checkpoint.
 
 # Aqualume Live Website Checklist
 
@@ -229,3 +229,10 @@
 - [x] Enable the existing fast dot-and-ring cursor on the private admin dashboard without interfering with forms, uploads, or controls.
 - [x] Verify desktop cursor layering against interactive admin controls and confirm the mobile media rule hides it.
 - [x] Save the admin cursor update checkpoint.
+
+# Public Performance Optimization Checklist
+
+- [x] Measure the current production bundle, critical requests, and rendering bottlenecks on the public portfolio.
+- [x] Apply safe loading, bundle, and rendering optimizations without changing the public design or admin functionality.
+- [x] Verify desktop/mobile public behavior, TypeScript, tests, and a production build.
+- [x] Save the public performance optimization checkpoint.
