@@ -45,3 +45,11 @@ The live homepage issue was reproduced: the previous viewport-triggered section 
 The live N A Metal public site was revisited and confirmed to expose the evidence used in its managed portfolio record: event and exhibition fabrication, custom metalwork, display environments, immersive installations, and the eight listed service areas. The database check confirmed that no AI System record with a Business Knowledge Assistant title or KNOW label remains. A sandbox route check was redirected to the protected admin login by a stored post-login path, so the managed-content database result is the authoritative removal verification for this browser session.
 
 After clearing the stored admin return path, the public AI Systems gallery loaded successfully and displayed the 13 managed workflow patterns. The visible gallery began with AI Web Experience & Lead Intake, Workflow Discovery & Routing, and AI Support Agent Blueprint; no Knowledge Assistant or KNOW-labelled item was present. This confirms that the remaining public gallery is intact after the removal.
+
+## Cloudflare dashboard navigation
+
+The sandbox browser reached the Cloudflare Dashboard loading screen but has no authenticated Cloudflare session, so it cannot select the user’s Workers & Pages controls. The Cloudflare API connector can create Pages projects but cannot repair the separate Cloudflare GitHub App installation required to link the GitHub repository; that owner-account authorization must be completed in the Cloudflare dashboard.
+
+## Independent Cloudflare preview
+
+Cloudflare Pages completed the GitHub-triggered build and deployment successfully, creating the production preview URL. The first two browser checks returned the expected document title but displayed an empty dark canvas, so the deployment is being treated as a rendering issue pending console and network diagnosis rather than as an accepted independent deployment.
