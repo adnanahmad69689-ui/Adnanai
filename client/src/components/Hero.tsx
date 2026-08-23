@@ -1,6 +1,6 @@
 /** Lightweight pinned hero with native scroll progress and CSS-friendly transforms. */
 import { useEffect, useRef, useState } from "react";
-import { getSiteSettings, type SiteSettings } from "@/lib/portfolio";
+import type { SiteSettings } from "@/lib/portfolio";
 import { siteConfig } from "../data/siteConfig";
 
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
@@ -24,11 +24,14 @@ export function Hero() {
 
   useEffect(() => {
     let active = true;
-    void getSiteSettings().then(result => {
-      if (active) setSettings(result);
-    }).catch(() => {
-      // Keep the built-in portrait visible if the public settings request is unavailable.
-    });
+    void import("@/lib/portfolio")
+      .then(({ getSiteSettings }) => getSiteSettings())
+      .then(result => {
+        if (active) setSettings(result);
+      })
+      .catch(() => {
+        // Keep the built-in portrait visible if the public settings request is unavailable.
+      });
     return () => { active = false; };
   }, []);
 

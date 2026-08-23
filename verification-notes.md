@@ -63,3 +63,7 @@ The canonical independent domain `https://adnan-ai-portfolio.pages.dev` was then
 Both `https://adnanai.com` and `https://www.adnanai.com` are active in Cloudflare Pages with SSL enabled. Each was opened successfully and rendered the independent Supabase-backed public portfolio. The apex domain is the chosen canonical address; the `www` variant can now be redirected to the apex without affecting the Pages deployment or the `.pages.dev` fallback.
 
 After the custom domains were activated, `https://adnan-ai-portfolio.pages.dev` was reopened and continued to render the same independent portfolio. The Pages fallback is therefore preserved alongside both active custom domains.
+
+## Canonical custom-domain redirect
+
+Cloudflare Page Rule `781d8867a536f5fcd7d66ef34e16720b` now redirects `www.adnanai.com/*` to `https://adnanai.com/$1` with a permanent 301 status. The live check confirmed that a request to `https://www.adnanai.com/automation?source=canonical-test` landed at `https://adnanai.com/automation?source=canonical-test`, preserving both path and query string.
