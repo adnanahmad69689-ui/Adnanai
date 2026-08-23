@@ -19,7 +19,7 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { AdminSignIn } from "@/components/AdminSignIn";
+import { AdminPasswordSetup, AdminSignIn } from "@/components/AdminSignIn";
 import { useIsMobile } from "@/hooks/useMobile";
 import { Globe2, LayoutDashboard, LogOut, PanelLeft, ShieldCheck } from "lucide-react";
 import { CSSProperties, useEffect, useRef, useState } from "react";
@@ -46,7 +46,7 @@ export default function DashboardLayout({
     const saved = localStorage.getItem(SIDEBAR_WIDTH_KEY);
     return saved ? parseInt(saved, 10) : DEFAULT_WIDTH;
   });
-  const { loading, user } = useAuth();
+  const { loading, needsPasswordSetup, user } = useAuth();
 
   useEffect(() => {
     localStorage.setItem(SIDEBAR_WIDTH_KEY, sidebarWidth.toString());
@@ -57,6 +57,8 @@ export default function DashboardLayout({
   }
 
   if (!user) return <AdminSignIn />;
+
+  if (needsPasswordSetup) return <AdminPasswordSetup />;
 
   if (user.role !== "admin") {
     return (

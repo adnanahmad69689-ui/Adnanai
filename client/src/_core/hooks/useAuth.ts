@@ -11,6 +11,7 @@ export function useAuth(options?: UseAuthOptions) {
   const [user, setUser] = useState<{ id: string; email: string | null; name: string | null; role: "user" | "admin" } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [needsPasswordSetup, setNeedsPasswordSetup] = useState(false);
 
   const refresh = useCallback(async () => {
     const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
@@ -33,7 +34,10 @@ export function useAuth(options?: UseAuthOptions) {
 
   useEffect(() => {
     void refresh();
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => { void refresh(); });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "PASSWORD_RECOVERY") setNeedsPasswordSetup(true);
+      void refresh();
+    });
     return () => subscription.unsubscribe();
   }, [refresh]);
 
@@ -43,10 +47,22 @@ export function useAuth(options?: UseAuthOptions) {
     setUser(null);
   }, []);
 
-  const requestSignIn = useCallback(async (email: string) => {
-    const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: `${window.location.origin}/admin` } });
+  const signInWithPassword = useCallback(async (email: string, password: string) => {
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw new Error(error.message);
   }, []);
+
+  const requestPasswordSetup = useCallback(async (email: string) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/admin` });
+    if (error) throw new Error(error.message);
+  }, []);
+
+  const completePasswordSetup = useCallback(async (password: string) => {
+    const { error } = await supabase.auth.updateUser({ password });
+    if (error) throw new Error(error.message);
+    setNeedsPasswordSetup(false);
+    await refresh();
+  }, [refresh]);
 
   const state = useMemo(() => {
     return {
@@ -54,8 +70,9 @@ export function useAuth(options?: UseAuthOptions) {
       loading,
       error,
       isAuthenticated: Boolean(user),
+      needsPasswordSetup,
     };
-  }, [error, loading, user]);
+  }, [error, loading, needsPasswordSetup, user]);
 
   useEffect(() => {
     if (!redirectOnUnauthenticated) return;
@@ -70,6 +87,8 @@ export function useAuth(options?: UseAuthOptions) {
     ...state,
     refresh,
     logout,
-    requestSignIn,
+    signInWithPassword,
+    requestPasswordSetup,
+    completePasswordSetup,
   };
 }

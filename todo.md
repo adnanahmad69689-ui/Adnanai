@@ -259,12 +259,33 @@
 - [ ] Verify the independent deployment before any user-approved domain cutover or Manus retirement.
 - [ ] Configure Supabase Auth site/redirect URLs, complete the owner’s first email-link sign-in, and promote the owner profile to `admin`.
 - [ ] Add protected hero-image management to the Supabase admin dashboard, including upload, replacement, and removal behavior.
+- [ ] Verify the Cloudflare-hosted `/admin` flow end-to-end, including an authenticated content mutation reflected publicly.
+- [ ] Audit the independent build for remaining Manus-specific runtime dependencies and remove or document any intentional retained artifacts.
 
 # GitHub-First Independent Deployment Order
 
 - [x] Reconnect GitHub as `adnanahmad69689-ui` and push the independent source to `adnanahmad69689-ui/Adnanai`.
-- [ ] Reauthorize Cloudflare Pages write access only after the GitHub repository is connected and ready for deployment.
+- [x] Reauthorize Cloudflare Pages write access only after the GitHub repository is connected and ready for deployment.
 - [x] Verify and push the independent source to the user-provided `adnanahmad69689-ui/Adnanai` repository.
-- [ ] Fix the blank Cloudflare Pages render by ensuring the safe Supabase public configuration is available at static build time.
-- [ ] Redeploy the Cloudflare Pages site after the static Supabase fallback change and confirm the full portfolio renders.
-- [ ] Remove or replace remaining static Manus-only preload and analytics placeholders in the Cloudflare document shell.
+- [x] Fix the blank Cloudflare Pages render by ensuring the safe Supabase public configuration is available at static build time.
+- [x] Redeploy the Cloudflare Pages site after the static Supabase fallback change and confirm the full portfolio renders.
+- [x] Remove or replace remaining static Manus-only preload and analytics placeholders in the Cloudflare document shell.
+
+# Independent Admin Route Fix Checklist
+
+- [ ] Reproduce why the Cloudflare `/admin` route returns to the independent homepage.
+- [ ] Restore direct Cloudflare `/admin` routing to the Supabase owner sign-in gate without affecting public navigation.
+- [ ] Verify the email sign-in route, owner profile creation, and admin promotion path on the independent deployment.
+
+# Custom Domain Cutover Checklist
+
+- [x] Attach the user-owned `adnanai.com` and `www.adnanai.com` domains to the existing Cloudflare Pages project without disturbing the `.pages.dev` fallback.
+- [ ] Set `https://adnanai.com` as canonical and direct `www.adnanai.com` to the same Pages portfolio.
+- [ ] Update Supabase Auth site and redirect URLs for `https://adnanai.com`, `https://adnanai.com/admin`, and the www domain if required.
+- [ ] Verify public pages and the owner-only admin route on `adnanai.com` before any Manus retirement decision.
+
+# Password-Based Admin Login Checklist
+
+- [x] Add password sign-in to the independent owner admin gate while retaining the existing owner-only database role checks.
+- [ ] Configure the existing owner email for a secure one-time password setup without exposing the password in chat or code.
+- [ ] Verify email-and-password sign-in on the independent custom-domain admin route.

@@ -53,3 +53,13 @@ The sandbox browser reached the Cloudflare Dashboard loading screen but has no a
 ## Independent Cloudflare preview
 
 Cloudflare Pages completed the GitHub-triggered build and deployment successfully, creating the production preview URL. The first two browser checks returned the expected document title but displayed an empty dark canvas, so the deployment is being treated as a rendering issue pending console and network diagnosis rather than as an accepted independent deployment.
+
+The source connection was reconfigured to include root-path changes, then a new production build completed successfully. The independent preview at `https://c62a9687.adnan-ai-portfolio.pages.dev` now renders the complete public portfolio, including the hero, navigation, Website cards, and Supabase Storage images. The original blank canvas and unresolved legacy `/manus-storage/` preload / analytics-placeholder requests were removed from the current deployment.
+
+The canonical independent domain `https://adnan-ai-portfolio.pages.dev` was then opened and confirmed to render the same complete Supabase-backed portfolio. This domain is the independent public preview; the Manus deployment remains live and separate until a later user-approved domain cutover.
+
+## Custom domain verification
+
+Both `https://adnanai.com` and `https://www.adnanai.com` are active in Cloudflare Pages with SSL enabled. Each was opened successfully and rendered the independent Supabase-backed public portfolio. The apex domain is the chosen canonical address; the `www` variant can now be redirected to the apex without affecting the Pages deployment or the `.pages.dev` fallback.
+
+After the custom domains were activated, `https://adnan-ai-portfolio.pages.dev` was reopened and continued to render the same independent portfolio. The Pages fallback is therefore preserved alongside both active custom domains.
