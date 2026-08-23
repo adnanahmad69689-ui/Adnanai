@@ -1,20 +1,11 @@
 /** Lightweight AI system-pattern gallery rendered from the managed portfolio database. */
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { siteConfig, mailto } from "../data/siteConfig";
-import { trpc } from "@/lib/trpc";
+import { listPublishedPortfolioItems, type PortfolioItem } from "@/lib/portfolio";
+import { useQuery } from "@tanstack/react-query";
 import { PipelineOverlay } from "./PipelineOverlay";
 
-type Workflow = {
-  id: number;
-  title: string;
-  imageUrl: string;
-  imageAlt: string;
-  label: string;
-  description: string;
-  trigger: string | null;
-  aiProcess: string | null;
-  output: string | null;
-};
+type Workflow = Pick<PortfolioItem, "id" | "title" | "imageUrl" | "imageAlt" | "label" | "description" | "trigger" | "aiProcess" | "output">;
 
 function getMetric(label: string) {
   const [metric = "AI", ...rest] = label.split("·");
@@ -48,8 +39,7 @@ function SystemPatternCard({ project }: { project: Workflow }) {
 
 export function N8nProjects() {
   const { n8nPage, workflows } = siteConfig;
-  const aiSystemQuery = useMemo(() => ({ kind: "ai_system" as const }), []);
-  const { data: rawProjects, isLoading, isError } = trpc.portfolio.list.useQuery(aiSystemQuery);
+  const { data: rawProjects, isLoading, isError } = useQuery({ queryKey: ["portfolio", "ai_system"], queryFn: () => listPublishedPortfolioItems("ai_system") });
   const projects = (rawProjects ?? []) as Workflow[];
   useEffect(() => { window.scrollTo(0, 0); }, []);
 

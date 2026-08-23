@@ -1,11 +1,15 @@
 /** Lightweight pinned hero with native scroll progress and CSS-friendly transforms. */
 import { useEffect, useRef, useState } from "react";
+import { getSiteSettings, type SiteSettings } from "@/lib/portfolio";
 import { siteConfig } from "../data/siteConfig";
 
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
 export function Hero() {
   const { hero, identity, contact } = siteConfig;
+  const [settings, setSettings] = useState<SiteSettings | null>(null);
+  const heroImage = settings?.heroImageUrl || hero.backgroundImage;
+  const heroAlt = settings?.heroImageAlt || hero.backgroundAlt;
   const [wordIdx, setWordIdx] = useState(0);
   const [greeting, setGreeting] = useState("");
   const sectionRef = useRef<HTMLElement>(null);
@@ -16,6 +20,16 @@ export function Hero() {
   useEffect(() => {
     const hour = new Date().getHours();
     setGreeting(hour < 12 ? "Good morning!" : hour < 18 ? "Good afternoon!" : "Good evening!");
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+    void getSiteSettings().then(result => {
+      if (active) setSettings(result);
+    }).catch(() => {
+      // Keep the built-in portrait visible if the public settings request is unavailable.
+    });
+    return () => { active = false; };
   }, []);
 
   useEffect(() => {
@@ -58,7 +72,7 @@ export function Hero() {
     <section id="hero" className="hero-section" ref={sectionRef}>
       <div className="hero-sticky">
         <div className="hero-bg-wrap" ref={bgWrapRef}>
-          <img src={hero.backgroundImage} alt={hero.backgroundAlt} className="hero-bg-image" fetchPriority="high" decoding="async" />
+          <img src={heroImage} alt={heroAlt} className="hero-bg-image" fetchPriority="high" decoding="async" />
         </div>
         <div className="hero-overlay-left" /><div className="hero-overlay-bottom" />
         <div ref={phase1Ref} className="hero-phase1-container hero-phase-enter">

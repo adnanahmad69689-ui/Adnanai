@@ -1,23 +1,11 @@
 /** Evidence-based website collection from the user-supplied site and screenshots. */
-import { trpc } from "@/lib/trpc";
-import { useMemo } from "react";
+import { listPublishedPortfolioItems, type PortfolioItem } from "@/lib/portfolio";
+import { useQuery } from "@tanstack/react-query";
 import { mailto } from "../data/siteConfig";
 
-type WebsiteItem = {
-  id: number;
-  title: string;
-  label: string;
-  description: string;
-  imageUrl: string;
-  imageAlt: string;
-  publicUrl: string | null;
-  details: string[];
-};
-
 export function SampleProjectCollection() {
-  const websiteQuery = useMemo(() => ({ kind: "website" as const }), []);
-  const { data: rawProjects, isLoading, isError } = trpc.portfolio.list.useQuery(websiteQuery);
-  const projects = (rawProjects ?? []) as WebsiteItem[];
+  const { data: rawProjects, isLoading, isError } = useQuery({ queryKey: ["portfolio", "website"], queryFn: () => listPublishedPortfolioItems("website") });
+  const projects = (rawProjects ?? []) as PortfolioItem[];
 
   return <section className="sample-projects-section" aria-labelledby="sample-projects-heading">
     <div className="sample-projects-container">

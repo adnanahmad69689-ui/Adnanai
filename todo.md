@@ -248,3 +248,20 @@
 - [x] Restore reliable full-page portfolio content loading while retaining safe performance optimizations.
 - [x] Verify the public homepage on desktop and mobile, TypeScript, tests, and a production build.
 - [x] Save the homepage content-loading fix checkpoint.
+
+# Independent Infrastructure Migration Checklist
+
+- [x] Audit the current frontend, server, database, storage, authentication, admin dashboard, content, APIs, environment bindings, and Manus-specific dependencies without changing the live project.
+- [x] Document the GitHub, Supabase, Cloudflare, and Gmail-forwarding target architecture and safe migration sequence.
+- [ ] Collect the required Supabase, Cloudflare, GitHub, and domain-email access before making external infrastructure changes.
+- [ ] Prepare Supabase schema, storage, authentication, content-migration, and client-ready admin replacement work.
+- [ ] Replace Manus-bound services and prepare a GitHub-ready, Cloudflare-deployable independent application.
+- [ ] Verify the independent deployment before any user-approved domain cutover or Manus retirement.
+- [ ] Configure Supabase Auth site/redirect URLs, complete the owner’s first email-link sign-in, and promote the owner profile to `admin`.
+- [ ] Add protected hero-image management to the Supabase admin dashboard, including upload, replacement, and removal behavior.
+
+# GitHub-First Independent Deployment Order
+
+- [ ] Reconnect GitHub as `adnanahmad69689-ui` and create the independent source repository before configuring Cloudflare Pages.
+- [ ] Reauthorize Cloudflare Pages write access only after the GitHub repository is connected and ready for deployment.
+- [ ] Verify and push the independent source to the user-provided `adnanahmad69689-ui/Adnanai` repository.

@@ -38,7 +38,7 @@ export const siteConfig = {
   /* -------------------------------- Hero --------------------------------- */
   hero: {
     /** Background portrait. Recommended: 1600×900, subject on the RIGHT. */
-    backgroundImage: "/manus-storage/hero-user-portrait_ed976720.webp",
+    backgroundImage: "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/hero/migration/72a17e27-37ab-4c13-b1b5-ada0f02c2d17.webp",
     backgroundAlt: "Portrait of Adnan Ai seated with a laptop",
     /** Rotating words under the big name (cycles every 2.5s). */
     rotatingWords: ["AI WEB DEVELOPMENT", "AI AUTOMATION", "AI AGENTS"],
@@ -134,7 +134,7 @@ export const siteConfig = {
     headingLead: "Adnan AI builds systems that support",
     headingEm: "better work.",
     /** Portrait image. Recommended: 3:4 vertical, ~600×800. */
-    image: "/manus-storage/adnan-ai-about-portrait_e8b8b5da.webp",
+    image: "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/uploads/migration/ed576c01-2271-4a82-8baf-5183dfe6f888.webp",
     imageAlt: "Portrait of Adnan Ai holding a laptop in a studio lounge",
     bio: [
       "Adnan AI helps businesses turn ideas and operational pain points into practical digital systems. The focus is clear communication, thoughtful implementation, and technology that earns its place in the workflow.",
@@ -196,11 +196,11 @@ export const siteConfig = {
   /* -------------------------------- Assets ------------------------------- */
   assets: {
     workflowImages: [
-      "/manus-storage/workflow1-dashboard_f2dd664f.webp",
-      "/manus-storage/workflow2-dashboard_fe9dd248.webp",
-      "/manus-storage/workflow3-dashboard_967223f5.webp",
-      "/manus-storage/workflow4-dashboard_e6a1c00a.webp",
-      "/manus-storage/workflow5-dashboard_3422b1b5.webp",
+      "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/workflows/migration/271ebbb2-aa7f-4959-bdce-7b11639b0243.webp",
+      "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/workflows/migration/af505c30-2299-4b45-987c-68b75a745972.webp",
+      "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/workflows/migration/354ab610-f1e8-418d-badd-0c8d7621b53e.webp",
+      "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/workflows/migration/28cf06b6-d63d-4cb9-8b22-6346b16f9f74.webp",
+      "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/workflows/migration/d7ce75b4-592f-4dae-9e38-dd142ce67ebe.webp",
     ],
   },
 } as const;

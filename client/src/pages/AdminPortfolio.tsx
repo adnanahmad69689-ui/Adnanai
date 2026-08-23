@@ -7,7 +7,20 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { trpc } from "@/lib/trpc";
+import {
+  createPortfolioItem,
+  deletePortfolioItem,
+  getSiteSettings,
+  listAdminPortfolioItems,
+  reorderPortfolioItems,
+  type PortfolioInput,
+  type PortfolioItem,
+  updateHeroSettings,
+  updatePortfolioItem,
+  uploadHeroImage,
+  uploadPortfolioImage,
+} from "@/lib/portfolio";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowDown,
   ArrowUp,
@@ -27,26 +40,7 @@ import { toast } from "sonner";
 type PortfolioKind = "website" | "ai_system";
 type PortfolioStatus = "draft" | "published";
 
-type ManagedItem = {
-  id: number;
-  kind: PortfolioKind;
-  title: string;
-  label: string;
-  description: string;
-  imageUrl: string;
-  imageAlt: string;
-  imageKey: string | null;
-  publicUrl: string | null;
-  details: string[];
-  trigger: string | null;
-  aiProcess: string | null;
-  output: string | null;
-  approvalRequired: boolean;
-  status: PortfolioStatus;
-  sortOrder: number;
-  createdAt: Date;
-  updatedAt: Date;
-};
+type ManagedItem = PortfolioItem;
 
 type PortfolioForm = {
   id?: number;
@@ -95,52 +89,69 @@ function FieldLabel({ children, optional }: { children: string; optional?: boole
 
 function AdminPortfolioContent() {
   const { user, isAuthenticated } = useAuth();
-  const utils = trpc.useUtils();
+  const queryClient = useQueryClient();
   const [activeKind, setActiveKind] = useState<PortfolioKind>("website");
   const [form, setForm] = useState<PortfolioForm>(() => emptyForm("website"));
   const [isUploading, setIsUploading] = useState(false);
+  const [isUploadingHero, setIsUploadingHero] = useState(false);
   const canManage = isAuthenticated && user?.role === "admin";
-  const { data, isLoading } = trpc.portfolio.adminList.useQuery(undefined, { enabled: canManage });
+  const { data, isLoading } = useQuery({ queryKey: ["portfolio", "admin"], queryFn: listAdminPortfolioItems, enabled: canManage });
+  const { data: siteSettings } = useQuery({ queryKey: ["site-settings"], queryFn: getSiteSettings, enabled: canManage });
   const items = (data ?? []) as ManagedItem[];
   const activeItems = useMemo(
     () => items.filter(item => item.kind === activeKind).sort((a, b) => a.sortOrder - b.sortOrder || a.id - b.id),
     [activeKind, items],
   );
 
-  const createMutation = trpc.portfolio.create.useMutation({
+  const refreshPortfolio = async () => {
+    await queryClient.invalidateQueries({ queryKey: ["portfolio"] });
+  };
+  const refreshSiteSettings = async () => {
+    await queryClient.invalidateQueries({ queryKey: ["site-settings"] });
+  };
+  const createMutation = useMutation({
+    mutationFn: createPortfolioItem,
     onSuccess: async () => {
       toast.success("Portfolio item created.");
-      await utils.portfolio.adminList.invalidate();
-      await utils.portfolio.list.invalidate();
+      await refreshPortfolio();
       setForm(emptyForm(activeKind, activeItems.length + 1));
     },
     onError: error => toast.error(error.message),
   });
-  const updateMutation = trpc.portfolio.update.useMutation({
+  const updateMutation = useMutation({
+    mutationFn: updatePortfolioItem,
     onSuccess: async () => {
       toast.success("Portfolio item updated.");
-      await utils.portfolio.adminList.invalidate();
-      await utils.portfolio.list.invalidate();
+      await refreshPortfolio();
     },
     onError: error => toast.error(error.message),
   });
-  const deleteMutation = trpc.portfolio.delete.useMutation({
+  const deleteMutation = useMutation({
+    mutationFn: deletePortfolioItem,
     onSuccess: async () => {
       toast.success("Portfolio item removed.");
-      await utils.portfolio.adminList.invalidate();
-      await utils.portfolio.list.invalidate();
+      await refreshPortfolio();
       setForm(emptyForm(activeKind, Math.max(activeItems.length - 1, 1)));
     },
     onError: error => toast.error(error.message),
   });
-  const reorderMutation = trpc.portfolio.reorder.useMutation({
+  const reorderMutation = useMutation({
+    mutationFn: reorderPortfolioItems,
     onSuccess: async () => {
-      await utils.portfolio.adminList.invalidate();
-      await utils.portfolio.list.invalidate();
+      await refreshPortfolio();
     },
     onError: error => toast.error(error.message),
   });
-  const uploadMutation = trpc.portfolio.uploadImage.useMutation({
+  const uploadMutation = useMutation({
+    mutationFn: (file: File) => uploadPortfolioImage(file, activeKind),
+    onError: error => toast.error(error.message),
+  });
+  const heroMutation = useMutation({
+    mutationFn: updateHeroSettings,
+    onSuccess: async () => {
+      await refreshSiteSettings();
+      toast.success("Hero image updated.");
+    },
     onError: error => toast.error(error.message),
   });
 
@@ -179,7 +190,7 @@ function AdminPortfolioContent() {
       toast.error("Add a project image before saving.");
       return;
     }
-    const input = {
+    const input: PortfolioInput = {
       kind: form.kind,
       title: form.title.trim(),
       label: form.label.trim(),
@@ -214,13 +225,7 @@ function AdminPortfolioContent() {
     }
     setIsUploading(true);
     try {
-      const contentBase64 = await new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onerror = () => reject(new Error("The image could not be read."));
-        reader.onload = () => resolve(String(reader.result).split(",")[1] ?? "");
-        reader.readAsDataURL(file);
-      });
-      const result = await uploadMutation.mutateAsync({ fileName: file.name, contentType: file.type as "image/jpeg" | "image/png" | "image/webp", contentBase64 });
+      const result = await uploadMutation.mutateAsync(file);
       patchForm({ imageUrl: result.url, imageKey: result.key, imageAlt: form.imageAlt || file.name.replace(/\.[^/.]+$/, "").replace(/[-_]+/g, " ") });
       toast.success("Image uploaded and ready to save.");
     } catch (error) {
@@ -230,13 +235,47 @@ function AdminPortfolioContent() {
     }
   };
 
+  const changeHeroImage = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+      toast.error("Use a JPG, PNG, or WebP image.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Hero image files must be 5 MB or smaller.");
+      return;
+    }
+    setIsUploadingHero(true);
+    try {
+      const uploaded = await uploadHeroImage(file);
+      await heroMutation.mutateAsync({
+        imageUrl: uploaded.url,
+        imageKey: uploaded.key,
+        imageAlt: file.name.replace(/\.[^/.]+$/, "").replace(/[-_]+/g, " "),
+        previousKey: siteSettings?.heroImageKey,
+      });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "The hero image upload failed.");
+    } finally {
+      setIsUploadingHero(false);
+    }
+  };
+
+  const removeHeroImage = async () => {
+    if (!siteSettings?.heroImageUrl) return;
+    if (!window.confirm("Remove the managed hero image and return to the built-in fallback portrait?")) return;
+    await heroMutation.mutateAsync({ imageUrl: null, imageKey: null, imageAlt: null, previousKey: siteSettings.heroImageKey });
+  };
+
   const move = (id: number, direction: -1 | 1) => {
     const index = activeItems.findIndex(item => item.id === id);
     const swapIndex = index + direction;
     if (index < 0 || swapIndex < 0 || swapIndex >= activeItems.length) return;
     const reordered = [...activeItems];
     [reordered[index], reordered[swapIndex]] = [reordered[swapIndex], reordered[index]];
-    reorderMutation.mutate({ items: reordered.map((item, sortOrder) => ({ id: item.id, sortOrder: sortOrder + 1 })) });
+    reorderMutation.mutate(reordered.map((item, sortOrder) => ({ id: item.id, sortOrder: sortOrder + 1 })));
   };
 
   const isSaving = createMutation.isPending || updateMutation.isPending;
@@ -251,6 +290,11 @@ function AdminPortfolioContent() {
         </div>
         <a href="/" className="inline-flex items-center gap-2 self-start text-xs uppercase tracking-[0.16em] text-[#bdbdbd] transition-colors hover:text-[#a8ff3e] lg:self-auto"><Globe2 className="h-4 w-4" /> View public portfolio</a>
       </header>
+
+      <section className="mb-6 grid gap-4 border border-white/10 bg-[#111] p-5 lg:grid-cols-[220px_minmax(0,1fr)]">
+        <div className="overflow-hidden bg-black/30">{siteSettings?.heroImageUrl ? <img src={siteSettings.heroImageUrl} alt={siteSettings.heroImageAlt || "Current hero preview"} className="aspect-[16/10] h-full w-full object-cover" /> : <div className="grid aspect-[16/10] place-items-center p-4 text-center text-xs text-[#777]">Built-in hero portrait is active.</div>}</div>
+        <div className="flex flex-col justify-between gap-4"><div><p className="text-[10px] uppercase tracking-[0.18em] text-[#a8ff3e]">Hero image</p><h2 className="mt-2 text-2xl">Manage the first impression.</h2><p className="mt-2 max-w-xl text-sm leading-6 text-[#9e9e9e]">Upload one portrait or hero visual. Replacing it removes the old managed file. Removing it restores the built-in fallback portrait.</p></div><div className="flex flex-wrap gap-3"><label className="inline-flex cursor-pointer items-center gap-2 bg-[#a8ff3e] px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-[#111]"><ImageUp className="h-4 w-4" /> {isUploadingHero ? "Uploading…" : siteSettings?.heroImageUrl ? "Replace hero" : "Upload hero"}<input type="file" accept="image/jpeg,image/png,image/webp" className="hidden" disabled={isUploadingHero || heroMutation.isPending} onChange={changeHeroImage} /></label>{siteSettings?.heroImageUrl ? <Button type="button" variant="outline" disabled={heroMutation.isPending} onClick={() => void removeHeroImage()} className="border-white/15 text-[#d9d9d9] hover:bg-white/5 hover:text-white">Remove hero</Button> : null}</div></div>
+      </section>
 
       <Tabs value={activeKind} onValueChange={value => beginNew(value as PortfolioKind)} className="gap-6">
         <TabsList className="h-auto w-full justify-start rounded-none border-b border-white/10 bg-transparent p-0 sm:w-auto sm:rounded-lg sm:border sm:border-white/10 sm:bg-white/[0.03] sm:p-1">
@@ -272,7 +316,7 @@ function AdminPortfolioContent() {
               <article key={item.id} className="group overflow-hidden border border-white/10 bg-[#111] transition-colors hover:border-[#a8ff3e]/40">
                 <div className="relative aspect-[16/9] overflow-hidden bg-[#1c1c1c]"><img src={item.imageUrl} alt={item.imageAlt} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.025]" /><div className="absolute left-3 top-3"><Badge className={item.status === "published" ? "border-0 bg-[#a8ff3e] text-[#111]" : "border-0 bg-white/15 text-white"}>{item.status === "published" ? "Published" : "Draft"}</Badge></div></div>
                 <div className="p-4"><p className="text-[10px] uppercase tracking-[0.16em] text-[#a8ff3e]">{item.label}</p><h2 className="mt-2 text-2xl leading-tight">{item.title}</h2><p className="mt-3 line-clamp-2 text-xs leading-5 text-[#9e9e9e]">{item.description}</p>
-                  <div className="mt-5 flex items-center justify-between gap-2 border-t border-white/10 pt-3"><span className="text-[10px] uppercase tracking-[0.15em] text-[#666]">Position {index + 1}</span><div className="flex items-center gap-1"><Button type="button" variant="ghost" size="icon" disabled={index === 0 || reorderMutation.isPending} onClick={() => move(item.id, -1)} aria-label="Move item up"><ArrowUp className="h-4 w-4" /></Button><Button type="button" variant="ghost" size="icon" disabled={index === activeItems.length - 1 || reorderMutation.isPending} onClick={() => move(item.id, 1)} aria-label="Move item down"><ArrowDown className="h-4 w-4" /></Button><Button type="button" variant="ghost" size="icon" onClick={() => beginEdit(item)} aria-label="Edit item"><Pencil className="h-4 w-4" /></Button><Button type="button" variant="ghost" size="icon" onClick={() => { if (window.confirm(`Delete ${item.title}? This cannot be undone.`)) deleteMutation.mutate({ id: item.id }); }} aria-label="Delete item"><Trash2 className="h-4 w-4 text-red-300" /></Button></div></div>
+                  <div className="mt-5 flex items-center justify-between gap-2 border-t border-white/10 pt-3"><span className="text-[10px] uppercase tracking-[0.15em] text-[#666]">Position {index + 1}</span><div className="flex items-center gap-1"><Button type="button" variant="ghost" size="icon" disabled={index === 0 || reorderMutation.isPending} onClick={() => move(item.id, -1)} aria-label="Move item up"><ArrowUp className="h-4 w-4" /></Button><Button type="button" variant="ghost" size="icon" disabled={index === activeItems.length - 1 || reorderMutation.isPending} onClick={() => move(item.id, 1)} aria-label="Move item down"><ArrowDown className="h-4 w-4" /></Button><Button type="button" variant="ghost" size="icon" onClick={() => beginEdit(item)} aria-label="Edit item"><Pencil className="h-4 w-4" /></Button><Button type="button" variant="ghost" size="icon" onClick={() => { if (window.confirm(`Delete ${item.title}? This cannot be undone.`)) deleteMutation.mutate(item); }} aria-label="Delete item"><Trash2 className="h-4 w-4 text-red-300" /></Button></div></div>
                 </div>
               </article>
             ))}

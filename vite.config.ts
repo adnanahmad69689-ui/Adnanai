@@ -202,12 +202,15 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
+const isIndependentBuild = process.env.INDEPENDENT_BUILD === "true";
 const plugins = [
-  vitePluginManusRuntime(),
   react(),
   tailwindcss(),
-  vitePluginManusDebugCollector(),
-  vitePluginStorageProxy(),
+  ...(isIndependentBuild ? [] : [
+    vitePluginManusRuntime(),
+    vitePluginManusDebugCollector(),
+    vitePluginStorageProxy(),
+  ]),
 ];
 
 export default defineConfig({

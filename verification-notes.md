@@ -20,6 +20,12 @@ The sandbox browser correctly reached the Manus OAuth login screen from `/admin`
 
 The connected owner-browser extension was unavailable during verification, so it was disabled again and the sandbox browser was used. The sandbox login route was confirmed to open the expected Manus OAuth screen without exposing any portfolio management content to an unauthenticated session.
 
+## Supabase migration rendering
+
+The Supabase-backed development build successfully rendered the complete public portfolio using the independently migrated public Website and AI System records and their Supabase Storage URLs. The `/admin` route retained its private gate and now displays a Supabase email-link sign-in form instead of the Manus OAuth control. Final owner activation remains dependent on configuring Supabase Auth redirect settings, performing the owner’s first sign-in, and promoting that profile to the administrator role.
+
+An initial managed-hero implementation incorrectly used the deferred React Query provider at the above-the-fold hero level and triggered the error boundary. The hero now fetches public site settings directly with a safe fallback to the built-in portrait. A follow-up desktop capture confirmed the full public hero renders correctly with the migrated Supabase image.
+
 ## Both content types
 
 The controlled end-to-end check was repeated for both `website` and `ai_system` records. Each temporary item used the same secure image-upload procedure, was created as a draft, kept out of its public query, edited and published, reflected in the public query, reordered, returned to draft, and deleted. A final database query returned no temporary verification records.

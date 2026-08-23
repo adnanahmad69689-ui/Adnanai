@@ -4,20 +4,10 @@
  * social proof strip, and the gradient audit CTA.
  */
 import { siteConfig, mailto } from "../data/siteConfig";
-import { trpc } from "@/lib/trpc";
-import { useMemo } from "react";
+import { listPublishedPortfolioItems, type PortfolioItem } from "@/lib/portfolio";
+import { useQuery } from "@tanstack/react-query";
 
-type Workflow = {
-  id: number;
-  title: string;
-  imageUrl: string;
-  imageAlt: string;
-  label: string;
-  description: string;
-  trigger: string | null;
-  aiProcess: string | null;
-  output: string | null;
-};
+type Workflow = Pick<PortfolioItem, "id" | "title" | "imageUrl" | "imageAlt" | "label" | "description" | "trigger" | "aiProcess" | "output">;
 
 function getMetric(label: string) {
   const [metric = "AI", ...rest] = label.split("·");
@@ -73,8 +63,7 @@ export function WorkflowCard({ workflow }: { workflow: Workflow }) {
 
 export function Workflows() {
   const { workflows } = siteConfig;
-  const aiSystemQuery = useMemo(() => ({ kind: "ai_system" as const }), []);
-  const { data: rawWorkflows, isLoading, isError } = trpc.portfolio.list.useQuery(aiSystemQuery);
+  const { data: rawWorkflows, isLoading, isError } = useQuery({ queryKey: ["portfolio", "ai_system"], queryFn: () => listPublishedPortfolioItems("ai_system") });
   const workflowsToFeature = ((rawWorkflows ?? []) as Workflow[]).slice(0, 3);
   return (
     <section id="ai-systems" className="workflows-section">

@@ -51,15 +51,7 @@ function PublicPortfolio() {
 }
 
 function AppContent() {
-  const [location, setLocation] = useLocation();
-
-  useEffect(() => {
-    const returnPath = sessionStorage.getItem("adnan-ai-admin-return-path");
-    if (location === "/" && returnPath === "/admin") {
-      sessionStorage.removeItem("adnan-ai-admin-return-path");
-      setLocation(returnPath);
-    }
-  }, [location, setLocation]);
+  const [location] = useLocation();
 
   return location === "/admin" ? (
       <Suspense fallback={<main className="route-loading">Loading portfolio controls…</main>}>
