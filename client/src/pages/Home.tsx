@@ -1,22 +1,25 @@
 /**
- * Home page: prioritizes the hero, then loads the non-critical portfolio
- * sections once the visitor begins leaving the first viewport.
+ * Home page: prioritizes the hero, then automatically loads non-critical
+ * portfolio sections shortly after the first paint.
  */
-import { lazy, Suspense, useRef } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Hero } from "../components/Hero";
-import { useNearViewport } from "../hooks/useNearViewport";
 
 const PortfolioSections = lazy(() => import("../components/PortfolioSections"));
 
 export default function Home() {
-  const deferredContentRef = useRef<HTMLDivElement>(null);
-  const shouldLoadSections = useNearViewport(deferredContentRef);
+  const [shouldLoadSections, setShouldLoadSections] = useState(false);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => setShouldLoadSections(true), 180);
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   return (
     <div>
       <Hero />
       <main id="main">
-        <div ref={deferredContentRef}>
+        <div>
           {shouldLoadSections ? (
             <Suspense fallback={<div className="route-loading" aria-live="polite">Loading portfolio…</div>}>
               <PortfolioSections />

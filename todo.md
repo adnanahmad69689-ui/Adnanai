@@ -236,3 +236,15 @@
 - [x] Apply safe loading, bundle, and rendering optimizations without changing the public design or admin functionality.
 - [x] Verify desktop/mobile public behavior, TypeScript, tests, and a production build.
 - [x] Save the public performance optimization checkpoint.
+
+# Source Code Download Checklist
+
+- [x] Create a clean archive of the complete application source, schema, tests, and project documentation.
+- [x] Verify and provide the downloadable source-code archive.
+
+# Homepage Content-Loading Fix Checklist
+
+- [x] Reproduce the live issue where the homepage appears to show only the hero section.
+- [x] Restore reliable full-page portfolio content loading while retaining safe performance optimizations.
+- [x] Verify the public homepage on desktop and mobile, TypeScript, tests, and a production build.
+- [x] Save the homepage content-loading fix checkpoint.

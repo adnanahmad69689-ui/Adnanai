@@ -30,6 +30,10 @@ The existing raw-pointer dot-and-ring cursor is now mounted in the `/admin` page
 
 The owner subsequently reported viewing the admin dashboard while requesting the same cursor there, which confirms that the real owner browser reached the protected admin workspace. The remaining acceptance task is to exercise a browser-level content mutation and observe the public update.
 
+## Homepage content-loading correction
+
+The live homepage issue was reproduced: the previous viewport-triggered section loader showed only the hero until a visitor manually scrolled near the hero boundary. The loader now schedules the non-critical portfolio sections automatically 180 milliseconds after the first paint. Full-page desktop and mobile screenshots confirmed the complete About, Services, Websites, AI Systems, Experience, contact, and footer sequence now loads without requiring that initial scroll interaction.
+
 ## Retained content review
 
 The live N A Metal public site was revisited and confirmed to expose the evidence used in its managed portfolio record: event and exhibition fabrication, custom metalwork, display environments, immersive installations, and the eight listed service areas. The database check confirmed that no AI System record with a Business Knowledge Assistant title or KNOW label remains. A sandbox route check was redirected to the protected admin login by a stored post-login path, so the managed-content database result is the authoritative removal verification for this browser session.
