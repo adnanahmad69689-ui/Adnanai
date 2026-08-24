@@ -76,11 +76,13 @@ export function Contact() {
               {contact.headingLead} <em>{contact.headingEm}</em>
             </h2>
             <p className="contact-subtext">{contact.subtext}</p>
-            <p className="contact-enquiry-copy">For project enquiries, send me an email.</p>
-            <a className="contact-direct-email" href={`mailto:${contact.email}`}>
-              <Mail className="contact-email-icon" aria-hidden="true" strokeWidth={1.8} />
-              <span>{contact.email}</span>
-            </a>
+            <div className="contact-email-stack">
+              <p className="contact-enquiry-copy">For project enquiries, send me an email.</p>
+              <a className="contact-direct-email" href={`mailto:${contact.email}`}>
+                <Mail className="contact-email-icon" aria-hidden="true" strokeWidth={1.8} />
+                <span>{contact.email}</span>
+              </a>
+            </div>
           </div>
           <form className="contact-form reveal-item" onSubmit={submit} noValidate autoComplete="off" aria-describedby={`${formId}-status`}>
             <div className="contact-form-grid">

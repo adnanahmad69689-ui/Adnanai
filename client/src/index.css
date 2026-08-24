@@ -2289,7 +2289,7 @@
   mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000, transparent);
   pointer-events: none;
 }
-.contact-left { position: relative; align-self: start; }
+.contact-left { position: relative; display: flex; flex-direction: column; align-self: stretch; }
 .contact-heading {
   margin: 0 0 1.25rem;
   font-family: "Space Grotesk", sans-serif;
@@ -2316,19 +2316,20 @@
   color: rgba(255, 255, 255, 0.58);
   font: 400 0.82rem/1.55 "Space Grotesk", sans-serif;
 }
+.contact-email-stack { margin-top: auto; padding-top: 3rem; }
 .contact-direct-email {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  padding-bottom: 0.35rem;
-  border-bottom: 1px solid rgba(168, 255, 62, 0.55);
+  padding-bottom: 0;
+  border-bottom: 0;
   color: var(--color-accent);
   font: 600 0.88rem/1.4 "Space Grotesk", sans-serif;
   text-decoration: none;
   transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out);
 }
 .contact-email-icon { width: 1rem; height: 1rem; flex: 0 0 auto; }
-.contact-direct-email:hover { border-color: #fff; color: #fff; }
+.contact-direct-email:hover { color: #fff; }
 .contact-form {
   position: relative;
   display: grid;
@@ -2394,6 +2395,7 @@
 
 @media (width <= 992px) {
   .contact-card { border-radius: 24px; grid-template-columns: 1fr; gap: 2rem; padding: clamp(1.5rem, 4vw, 3rem); }
+  .contact-email-stack { margin-top: 0; padding-top: 2rem; }
 }
 @media (width <= 768px) {
   .contact-form { max-width: 100%; }

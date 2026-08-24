@@ -377,3 +377,9 @@
 - [x] Remove the redundant small text below the email without changing the contact form itself.
 - [x] Add one subtle professional email icon beside the email address without introducing a new visual style.
 - [x] Verify the final contact-area treatment on desktop and mobile, then publish it to the live custom domain.
+
+# Final Contact Positioning Correction Checklist
+
+- [x] Remove the horizontal underline beneath the public email address in the final contact area.
+- [x] Move the enquiry prompt and email address lower within the left side of the existing contact card without changing the overall design.
+- [ ] Verify the final contact positioning on desktop and mobile, then publish it to the live custom domain.
