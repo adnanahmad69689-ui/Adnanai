@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-# Private account and recovery screens are not public search destinations.
-Disallow: /admin
-Disallow: /reset-password
 
 Sitemap: https://adnanai.com/sitemap.xml

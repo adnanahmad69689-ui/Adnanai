@@ -24,7 +24,10 @@
     <meta name="twitter:description" content="Adnan Ai builds websites, automations, and AI agents for real business tasks." />
     <meta name="twitter:image" content="https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/hero/migration/72a17e27-37ab-4c13-b1b5-ada0f02c2d17.webp" />
     <meta name="theme-color" content="#080808" />
+    <meta name="application-name" content="Adnan Ai" />
+    <meta name="apple-mobile-web-app-title" content="Adnan Ai" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="preload" as="image" href="https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/hero/migration/72a17e27-37ab-4c13-b1b5-ada0f02c2d17.webp" type="image/webp" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,20 +37,43 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Adnan Ai",
-        "url": "https://adnanai.com/",
-        "description": "Adnan Ai builds websites, automations, and AI agents for real business tasks.",
-        "email": "info@adnanai.com",
-        "founder": { "@type": "Person", "name": "Adnan Ahmad" },
-        "areaServed": ["Pakistan", "Remote"],
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Peshawar",
-          "addressRegion": "KPK",
-          "addressCountry": "PK"
-        },
-        "serviceType": ["AI Web Development", "AI Automation", "AI Agents"]
+        "@graph": [
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://adnanai.com/#business",
+            "name": "Adnan Ai",
+            "url": "https://adnanai.com/",
+            "description": "Adnan Ai builds websites, automations, and AI agents for real business tasks.",
+            "email": "info@adnanai.com",
+            "founder": { "@type": "Person", "name": "Adnan Ahmad" },
+            "areaServed": ["Pakistan", "Remote"],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Peshawar",
+              "addressRegion": "KPK",
+              "addressCountry": "PK"
+            },
+            "serviceType": ["AI Web Development", "AI Automation", "AI Agents"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://adnanai.com/#website",
+            "url": "https://adnanai.com/",
+            "name": "Adnan Ai",
+            "publisher": { "@id": "https://adnanai.com/#business" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://adnanai.com/#webpage",
+            "url": "https://adnanai.com/",
+            "name": "Adnan Ai | Websites, Automation & AI Agents",
+            "description": "Adnan Ai builds websites, automations, and AI agents for real business tasks.",
+            "isPartOf": { "@id": "https://adnanai.com/#website" },
+            "about": { "@id": "https://adnanai.com/#business" },
+            "inLanguage": "en"
+          }
+        ]
       }
     </script>
   </head>

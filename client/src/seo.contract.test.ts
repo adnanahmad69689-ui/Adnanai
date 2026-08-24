@@ -14,7 +14,11 @@ describe("launch-critical SEO contract", () => {
     expect(html).toContain('property="og:title"');
     expect(html).toContain('application/ld+json');
     expect(html).toContain('"@type": "ProfessionalService"');
-    expect(robots).toContain("Disallow: /admin");
+    expect(html).toContain('"@type": "WebSite"');
+    expect(html).toContain('"@type": "WebPage"');
+    expect(html).toContain('rel="manifest" href="/site.webmanifest"');
+    expect(robots).toContain("Allow: /");
+    expect(robots).not.toContain("Disallow: /admin");
     expect(robots).toContain("Sitemap: https://adnanai.com/sitemap.xml");
     expect(sitemap).toContain("https://adnanai.com/");
   });
@@ -23,5 +27,18 @@ describe("launch-critical SEO contract", () => {
     const adminRoute = readFileSync(resolve(projectRoot, "client/src/pages/AdminRoute.tsx"), "utf8");
     expect(adminRoute).toContain('"noindex,nofollow,noarchive"');
     expect(adminRoute).toContain('"Private admin | Adnan Ai"');
+  });
+
+  it("returns unknown routes as a noindex fallback while keeping private route headers crawlable", () => {
+    const app = readFileSync(resolve(projectRoot, "client/src/App.tsx"), "utf8");
+    const notFound = readFileSync(resolve(projectRoot, "client/src/pages/NotFound.tsx"), "utf8");
+    const middleware = readFileSync(resolve(projectRoot, "functions/_middleware.ts"), "utf8");
+    const headers = readFileSync(resolve(projectRoot, "client/public/_headers"), "utf8");
+
+    expect(app).toContain('location === "/" ? <PublicPortfolio /> : <NotFound />');
+    expect(notFound).toContain('"noindex,nofollow,noarchive"');
+    expect(middleware).toContain('headers.set("X-Robots-Tag", "noindex, nofollow, noarchive")');
+    expect(middleware).toContain("status: 404");
+    expect(headers).toContain("X-Content-Type-Options: nosniff");
   });
 });

@@ -1,0 +1,16 @@
+{
+  "name": "Adnan Ai | Websites, Automation & AI Agents",
+  "short_name": "Adnan Ai",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#080808",
+  "theme_color": "#080808",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

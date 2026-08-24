@@ -7,6 +7,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { CustomCursor } from "./components/CustomCursor";
 import { Navbar } from "./components/Navbar";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 const N8nRoute = lazy(() => import("./pages/N8nRoute"));
 const AdminRoute = lazy(() => import("./pages/AdminRoute"));
@@ -62,7 +63,7 @@ function AppContent() {
     <Suspense fallback={<main className="route-loading">Loading password setup…</main>}>
       <PasswordRecoveryRoute />
     </Suspense>
-  ) : <PublicPortfolio />;
+  ) : location === "/" ? <PublicPortfolio /> : <NotFound />;
 }
 
 export default function App() {

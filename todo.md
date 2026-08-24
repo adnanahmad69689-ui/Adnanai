@@ -345,3 +345,11 @@
 - [ ] Configure secure server-side form delivery to `info@adnanai.com` with the visitor email as Reply-To and without exposing credentials in browser code; deferred until the user returns to the Resend and Cloudflare secret setup.
 - [x] Test public-copy replacement, desktop/mobile form presentation, and live required-field validation; successful delivery remains blocked by the deferred Resend setup.
 - [x] Publish the contact update to GitHub and Cloudflare Pages, then verify the live custom domain and final public email/contact details.
+
+# Google Search Console and Technical SEO Readiness Checklist
+
+- [x] Audit the live canonical site for sitemap, robots directives, canonical behavior, indexability, redirects, metadata, structured data, public headers, and duplicate URLs.
+- [x] Audit public semantic structure, heading order, image alt text, internal links, favicon and platform metadata, responsive accessibility, performance, and real security exposure without redesigning the site.
+- [x] Implement only necessary truthful technical SEO, accessibility, indexing, favicon, and performance improvements while keeping current public content, design, and contact-form delivery deferral intact.
+- [ ] Validate the live sitemap, robots file, canonical domain, public headers, semantic HTML, structured data, desktop/mobile behavior, and production build.
+- [ ] Publish the completed SEO readiness update to GitHub and Cloudflare Pages, then confirm the custom-domain result for Google Search Console use.
