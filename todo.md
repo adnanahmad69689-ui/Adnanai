@@ -342,7 +342,7 @@
 - [x] Remove the location, email, Instagram, and availability rows from the About section without adding replacement metadata.
 - [x] Remove Instagram links, icons, labels, and references from the public site without adding another social link.
 - [x] Add a compact, accessible contact form to the existing Contact section with name, email, service, project-details, validation, subtle motion, and the exact requested success message.
-- [ ] Configure secure server-side form delivery to `info@adnanai.com` with the visitor email as Reply-To and without exposing credentials in browser code; deferred until the user returns to the Resend and Cloudflare secret setup.
+- [x] Configure secure server-side form delivery to `info@adnanai.com` with the visitor email as Reply-To and without exposing credentials in browser code through the verified Supabase and Resend workflow.
 - [x] Test public-copy replacement, desktop/mobile form presentation, and live required-field validation; successful delivery remains blocked by the deferred Resend setup.
 - [x] Publish the contact update to GitHub and Cloudflare Pages, then verify the live custom domain and final public email/contact details.
 
@@ -468,21 +468,21 @@
 # Secure Supabase Contact Submission and Gmail Notification Checklist
 
 - [x] Inspect the existing Contact form, current submission endpoint, Supabase configuration, current database schema, and existing email-related environment handling without altering Cloudflare Email Routing, MX, SPF, or DKIM.
-- [ ] Define the protected Supabase submission table, access policy, validation, rate limiting, and secret-safe server workflow without deleting any existing data.
-- [ ] Configure secure server-side Gmail notification delivery using only a protected secret, with the visitor email available for direct reply.
-- [ ] Store form submissions in Supabase, send the Gmail notification after a successful submission, and preserve clear success/error messages in the existing Contact form.
-- [ ] Test the complete submission workflow, confirm no credentials are exposed, verify direct `info@adnanai.com` forwarding remains unchanged, then publish the verified update.
+- [x] Superseded by the later user-selected Resend workflow, which provides protected Supabase storage, complete-form delivery, Reply-To support, and does not use Gmail API credentials.
+- [x] Superseded by the user-selected Resend API path; Gmail remains the safe receiving inbox through the existing `info@adnanai.com` Email Routing rule.
+- [x] Superseded by the implemented Resend workflow, which stores form submissions in Supabase and sends the complete message to `info@adnanai.com`.
+- [x] Superseded by the completed Supabase and Resend end-to-end workflow verification.
 
 # Gmail API Delivery Selection Checklist
 
-- [ ] Use the user-selected Gmail API notification path, with Google OAuth credentials and refresh token stored only as protected Supabase Edge Function secrets.
+- [x] Superseded by the later explicit request to use Resend API instead of Gmail API for Contact form delivery.
 
 # Cloudflare Email Routing Inspection and Conditional Repair Checklist
 
 - [x] Inspect the current `info@adnanai.com` Email Routing destination, verification state, active routing rule, MX, SPF, and DKIM records without changing any email or website configuration.
 - [x] Determine whether the routing configuration has a real fault; preserve all correct records and settings.
 - [x] No Email Routing repair was required because the inspected destination, active forwarding rule, managed MX/SPF/DKIM records, and public DNS records are correct.
-- [ ] Perform a safe delivery verification for `info@adnanai.com` and report whether the message reaches the personal Gmail destination.
+- [x] Perform a safe delivery verification for `info@adnanai.com` and report whether the message reaches the personal Gmail destination.
 
 # Confirmed Email Routing Non-Delivery Investigation Checklist
 
