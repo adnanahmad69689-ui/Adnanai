@@ -17,3 +17,7 @@ Desktop homepage and contact-route screenshots confirmed the refined cursor leav
 ## Interaction and responsive checks
 
 The homepage, navigation destinations, Websites, AI Systems, Process, and Contact routes render without layout shift after the cursor update. The cursor remains visible only in the desktop fine-pointer preview, where it keeps its compact dot-and-ring presentation. The 390px mobile review shows no custom cursor and retains the normal touch-menu experience. TypeScript, the 29-assertion regression suite, and the independent Cloudflare build all passed with no client errors observed during the preview checks.
+
+## Live publication verification
+
+Cloudflare Pages production deployment `cda1638a-64e1-43da-861a-d16e3e7e5719` completed successfully. A fresh canonical-domain check confirmed the live homepage, navigation, project links, system actions, and contact form remain available after the cursor refinement. The user-facing desktop cursor is now served from the published source; touch and reduced-motion safeguards remain present in the deployed stylesheet.
