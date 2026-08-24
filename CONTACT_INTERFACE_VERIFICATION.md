@@ -15,3 +15,9 @@ Full-page desktop and 390px mobile reviews confirmed that the form fits the exis
 ## Deferred delivery
 
 The form is wired to the protected future `/api/contact` Pages Function, which validates submitted values, includes a honeypot, restricts cross-origin submissions, targets `info@adnanai.com`, and uses the visitor’s email as `Reply-To`. It returns a clear non-delivery message until a private `RESEND_API_KEY` and verified sender are configured in Cloudflare Pages. No email credential is in browser code or source control.
+
+## Live deployment verification
+
+Cloudflare Pages production deployment `6484eab5-0e86-4f0a-b344-967e688277de` completed successfully with Functions enabled. A fresh custom-domain check confirmed the public Contact section contains only `info@adnanai.com` and the requested form fields; the About section no longer contains contact or availability rows, and the public page no longer contains Instagram references.
+
+The live endpoint returns `422` with the expected required-field message for incomplete data. It returns `503` with a clear temporary message for a complete valid test submission because the user requested that Resend and Cloudflare secret configuration be deferred. No test email was sent.

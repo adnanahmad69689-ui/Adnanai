@@ -343,5 +343,5 @@
 - [x] Remove Instagram links, icons, labels, and references from the public site without adding another social link.
 - [x] Add a compact, accessible contact form to the existing Contact section with name, email, service, project-details, validation, subtle motion, and the exact requested success message.
 - [ ] Configure secure server-side form delivery to `info@adnanai.com` with the visitor email as Reply-To and without exposing credentials in browser code; deferred until the user returns to the Resend and Cloudflare secret setup.
-- [ ] Test desktop/mobile form validation, success/error states, public-copy replacement, and the existing visual design; success delivery remains blocked by the deferred Resend setup.
-- [ ] Publish the contact update to GitHub and Cloudflare Pages, then verify the live custom domain and final public email/contact details.
+- [x] Test public-copy replacement, desktop/mobile form presentation, and live required-field validation; successful delivery remains blocked by the deferred Resend setup.
+- [x] Publish the contact update to GitHub and Cloudflare Pages, then verify the live custom domain and final public email/contact details.
