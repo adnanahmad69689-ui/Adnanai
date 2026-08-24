@@ -23,4 +23,15 @@ describe("portfolio navigation contract", () => {
     expect(styles).toContain("#projects,");
     expect(styles).toContain("scroll-margin-top: 104px");
   });
+
+  it("uses the preserved existing-icon full logo asset in desktop and mobile branding", () => {
+    const navbar = readFileSync(resolve(projectRoot, "client/src/components/Navbar.tsx"), "utf8");
+    const styles = readFileSync(resolve(projectRoot, "client/src/index.css"), "utf8");
+
+    expect(navbar).toContain("Adnan-AI-Logo-Light_57400ad8.svg");
+    expect(navbar).toContain('alt="Adnan Ai"');
+    expect(navbar).toContain("mobile-menu-logo");
+    expect(styles).toContain(".nav-logo img");
+    expect(styles).toContain(".mobile-menu-logo img");
+  });
 });

@@ -2,6 +2,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { siteConfig } from "../data/siteConfig";
 
+const lightLogoAsset = "/manus-storage/Adnan-AI-Logo-Light_57400ad8.svg";
+
 function scrollToSection(id: string) {
   if (id === "hero") {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -24,7 +26,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hovered, setHovered] = useState(false);
   const rafRef = useRef(0);
-  const { nav, identity } = siteConfig;
+  const { nav } = siteConfig;
 
   useEffect(() => {
     const updateScrollState = () => {
@@ -100,7 +102,7 @@ export function Navbar() {
             }}
             aria-label="Back to top"
           >
-            {identity.monogram}
+            <img src={lightLogoAsset} width="800" height="200" alt="Adnan Ai" decoding="async" />
           </a>
           <ul className="nav-links">
             {nav.links.map((link) => (
@@ -141,7 +143,7 @@ export function Navbar() {
           <div className="mobile-menu-bg" />
           <div className="mobile-menu-gradient" />
           <div className="mobile-menu-content">
-            <button className="mobile-menu-logo" type="button" onClick={() => onNavClick("hero")} aria-label="Back to top"><span className="logo-text">{identity.monogram}</span></button>
+            <button className="mobile-menu-logo" type="button" onClick={() => onNavClick("hero")} aria-label="Back to top"><img src={lightLogoAsset} width="800" height="200" alt="Adnan Ai" decoding="async" /></button>
             <ul className="mobile-menu-links">
               {nav.links.map((link) => (
                 <li key={link.id}>

@@ -385,20 +385,13 @@
 .nav-logo {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-width: 40px;
+  justify-content: flex-start;
+  min-width: 136px;
   height: 40px;
-  padding: 0 6px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  background: linear-gradient(180deg, #ffffff, #a8ff3e);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  padding: 0 8px;
   text-decoration: none;
 }
+.nav-logo img { display: block; width: 128px; height: auto; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -587,16 +580,12 @@
   position: absolute;
   top: 20px;
   left: 24px;
+  width: 138px;
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
-.mobile-menu-logo .logo-text {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 28px;
-  letter-spacing: 0.08em;
-  background: linear-gradient(180deg, #ffffff, #a8ff3e);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+.mobile-menu-logo img { display: block; width: 100%; height: auto; }
 .mobile-menu-links {
   list-style: none;
   margin: 0;
@@ -658,7 +647,7 @@
 @media (width <= 480px) {
   .mobile-menu-content { gap: 24px; padding: 70px 16px 30px; }
   .mobile-menu-logo { top: 16px; left: 16px; }
-  .mobile-menu-logo .logo-text { font-size: 24px; }
+  .mobile-menu-logo { width: 122px; }
   .mobile-nav-link { padding: 10px 20px; font-size: clamp(28px, 7vw, 36px); }
   .mobile-cta-btn { padding: 14px 28px; }
   .mobile-cta-btn .cta-text { font-size: 14px; }
@@ -2692,7 +2681,7 @@ main { position: relative; background: var(--color-bg); }
 .navigation-top.collapsed { width: auto; }
 .navigation-top.collapsed .nav-links { max-width: none; opacity: 1; overflow: visible; pointer-events: auto; }
 .navigation-top.collapsed .nav-cta-wrapper { width: auto; opacity: 1; pointer-events: auto; }
-.nav-logo { min-width: 86px; padding: 0 10px; letter-spacing: 0.1em; }
+.nav-logo { min-width: 136px; padding: 0 8px; }
 .nav-link { padding: 0 12px; color: rgba(240, 236, 230, 0.68); }
 
 /* Editorial hero: one dominant wordmark and one restrained service phrase. */
