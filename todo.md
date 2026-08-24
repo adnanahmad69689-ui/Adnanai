@@ -382,4 +382,4 @@
 
 - [x] Remove the horizontal underline beneath the public email address in the final contact area.
 - [x] Move the enquiry prompt and email address lower within the left side of the existing contact card without changing the overall design.
-- [ ] Verify the final contact positioning on desktop and mobile, then publish it to the live custom domain.
+- [x] Verify the final contact positioning on desktop and mobile, then publish it to the live custom domain.
