@@ -14,7 +14,6 @@ export function Reviews() {
             <h2 className="reviews-heading">
               {cfg.headingLead} <em>{cfg.headingEm}</em> {cfg.headingTail}
             </h2>
-            <span className="outcomes-summary-chip">ADNAN AI SERVICES</span>
           </div>
           <p className="reviews-subtitle">{cfg.subtitle}</p>
         </div>

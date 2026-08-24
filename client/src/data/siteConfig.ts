@@ -88,7 +88,6 @@ export const siteConfig = {
   nav: {
     links: [
       { id: "about", label: "About" },
-      { id: "skills", label: "Skills" },
       { id: "projects", label: "Websites" },
       { id: "ai-systems", label: "AI Systems" },
       { id: "experience", label: "Process" },

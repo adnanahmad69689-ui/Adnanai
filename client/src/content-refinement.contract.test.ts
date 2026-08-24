@@ -19,6 +19,7 @@ describe("human, clean, premium content refinement", () => {
     const config = readFileSync(resolve(projectRoot, "client/src/data/siteConfig.ts"), "utf8");
 
     expect(config).toContain('{ id: "experience", label: "Process" }');
+    expect(config).not.toContain('{ id: "skills", label: "Skills" }');
     expect(config).toContain('headingLead: "How I"');
     expect(config).toContain('headingEm: "work"');
     expect(config).toContain('"I build websites, automations, and AI agents around the work that needs doing."');
