@@ -1,7 +1,6 @@
 /** Lightweight pill navbar with CSS-driven transitions and responsive menu. */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { siteConfig } from "../data/siteConfig";
-import { BrandLogo } from "./BrandLogo";
 
 function scrollToSection(id: string) {
   if (id === "hero") {
@@ -25,7 +24,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hovered, setHovered] = useState(false);
   const rafRef = useRef(0);
-  const { nav } = siteConfig;
+  const { nav, identity } = siteConfig;
 
   useEffect(() => {
     const updateScrollState = () => {
@@ -101,7 +100,7 @@ export function Navbar() {
             }}
             aria-label="Back to top"
           >
-            <BrandLogo />
+            <span className="nav-logo-text">{identity.firstName} <em>{identity.lastName}</em></span>
           </a>
           <ul className="nav-links">
             {nav.links.map((link) => (
@@ -142,7 +141,7 @@ export function Navbar() {
           <div className="mobile-menu-bg" />
           <div className="mobile-menu-gradient" />
           <div className="mobile-menu-content">
-            <button className="mobile-menu-logo" type="button" onClick={() => onNavClick("hero")} aria-label="Back to top"><BrandLogo /></button>
+            <button className="mobile-menu-logo" type="button" onClick={() => onNavClick("hero")} aria-label="Back to top"><span className="mobile-menu-logo-text">{identity.firstName} <em>{identity.lastName}</em></span></button>
             <ul className="mobile-menu-links">
               {nav.links.map((link) => (
                 <li key={link.id}>

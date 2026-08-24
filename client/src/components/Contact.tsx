@@ -3,8 +3,6 @@ import { FormEvent, KeyboardEvent, useId, useState } from "react";
 import { Mail } from "lucide-react";
 import { siteConfig } from "../data/siteConfig";
 
-const contactBrandIconAsset = "/favicon.svg";
-
 type FormStatus = "idle" | "submitting" | "success" | "error";
 type FormValues = { name: string; email: string; service: string; details: string; website: string };
 
@@ -73,10 +71,7 @@ export function Contact() {
       <div className="contact-container">
         <div className="contact-card reveal-item">
           <div className="contact-left">
-            <div className="contact-brand-label">
-              <span className="section-label">Contact</span>
-              <img className="contact-brand-icon" src={contactBrandIconAsset} alt="Adnan Ai" width={28} height={28} decoding="async" />
-            </div>
+            <span className="section-label">Contact</span>
             <h2 className="contact-heading">
               {contact.headingLead} <em>{contact.headingEm}</em>
             </h2>

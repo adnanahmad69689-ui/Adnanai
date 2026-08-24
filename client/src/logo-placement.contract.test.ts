@@ -8,18 +8,19 @@ const contact = readFileSync(resolve(root, "src/components/Contact.tsx"), "utf8"
 const navbar = readFileSync(resolve(root, "src/components/Navbar.tsx"), "utf8");
 const styles = readFileSync(resolve(root, "src/index.css"), "utf8");
 
-describe("Hero and Contact logo placement", () => {
-  it("uses the existing light full logo subtly within the Hero", () => {
-    expect(hero).toContain('import { BrandLogo } from "./BrandLogo"');
-    expect(hero).toContain('className="hero-brand-logo"');
-    expect(navbar).toContain('import { BrandLogo } from "./BrandLogo"');
-    expect(navbar).toContain("<BrandLogo />");
+describe("Added logo placement removal", () => {
+  it("restores the existing Hero and navigation text treatment", () => {
+    expect(hero).not.toContain("BrandLogo");
+    expect(hero).not.toContain("hero-brand-logo");
+    expect(navbar).not.toContain("BrandLogo");
+    expect(navbar).toContain('className="nav-logo-text"');
+    expect(navbar).toContain('className="mobile-menu-logo-text"');
   });
 
-  it("uses the unchanged favicon icon compactly within the Contact label", () => {
-    expect(contact).toContain('const contactBrandIconAsset = "/favicon.svg"');
-    expect(contact).toContain('className="contact-brand-icon"');
-    expect(styles).toContain(".contact-brand-label");
-    expect(styles).toContain(".hero-brand-logo");
+  it("removes the added Contact icon while preserving the original favicon file", () => {
+    expect(contact).not.toContain("contactBrandIconAsset");
+    expect(contact).not.toContain("contact-brand-icon");
+    expect(styles).not.toContain(".contact-brand-icon");
+    expect(styles).not.toContain(".contact-brand-label");
   });
 });

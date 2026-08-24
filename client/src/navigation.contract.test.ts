@@ -24,14 +24,14 @@ describe("portfolio navigation contract", () => {
     expect(styles).toContain("scroll-margin-top: 104px");
   });
 
-  it("uses the preserved existing-icon full logo artwork in desktop and mobile branding", () => {
+  it("uses the original text-only brand treatment in desktop and mobile navigation", () => {
     const navbar = readFileSync(resolve(projectRoot, "client/src/components/Navbar.tsx"), "utf8");
     const styles = readFileSync(resolve(projectRoot, "client/src/index.css"), "utf8");
 
-    expect(navbar).toContain('import { BrandLogo } from "./BrandLogo"');
-    expect(navbar).toContain("<BrandLogo />");
+    expect(navbar).toContain('className="nav-logo-text"');
     expect(navbar).toContain("mobile-menu-logo");
-    expect(styles).toContain(".nav-logo svg");
-    expect(styles).toContain(".mobile-menu-logo svg");
+    expect(navbar).toContain('className="mobile-menu-logo-text"');
+    expect(styles).toContain(".nav-logo-text");
+    expect(styles).toContain(".mobile-menu-logo-text");
   });
 });

@@ -416,3 +416,11 @@
 - [x] Verify logo contrast, natural scale, desktop/mobile responsiveness, existing interactions, and no visual drift.
 - [x] Publish the Hero and Contact logo treatment to GitHub and Cloudflare Pages, then verify the live custom domain.
 - [x] Replace the unavailable live Hero brand-asset URL with a Cloudflare-compatible hosted copy while preserving the selected logo treatment.
+
+# Added Logo Placement Removal Checklist
+
+- [x] Remove the added full-logo placement from the Hero without changing existing Hero text, portrait, layout, or spacing.
+- [x] Remove the added full-logo treatment from desktop and mobile navigation while restoring the prior text-only navigation brand treatment.
+- [x] Remove the added Contact icon mark without changing the final Contact copy, email, or form layout.
+- [x] Preserve the existing browser favicon and all other public design, content, navigation, responsive behavior, and animation.
+- [ ] Validate the restored logo-free desktop and mobile layout, then publish it to the live custom domain.
