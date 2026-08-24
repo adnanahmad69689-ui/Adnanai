@@ -240,6 +240,13 @@
 }
 .skip-to-content:focus { top: 16px; }
 
+/* Keep linked headings clear of the floating navigation without changing section spacing. */
+#about,
+#projects,
+#ai-systems,
+#experience,
+#contact { scroll-margin-top: 104px; }
+
 /* Custom cursor (desktop only) */
 .custom-cursor,
 .custom-cursor-ring {

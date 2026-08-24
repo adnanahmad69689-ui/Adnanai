@@ -1,14 +1,20 @@
 /** Lightweight pill navbar with CSS-driven transitions and responsive menu. */
 import { useCallback, useEffect, useRef, useState } from "react";
-import { siteConfig, mailto } from "../data/siteConfig";
+import { siteConfig } from "../data/siteConfig";
 
-function scrollToSection(id: string, offset = 20) {
+function scrollToSection(id: string) {
+  if (id === "hero") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.history.pushState(null, "", "#");
+    return;
+  }
+
   const element = document.getElementById(id);
   if (!element) {
     window.location.href = `/#${id}`;
     return;
   }
-  window.scrollTo({ top: element.offsetTop - offset, behavior: "smooth" });
+  element.scrollIntoView({ behavior: "smooth", block: "start" });
   window.history.pushState(null, "", `#${id}`);
 }
 
@@ -17,9 +23,8 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const [notifOpen, setNotifOpen] = useState(false);
   const rafRef = useRef(0);
-  const { nav, identity, contact } = siteConfig;
+  const { nav, identity } = siteConfig;
 
   useEffect(() => {
     const updateScrollState = () => {
@@ -71,7 +76,7 @@ export function Navbar() {
   }, [menuOpen]);
 
   const onNavClick = useCallback((id: string) => {
-    scrollToSection(id, 20);
+    scrollToSection(id);
     setMenuOpen(false);
   }, []);
 
@@ -91,8 +96,7 @@ export function Navbar() {
             className="nav-logo"
             onClick={(event) => {
               event.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-              window.history.pushState(null, "", "#");
+              onNavClick("hero");
             }}
             aria-label="Back to top"
           >
@@ -111,17 +115,6 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-          <button
-            className="nav-icon-btn"
-            onClick={() => setNotifOpen((value) => !value)}
-            aria-label="Contact prompt"
-            aria-expanded={notifOpen}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-            </svg>
-          </button>
           <div className="nav-cta-wrapper">
             <button className="neon-btn" onClick={() => onNavClick("contact")} aria-label="Contact Adnan Ai">
               {nav.contactLabel}
@@ -129,19 +122,6 @@ export function Navbar() {
           </div>
         </div>
       </nav>
-
-      {notifOpen && (
-        <div className="notification-popup" role="dialog" aria-label="Contact prompt">
-          <div className="notification-message">
-            <div className="message-icon">✦</div>
-            <p>{nav.notification.quote}</p>
-          </div>
-          <a className="lets-discuss-btn" href={mailto(nav.notification.ctaSubject, nav.notification.ctaBody)} onClick={() => setNotifOpen(false)}>
-            {nav.notification.ctaLabel}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-          </a>
-        </div>
-      )}
 
       <button
         className={`mobile-menu-button ${scrolled ? "scrolled" : ""}`}
@@ -161,7 +141,7 @@ export function Navbar() {
           <div className="mobile-menu-bg" />
           <div className="mobile-menu-gradient" />
           <div className="mobile-menu-content">
-            <div className="mobile-menu-logo"><span className="logo-text">{identity.monogram}</span></div>
+            <button className="mobile-menu-logo" type="button" onClick={() => onNavClick("hero")} aria-label="Back to top"><span className="logo-text">{identity.monogram}</span></button>
             <ul className="mobile-menu-links">
               {nav.links.map((link) => (
                 <li key={link.id}>
@@ -172,9 +152,9 @@ export function Navbar() {
                 </li>
               ))}
             </ul>
-            <a href={`mailto:${contact.email}`} className="mobile-cta-btn" onClick={() => setMenuOpen(false)}>
-              <span className="cta-text">{nav.mobileCta}</span><span className="cta-arrow">→</span>
-            </a>
+            <button type="button" className="mobile-cta-btn" onClick={() => onNavClick("contact")}>
+              <span className="cta-text">{nav.contactLabel}</span><span className="cta-arrow">→</span>
+            </button>
             <div className="mobile-menu-footer"><p>{nav.mobileFooter}</p></div>
           </div>
         </div>

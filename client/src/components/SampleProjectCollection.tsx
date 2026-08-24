@@ -7,7 +7,7 @@ export function SampleProjectCollection() {
   const { data: rawProjects, isLoading, isError } = useQuery({ queryKey: ["portfolio", "website"], queryFn: () => listPublishedPortfolioItems("website") });
   const projects = (rawProjects ?? []) as PortfolioItem[];
 
-  return <section className="sample-projects-section" aria-labelledby="sample-projects-heading">
+  return <section id="projects" className="sample-projects-section" aria-labelledby="sample-projects-heading">
     <div className="sample-projects-container">
       <div className="sample-projects-intro reveal-item">
         <span className="section-label">Websites</span>

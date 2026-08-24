@@ -353,3 +353,12 @@
 - [x] Implement only necessary truthful technical SEO, accessibility, indexing, favicon, and performance improvements while keeping current public content, design, and contact-form delivery deferral intact.
 - [x] Validate the live sitemap, robots file, canonical domain, public headers, semantic HTML, structured data, desktop/mobile behavior, and production build.
 - [x] Publish the completed SEO readiness update to GitHub and Cloudflare Pages, then confirm the custom-domain result for Google Search Console use.
+
+# Navigation Behavior Correction Checklist
+
+- [x] Remove the unwanted bell/bill icon after the Process navigation item without changing the navigation design.
+- [x] Ensure the Adnan Ai logo, About, Websites, AI Systems, Process, and Contact controls navigate to the correct Hero or homepage section with smooth, correctly offset scrolling.
+- [x] Preserve or correct active navigation behavior as users scroll through the corresponding homepage sections.
+- [x] Ensure mobile navigation reaches the same destinations and closes the menu after selection.
+- [x] Test every requested destination on desktop and mobile without changing the website’s visual design.
+- [ ] Publish the navigation correction to GitHub and Cloudflare Pages, then verify the live custom domain.

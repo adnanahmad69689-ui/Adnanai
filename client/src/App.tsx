@@ -17,6 +17,7 @@ function PublicPortfolio() {
   const [page, setPage] = useState<"home" | "n8n">("home");
 
   useEffect(() => {
+    const delayedScrolls = new Set<number>();
     const onHash = () => {
       const hash = window.location.hash;
       if (hash === "#n8n-projects") {
@@ -26,16 +27,29 @@ function PublicPortfolio() {
         setPage("home");
         if (hash && hash !== "#") {
           const id = hash.replace("#", "");
-          window.setTimeout(() => {
+          let attempts = 0;
+          const scrollToHash = () => {
             const element = document.getElementById(id);
-            if (element) window.scrollTo({ top: element.offsetTop - 20, behavior: "smooth" });
-          }, 100);
+            if (element) {
+              element.scrollIntoView({ behavior: attempts === 0 ? "smooth" : "auto", block: "start" });
+            }
+            if (attempts < 6) {
+              attempts += 1;
+              const timeout = window.setTimeout(scrollToHash, 180);
+              delayedScrolls.add(timeout);
+            }
+          };
+          const timeout = window.setTimeout(scrollToHash, 60);
+          delayedScrolls.add(timeout);
         }
       }
     };
     window.addEventListener("hashchange", onHash);
     onHash();
-    return () => window.removeEventListener("hashchange", onHash);
+    return () => {
+      window.removeEventListener("hashchange", onHash);
+      delayedScrolls.forEach((timeout) => window.clearTimeout(timeout));
+    };
   }, []);
 
   return (
