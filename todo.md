@@ -290,6 +290,7 @@
 - [ ] Configure the existing owner email for a secure one-time password setup without exposing the password in chat or code.
 - [ ] Verify email-and-password sign-in on the independent custom-domain admin route.
 - [ ] Fix the Supabase password-reset redirect so custom-domain recovery links open the password setup screen instead of the public homepage.
+- [x] Diagnose and fix production recovery-callback detection when Supabase returns to the custom-domain admin route.
 
 # Launch-Critical Improvement Checklist
 
@@ -299,3 +300,5 @@
 - [x] Add essential robots, sitemap, canonical tags, Open Graph sharing metadata, and accurate organization/service structured data.
 - [x] Recheck and reduce the independent public JavaScript entry after the Cloudflare build reported a 651 kB initial chunk.
 - [ ] Verify the live custom-domain public site, admin route, crawl files, structured data, and independent deployment before final launch review.
+- [x] Remediate Supabase security-advisor warnings for publicly callable SECURITY DEFINER functions without breaking owner-only RLS policies.
+- [ ] Enable Supabase leaked-password protection for the password-based admin account.

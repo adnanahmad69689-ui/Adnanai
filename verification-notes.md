@@ -67,3 +67,7 @@ After the custom domains were activated, `https://adnan-ai-portfolio.pages.dev` 
 ## Canonical custom-domain redirect
 
 Cloudflare Page Rule `781d8867a536f5fcd7d66ef34e16720b` now redirects `www.adnanai.com/*` to `https://adnanai.com/$1` with a permanent 301 status. The live check confirmed that a request to `https://www.adnanai.com/automation?source=canonical-test` landed at `https://adnanai.com/automation?source=canonical-test`, preserving both path and query string.
+
+## Launch SEO deployment
+
+Cloudflare Pages production deployment `8d731e91-ca24-4af6-9d48-cad7fbb0dbdc` completed successfully from GitHub commit `4eab71e`. Live checks confirmed that `https://adnanai.com/robots.txt` permits public crawling, disallows `/admin`, and names the canonical sitemap. `https://adnanai.com/sitemap.xml` contains the public apex URL. The canonical homepage renders successfully and exposes the expected canonical URL, Open Graph title and URL, `ProfessionalService` JSON-LD, and indexable public robots metadata.

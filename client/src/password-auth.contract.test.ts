@@ -12,6 +12,7 @@ describe("password-based owner login contract", () => {
 
     expect(authHook).toContain("signInWithPassword");
     expect(authHook).toContain("resetPasswordForEmail");
+    expect(authHook).toContain("/reset-password");
     expect(authHook).toContain("updateUser({ password })");
     expect(signIn).toContain("Set or reset password");
     expect(signIn).toContain("New password (12+ characters)");

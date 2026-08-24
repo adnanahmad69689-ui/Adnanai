@@ -11,7 +11,7 @@ export function useAuth(options?: UseAuthOptions) {
   const [user, setUser] = useState<{ id: string; email: string | null; name: string | null; role: "user" | "admin" } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [needsPasswordSetup, setNeedsPasswordSetup] = useState(false);
+  const [needsPasswordSetup, setNeedsPasswordSetup] = useState(() => typeof window !== "undefined" && window.location.pathname === "/reset-password");
 
   const refresh = useCallback(async () => {
     const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
@@ -53,7 +53,7 @@ export function useAuth(options?: UseAuthOptions) {
   }, []);
 
   const requestPasswordSetup = useCallback(async (email: string) => {
-    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/admin?recovery=1` });
+    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/reset-password` });
     if (error) throw new Error(error.message);
   }, []);
 

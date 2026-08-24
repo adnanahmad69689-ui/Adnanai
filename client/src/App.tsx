@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 
 const N8nRoute = lazy(() => import("./pages/N8nRoute"));
 const AdminRoute = lazy(() => import("./pages/AdminRoute"));
+const PasswordRecoveryRoute = lazy(() => import("./pages/PasswordRecoveryRoute"));
 
 function PublicPortfolio() {
   const [page, setPage] = useState<"home" | "n8n">("home");
@@ -56,6 +57,10 @@ function AppContent() {
   return location === "/admin" ? (
       <Suspense fallback={<main className="route-loading">Loading portfolio controls…</main>}>
       <AdminRoute />
+    </Suspense>
+  ) : location === "/reset-password" ? (
+    <Suspense fallback={<main className="route-loading">Loading password setup…</main>}>
+      <PasswordRecoveryRoute />
     </Suspense>
   ) : <PublicPortfolio />;
 }
