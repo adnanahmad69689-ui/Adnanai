@@ -334,4 +334,4 @@
 - [x] Apply only useful human-copy, terminology, call-to-action, and navigation refinements while keeping the existing premium visual system and section structure.
 - [x] Correct real usability, accessibility, responsive, or technical issues discovered in the audit without adding invented proof, claims, reviews, statistics, or extra sections.
 - [x] Run automated checks, build validation, and desktop/mobile visual reviews after the targeted refinements.
-- [ ] Publish the no-redesign quality improvements to GitHub and Cloudflare Pages, then verify the live custom domain.
+- [x] Publish the no-redesign quality improvements to GitHub and Cloudflare Pages, then verify the live custom domain.

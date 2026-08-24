@@ -36,3 +36,9 @@ The public homepage now uses simpler service terminology where the brand name al
 The metadata, sharing descriptions, and structured data now use the same natural description as the hero. Browser zoom is no longer blocked by `maximum-scale=1`. A public `llms.txt` now gives machines a concise, factual description of the business, services, public work, location, and email. The crawl instructions now explicitly document both private routes for deployment.
 
 The local desktop and 390px mobile reviews retained the existing visual design with no observed horizontal overflow. Supporting project, process, and contact text is slightly larger on mobile without altering the page’s dark editorial style.
+
+## Live publication verification
+
+Cloudflare Pages production deployment `be786534-6465-4850-b25b-66ce0328853f` completed successfully from GitHub commit `91118d2`. A fresh canonical-domain load confirmed the updated page title, concise hero services, first-person process copy, simpler Website introduction, **View live site** actions, and focused three-card AI-system section.
+
+The new `https://adnanai.com/llms.txt` is publicly available with factual business, service, portfolio, location, and contact information. The canonical `robots.txt` initially showed an older cached response in text extraction. A targeted Cloudflare cache purge completed successfully; a direct canonical response then confirmed the current file disallows both `/admin` and `/reset-password` while keeping the public sitemap available.
