@@ -13,3 +13,7 @@ The updated desktop preview shows the custom dot and ring visibly tracking withi
 ## Touch and accessibility verification
 
 The 390px mobile review remains cursor-free and preserves the normal mobile menu and touch layout. The cursor code exits before registering listeners whenever `prefers-reduced-motion` is enabled. Automated validation passed with TypeScript, 31 regression assertions, and the independent Cloudflare build.
+
+## Live publication verification
+
+Cloudflare Pages production deployment `4cf0feec-9dc3-4d6a-8a35-6e4dd326a309` completed successfully. A fresh `adnanai.com` check confirmed the public portfolio, navigation, project links, and contact form render normally after the reliability correction. The published cursor now activates from an actual desktop mouse or pen event instead of depending on a potentially incorrect hover media classification.
