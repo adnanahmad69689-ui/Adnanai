@@ -376,4 +376,4 @@
 - [x] Add a concise, natural enquiry prompt directly above the public email in the final contact area.
 - [x] Remove the redundant small text below the email without changing the contact form itself.
 - [x] Add one subtle professional email icon beside the email address without introducing a new visual style.
-- [ ] Verify the final contact-area treatment on desktop and mobile, then publish it to the live custom domain.
+- [x] Verify the final contact-area treatment on desktop and mobile, then publish it to the live custom domain.
