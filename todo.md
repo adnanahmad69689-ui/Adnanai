@@ -424,3 +424,10 @@
 - [x] Remove the added Contact icon mark without changing the final Contact copy, email, or form layout.
 - [x] Preserve the existing browser favicon and all other public design, content, navigation, responsive behavior, and animation.
 - [x] Validate the restored logo-free desktop and mobile layout, then publish it to the live custom domain.
+
+# Read-Only Cloudflare Email Routing Investigation Checklist
+
+- [x] Inspect public website email configuration and published mail-related DNS records without changing any DNS or website files.
+- [x] Inspect existing Cloudflare Email Routing destination, enabled state, and routing rule without modification.
+- [x] Check whether DNS/email propagation or Gmail delivery filtering is the likely remaining cause and identify exact safe manual checks.
+- [x] Provide a simple evidence-based email routing status without making changes.
