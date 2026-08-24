@@ -29,6 +29,17 @@ describe("contact details and enquiry form contract", () => {
     expect(contact).toContain("Tell me what you need");
     expect(contact).toContain("Send enquiry");
     expect(contact).toContain("Thanks for getting in touch. I’ll get back to you soon.");
+    expect(contact).toContain('autoComplete="off"');
+  });
+
+  it("keeps native select menus and browser autofill states within the dark visual system", () => {
+    const styles = readFileSync(resolve(projectRoot, "client/src/index.css"), "utf8");
+
+    expect(styles).toContain(".contact-form {");
+    expect(styles).toContain("color-scheme: dark");
+    expect(styles).toContain(".contact-field select option { background: #17181b; color: #f0ece6; }");
+    expect(styles).toContain(".contact-field input:-webkit-autofill");
+    expect(styles).toContain("-webkit-box-shadow: 0 0 0 1000px #17181b inset");
   });
 
   it("keeps the future server-side delivery endpoint secret-safe and reply-to aware", () => {

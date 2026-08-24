@@ -362,3 +362,10 @@
 - [x] Ensure mobile navigation reaches the same destinations and closes the menu after selection.
 - [x] Test every requested destination on desktop and mobile without changing the website’s visual design.
 - [x] Publish the navigation correction to GitHub and Cloudflare Pages, then verify the live custom domain.
+
+# Contact Form Dark-State Correction Checklist
+
+- [x] Remove the native white appearance from the Service dropdown and its options while preserving the current contact-form layout.
+- [x] Keep text, email, and textarea controls dark when focused or browser-autofilled, including Chrome saved-information states.
+- [x] Validate dark select, focus, and autofill-safe styling on desktop and mobile without changing the contact form design.
+- [ ] Publish the contact-form visual correction to GitHub and Cloudflare Pages, then verify the live custom domain.

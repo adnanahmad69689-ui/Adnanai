@@ -63,20 +63,20 @@ export function Contact() {
             <p className="contact-subtext">{contact.subtext}</p>
             <a className="contact-direct-email" href={`mailto:${contact.email}`}>{contact.email}</a>
           </div>
-          <form className="contact-form reveal-item" onSubmit={submit} noValidate aria-describedby={`${formId}-status`}>
+          <form className="contact-form reveal-item" onSubmit={submit} noValidate autoComplete="off" aria-describedby={`${formId}-status`}>
             <div className="contact-form-grid">
               <label className="contact-field" htmlFor={`${formId}-name`}>
                 <span>Name</span>
-                <input id={`${formId}-name`} name="name" type="text" autoComplete="name" placeholder="Your name" value={values.name} onChange={(event) => update("name", event.target.value)} required />
+                <input id={`${formId}-name`} name="name" type="text" autoComplete="off" placeholder="Your name" value={values.name} onChange={(event) => update("name", event.target.value)} required />
               </label>
               <label className="contact-field" htmlFor={`${formId}-email`}>
                 <span>Email</span>
-                <input id={`${formId}-email`} name="email" type="email" autoComplete="email" placeholder="Your email" value={values.email} onChange={(event) => update("email", event.target.value)} required />
+                <input id={`${formId}-email`} name="email" type="email" autoComplete="off" placeholder="Your email" value={values.email} onChange={(event) => update("email", event.target.value)} required />
               </label>
             </div>
             <label className="contact-field" htmlFor={`${formId}-service`}>
               <span>Service</span>
-              <select id={`${formId}-service`} name="service" value={values.service} onChange={(event) => update("service", event.target.value)} required>
+              <select id={`${formId}-service`} name="service" autoComplete="off" value={values.service} onChange={(event) => update("service", event.target.value)} required>
                 <option value="" disabled>Select a service</option>
                 <option value="Website Development">Website Development</option>
                 <option value="AI Automation">AI Automation</option>
@@ -86,7 +86,7 @@ export function Contact() {
             </label>
             <label className="contact-field" htmlFor={`${formId}-details`}>
               <span>Project details</span>
-              <textarea id={`${formId}-details`} name="details" rows={4} placeholder="Tell me what you need" value={values.details} onChange={(event) => update("details", event.target.value)} required />
+              <textarea id={`${formId}-details`} name="details" autoComplete="off" rows={4} placeholder="Tell me what you need" value={values.details} onChange={(event) => update("details", event.target.value)} required />
             </label>
             <label className="contact-honeypot" htmlFor={`${formId}-website`} aria-hidden="true">
               Website
