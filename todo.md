@@ -323,5 +323,5 @@
 - [x] Tighten excess vertical spacing and reduce unnecessary mobile page length without making the layout crowded.
 - [x] Rewrite retained supporting copy in shorter, more natural language without inventing claims, results, reviews, clients, or statistics.
 - [x] Validate the refined desktop and mobile experience, automated checks, and independent Cloudflare build.
-- [ ] Publish the approved refinement to the independent GitHub and Cloudflare Pages deployment, then verify the live custom domain.
-- [ ] Diagnose and resolve the custom-domain runtime error discovered during final verification.
+- [x] Publish the approved refinement to the independent GitHub and Cloudflare Pages deployment, then verify the live custom domain.
+- [x] Diagnose and resolve the custom-domain runtime error discovered during final verification.
