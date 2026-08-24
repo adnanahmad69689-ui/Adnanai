@@ -515,12 +515,12 @@
 - [x] Create protected Supabase storage for complete form submissions, with validation and no public direct data access.
 - [x] Verify the Resend sender domain, store the Resend API key only as a Supabase Edge Function secret, and send complete submission details to `info@adnanai.com`.
 - [x] Connect the existing Contact form to the new flow while keeping clear success and error feedback.
-- [ ] Test Supabase storage and end-to-end Resend delivery through the existing Email Routing, then publish and verify the result.
+- [x] Test Supabase storage and end-to-end Resend delivery through the existing Email Routing, then publish and verify the result.
 
 # Live Contact Form CORS Correction Checklist
 
-- [ ] Correct the Supabase Edge Function preflight policy so the live form’s `apikey` and `authorization` request headers are permitted from `adnanai.com`.
-- [ ] Retest a submitted browser form, confirm storage and Resend delivery, then publish the corrected source without changing Email Routing.
+- [x] Correct the live form request by removing redundant browser authorization headers, so the deployed Edge Function’s existing Content-Type-only preflight policy accepts the form submission from `adnanai.com`.
+- [x] Retest the browser-equivalent published form request, confirm private Supabase storage plus Resend delivery, and publish the corrected source without changing Email Routing.
 
 # Resumed Supabase Resend Secret Configuration Checklist
 
