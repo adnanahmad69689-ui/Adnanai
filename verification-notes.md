@@ -71,3 +71,7 @@ Cloudflare Page Rule `781d8867a536f5fcd7d66ef34e16720b` now redirects `www.adnan
 ## Launch SEO deployment
 
 Cloudflare Pages production deployment `8d731e91-ca24-4af6-9d48-cad7fbb0dbdc` completed successfully from GitHub commit `4eab71e`. Live checks confirmed that `https://adnanai.com/robots.txt` permits public crawling, disallows `/admin`, and names the canonical sitemap. `https://adnanai.com/sitemap.xml` contains the public apex URL. The canonical homepage renders successfully and exposes the expected canonical URL, Open Graph title and URL, `ProfessionalService` JSON-LD, and indexable public robots metadata.
+
+## Password recovery route
+
+Cloudflare Pages production deployment `a3d635eb-dac5-48c5-b10b-2be42022cfd0` successfully deployed the dedicated `/reset-password` route. A direct custom-domain check confirmed that `https://adnanai.com/reset-password?recovery-check=1` now renders the noindex password-recovery screen rather than the public hero. A fresh Supabase password recovery email is still required to verify session establishment and final password save after the rate limit clears.

@@ -289,8 +289,9 @@
 - [x] Add password sign-in to the independent owner admin gate while retaining the existing owner-only database role checks.
 - [ ] Configure the existing owner email for a secure one-time password setup without exposing the password in chat or code.
 - [ ] Verify email-and-password sign-in on the independent custom-domain admin route.
-- [ ] Fix the Supabase password-reset redirect so custom-domain recovery links open the password setup screen instead of the public homepage.
+- [x] Fix the Supabase password-reset redirect so custom-domain recovery links open the password setup screen instead of the public homepage.
 - [x] Diagnose and fix production recovery-callback detection when Supabase returns to the custom-domain admin route.
+- [ ] Inspect the current Supabase Auth logs and remove the remaining password reset/setup failure mode reported by the owner.
 
 # Launch-Critical Improvement Checklist
 
@@ -302,3 +303,8 @@
 - [ ] Verify the live custom-domain public site, admin route, crawl files, structured data, and independent deployment before final launch review.
 - [x] Remediate Supabase security-advisor warnings for publicly callable SECURITY DEFINER functions without breaking owner-only RLS policies.
 - [ ] Enable Supabase leaked-password protection for the password-based admin account.
+
+# Footer Refinement Checklist
+
+- [x] Remove the footer line `© 2026 Adnan Ai — KPK, Peshawar, Pakistan` from the public homepage.
+- [ ] Verify and publish the cleaned footer on the independent custom domain.
