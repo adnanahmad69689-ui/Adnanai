@@ -464,3 +464,69 @@
 
 - [x] Change only the Service selector chevron to the requested white color without changing the form’s layout, controls, or other styling.
 - [x] Validate the refined Service selector on desktop and mobile, then publish and verify the live update.
+
+# Secure Supabase Contact Submission and Gmail Notification Checklist
+
+- [x] Inspect the existing Contact form, current submission endpoint, Supabase configuration, current database schema, and existing email-related environment handling without altering Cloudflare Email Routing, MX, SPF, or DKIM.
+- [ ] Define the protected Supabase submission table, access policy, validation, rate limiting, and secret-safe server workflow without deleting any existing data.
+- [ ] Configure secure server-side Gmail notification delivery using only a protected secret, with the visitor email available for direct reply.
+- [ ] Store form submissions in Supabase, send the Gmail notification after a successful submission, and preserve clear success/error messages in the existing Contact form.
+- [ ] Test the complete submission workflow, confirm no credentials are exposed, verify direct `info@adnanai.com` forwarding remains unchanged, then publish the verified update.
+
+# Gmail API Delivery Selection Checklist
+
+- [ ] Use the user-selected Gmail API notification path, with Google OAuth credentials and refresh token stored only as protected Supabase Edge Function secrets.
+
+# Cloudflare Email Routing Inspection and Conditional Repair Checklist
+
+- [x] Inspect the current `info@adnanai.com` Email Routing destination, verification state, active routing rule, MX, SPF, and DKIM records without changing any email or website configuration.
+- [x] Determine whether the routing configuration has a real fault; preserve all correct records and settings.
+- [x] No Email Routing repair was required because the inspected destination, active forwarding rule, managed MX/SPF/DKIM records, and public DNS records are correct.
+- [ ] Perform a safe delivery verification for `info@adnanai.com` and report whether the message reaches the personal Gmail destination.
+
+# Confirmed Email Routing Non-Delivery Investigation Checklist
+
+- [x] Inspect Cloudflare Email Routing activity/delivery evidence, routing rules, destination verification, and public mail DNS for the reported non-delivery.
+- [x] Identify the exact failure point: Cloudflare successfully forwarded the test messages, so the remaining issue is checking the configured destination Gmail inbox rather than a Cloudflare routing or DNS fault.
+- [x] No Email Routing correction was required because the direct forwarding rule matched and Cloudflare recorded each inspected test message as delivered to the configured destination.
+
+# Temporary Email Routing Destination Verification Checklist
+
+- [x] Record the active `info@adnanai.com` forwarding rule and original verified destination before the temporary test.
+- [x] Verify `adnanahmad500000@gmail.com` as a Cloudflare Email Routing destination and temporarily direct only the existing `info@adnanai.com` rule to it.
+- [x] Confirm the temporary rule, check controlled delivery evidence, and restore the original `adnanahmad69689@gmail.com` destination exactly as it was.
+- [x] Verify the restored rule and confirm no unrelated DNS or website setting changed.
+
+# Gmail Visibility Investigation for Cloudflare-Delivered Messages Checklist
+
+- [x] Collect Gmail-side evidence for the temporary test that Cloudflare recorded as delivered, including the exact account and an All Mail search.
+- [x] Identify the issue: the temporary test message is present in `adnanahmad500000@gmail.com` but Gmail classified it as **Spam**; Cloudflare forwarding itself completed successfully.
+- [x] Apply the confirmed Gmail-side correction and verify the outcome: the routed test was moved to Inbox, and the active destination `adnanahmad69689@gmail.com` now has a `to:(info@adnanai.com)` filter that uses Never send it to Spam.
+
+# Email Routing Delivery-Latency Assessment Checklist
+
+- [x] Review recent Cloudflare Email Routing event timestamps and successful delivery status for forwarded messages, including the latest `Hello` test.
+- [x] Identify the likely timing source: Cloudflare recorded successful forwarding without errors, so observed inbox delay occurs after Gmail accepts the forward rather than in the routing rule.
+- [x] No Cloudflare speed correction is available or required; retain the existing working routing and active Gmail Never-send-to-Spam filter, then document expected timing.
+
+# Supabase and Resend Contact Workflow Checklist
+
+- [x] Inspect the existing Contact form endpoint, connected Supabase project, and current Resend readiness without changing Cloudflare Email Routing.
+- [x] Create protected Supabase storage for complete form submissions, with validation and no public direct data access.
+- [x] Verify the Resend sender domain, store the Resend API key only as a Supabase Edge Function secret, and send complete submission details to `info@adnanai.com`.
+- [x] Connect the existing Contact form to the new flow while keeping clear success and error feedback.
+- [ ] Test Supabase storage and end-to-end Resend delivery through the existing Email Routing, then publish and verify the result.
+
+# Resumed Supabase Resend Secret Configuration Checklist
+
+- [x] Restore the Supabase browser session and securely save the already-generated Resend sending key as an Edge Function secret without exposing it in source code or browser-visible output.
+
+# Email Profile Logo Text Addition Checklist
+
+- [x] Add only the exact text `Adnan Ai` below the supplied icon for an email-profile image, preserving the existing icon size, colors, and layout.
+- [x] Verify the completed image and deliver it without changing the website or the paused Contact workflow.
+
+# Reference-Aligned Email Profile Logo Correction Checklist
+
+- [x] Preserve the original icon’s exact side spacing, AI scale, and position from the supplied reference while retaining only the `Adnan Ai` wordmark below it.
+- [x] Verify and deliver the corrected profile image without changing the paused Contact workflow or the website.

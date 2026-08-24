@@ -2,13 +2,15 @@
 import { FormEvent, KeyboardEvent, useId, useState } from "react";
 import { Mail } from "lucide-react";
 import { siteConfig } from "../data/siteConfig";
+import { supabasePublishableKey, supabaseUrl } from "../lib/supabase";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
-type FormValues = { name: string; email: string; service: string; details: string; website: string };
+type FormValues = { name: string; email: string; subject: string; service: string; details: string; website: string };
 
 const initialValues: FormValues = {
   name: "",
   email: "",
+  subject: "",
   service: "",
   details: "",
   website: "",
@@ -43,7 +45,7 @@ export function Contact() {
     event.preventDefault();
     setError("");
 
-    if (!values.name.trim() || !values.email.trim() || !values.service || !values.details.trim()) {
+    if (!values.name.trim() || !values.email.trim() || !values.subject.trim() || !values.service || !values.details.trim()) {
       setStatus("error");
       setError("Please complete every field before sending your enquiry.");
       return;
@@ -51,13 +53,24 @@ export function Contact() {
 
     setStatus("submitting");
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(`${supabaseUrl}/functions/v1/contact-submit`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+          apikey: supabasePublishableKey,
+          Authorization: `Bearer ${supabasePublishableKey}`,
+        },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          subject: values.subject,
+          service: values.service,
+          message: values.details,
+          website: values.website,
+        }),
       });
-      const body = (await response.json().catch(() => null)) as { ok?: boolean; message?: string } | null;
-      if (!response.ok || !body?.ok) throw new Error(body?.message || "Unable to send your enquiry.");
+      const body = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+      if (!response.ok || !body?.ok) throw new Error(body?.error || "Unable to send your enquiry.");
       setStatus("success");
       setValues(initialValues);
     } catch (submissionError) {
@@ -95,6 +108,10 @@ export function Contact() {
                 <input id={`${formId}-email`} name="email" type="email" autoComplete="off" placeholder="Your email" value={values.email} onChange={(event) => update("email", event.target.value)} required />
               </label>
             </div>
+            <label className="contact-field" htmlFor={`${formId}-subject`}>
+              <span>Subject</span>
+              <input id={`${formId}-subject`} name="subject" type="text" autoComplete="off" placeholder="What is your enquiry about?" value={values.subject} onChange={(event) => update("subject", event.target.value)} required />
+            </label>
             <div
               className="contact-field"
               onBlur={(event) => {

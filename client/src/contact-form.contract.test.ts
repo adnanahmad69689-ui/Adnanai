@@ -23,6 +23,7 @@ describe("contact details and enquiry form contract", () => {
 
     expect(contact).toContain("Your name");
     expect(contact).toContain("Your email");
+    expect(contact).toContain("What is your enquiry about?");
     expect(contact).toContain("Website Development");
     expect(contact).toContain("AI Automation");
     expect(contact).toContain("AI Agents");
@@ -71,5 +72,15 @@ describe("contact details and enquiry form contract", () => {
     expect(endpoint).toContain('to: [recipient]');
     expect(endpoint).toContain("reply_to: email");
     expect(endpoint).not.toContain("re_");
+  });
+
+  it("sends the complete enquiry to the protected Supabase contact function", () => {
+    const contact = readFileSync(resolve(projectRoot, "client/src/components/Contact.tsx"), "utf8");
+
+    expect(contact).toContain('functions/v1/contact-submit');
+    expect(contact).toContain("subject: values.subject");
+    expect(contact).toContain("message: values.details");
+    expect(contact).toContain("supabasePublishableKey");
+    expect(contact).not.toContain('fetch("/api/contact"');
   });
 });
