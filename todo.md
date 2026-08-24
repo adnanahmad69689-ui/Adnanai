@@ -414,5 +414,5 @@
 - [x] Place the selected existing Hero logo subtly within the current Hero composition without affecting its text, portrait, layout, or spacing.
 - [x] Place the selected existing Contact logo within the current Contact card without increasing the section height or disrupting the email/form layout.
 - [x] Verify logo contrast, natural scale, desktop/mobile responsiveness, existing interactions, and no visual drift.
-- [ ] Publish the Hero and Contact logo treatment to GitHub and Cloudflare Pages, then verify the live custom domain.
+- [x] Publish the Hero and Contact logo treatment to GitHub and Cloudflare Pages, then verify the live custom domain.
 - [x] Replace the unavailable live Hero brand-asset URL with a Cloudflare-compatible hosted copy while preserving the selected logo treatment.
