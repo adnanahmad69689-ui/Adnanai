@@ -82,7 +82,6 @@ export function Contact() {
                 <Mail className="contact-email-icon" aria-hidden="true" strokeWidth={1.8} />
                 <span>{contact.email}</span>
               </a>
-              <img className="contact-email-brand-mark" src="/favicon.svg" alt="Adnan Ai" width="32" height="32" />
             </div>
           </div>
           <form className="contact-form reveal-item" onSubmit={submit} noValidate autoComplete="off" aria-describedby={`${formId}-status`}>

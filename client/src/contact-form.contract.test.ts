@@ -32,7 +32,7 @@ describe("contact details and enquiry form contract", () => {
     expect(contact).toContain('autoComplete="off"');
   });
 
-  it("uses concise project-enquiry copy and a professional email icon without a footer tagline", () => {
+  it("uses concise project-enquiry copy and a professional email icon without an added logo or footer tagline", () => {
     const contact = readFileSync(resolve(projectRoot, "client/src/components/Contact.tsx"), "utf8");
     const footer = readFileSync(resolve(projectRoot, "client/src/components/Footer.tsx"), "utf8");
     const styles = readFileSync(resolve(projectRoot, "client/src/index.css"), "utf8");
@@ -41,8 +41,8 @@ describe("contact details and enquiry form contract", () => {
     expect(contact).toContain('import { Mail } from "lucide-react"');
     expect(contact).toContain('className="contact-email-icon"');
     expect(contact).toContain('className="contact-email-stack"');
-    expect(contact).toContain('className="contact-email-brand-mark" src="/favicon.svg"');
-    expect(styles).toContain(".contact-email-brand-mark");
+    expect(contact).not.toContain("contact-email-brand-mark");
+    expect(styles).not.toContain(".contact-email-brand-mark");
     expect(footer).toContain("return null");
     expect(footer).not.toContain("footer-tagline");
     expect(styles).toContain(".contact-email-stack { margin-top: auto; padding-top: 3rem; }");

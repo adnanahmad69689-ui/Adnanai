@@ -2337,14 +2337,6 @@
 }
 .contact-email-icon { width: 1rem; height: 1rem; flex: 0 0 auto; }
 .contact-direct-email:hover { color: #fff; }
-.contact-email-brand-mark {
-  display: block;
-  width: 32px;
-  height: 32px;
-  margin-top: 1.15rem;
-  border-radius: 8px;
-  opacity: 0.88;
-}
 .contact-form {
   position: relative;
   display: grid;

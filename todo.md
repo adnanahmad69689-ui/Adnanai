@@ -443,3 +443,14 @@
 - [x] Inspect existing Cloudflare Email Routing destination, enabled state, and routing rule without modification.
 - [x] Check whether DNS/email propagation or Gmail delivery filtering is the likely remaining cause and identify exact safe manual checks.
 - [x] Provide a simple evidence-based email routing status without making changes.
+
+# Contact Logo Removal and Home Navigation Label Checklist
+
+- [x] Remove only the small favicon logo below `info@adnanai.com` in the final Contact area without changing the email, form, or other Contact styling.
+- [x] Superseded before implementation: preserve the existing `About` label and all Hero content exactly as requested in the correction.
+- [x] Superseded before implementation: do not publish any navigation or Hero change.
+
+# Contact-Only Logo Removal Checklist
+
+- [x] Remove only the small favicon logo below `info@adnanai.com` from the final Contact area.
+- [ ] Verify the Contact email, form, Hero, and existing About navigation label remain unchanged on desktop and mobile, then publish the live update.
