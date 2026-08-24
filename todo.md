@@ -308,3 +308,9 @@
 
 - [x] Remove the footer line `© 2026 Adnan Ai — KPK, Peshawar, Pakistan` from the public homepage.
 - [x] Verify and publish the cleaned footer on the independent custom domain.
+
+# Professional Website Review Checklist
+
+- [x] Inspect the live public portfolio across desktop and mobile views without making visual or content changes.
+- [x] Assess the hierarchy, credibility, content clarity, calls to action, and items that may feel unnecessary.
+- [x] Provide a prioritized keep, add, improve, and remove recommendation for approval before making any changes.
