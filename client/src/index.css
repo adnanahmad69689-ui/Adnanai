@@ -2311,8 +2311,15 @@
   color: rgba(255, 255, 255, 0.6);
   max-width: 420px;
 }
+.contact-enquiry-copy {
+  margin: 0 0 0.6rem;
+  color: rgba(255, 255, 255, 0.58);
+  font: 400 0.82rem/1.55 "Space Grotesk", sans-serif;
+}
 .contact-direct-email {
   display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   padding-bottom: 0.35rem;
   border-bottom: 1px solid rgba(168, 255, 62, 0.55);
   color: var(--color-accent);
@@ -2320,6 +2327,7 @@
   text-decoration: none;
   transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out);
 }
+.contact-email-icon { width: 1rem; height: 1rem; flex: 0 0 auto; }
 .contact-direct-email:hover { border-color: #fff; color: #fff; }
 .contact-form {
   position: relative;
@@ -2393,6 +2401,7 @@
 @media (width <= 480px) {
   .contact-card { border-radius: 20px; gap: 1.5rem; padding: 1.5rem 1rem; }
   .contact-subtext { font-size: 0.9rem; }
+  .contact-enquiry-copy { font-size: 0.8rem; }
   .contact-form { padding: 1rem; border-radius: 14px; }
   .contact-form-grid { grid-template-columns: 1fr; gap: 1rem; }
   .contact-field input, .contact-field textarea, .contact-service-trigger { font-size: 16px; }

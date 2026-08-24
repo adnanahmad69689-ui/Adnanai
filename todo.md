@@ -370,3 +370,10 @@
 - [x] Validate dark select, focus, and autofill-safe styling on desktop and mobile without changing the contact form design.
 - [x] Publish the contact-form visual correction to GitHub and Cloudflare Pages, then verify the live custom domain.
 - [x] Replace the remaining browser-controlled white native placeholder row with an accessible, fully dark custom Service selector while preserving the existing form layout.
+
+# Final Contact-Area Copy and Email Treatment Checklist
+
+- [x] Add a concise, natural enquiry prompt directly above the public email in the final contact area.
+- [x] Remove the redundant small text below the email without changing the contact form itself.
+- [x] Add one subtle professional email icon beside the email address without introducing a new visual style.
+- [ ] Verify the final contact-area treatment on desktop and mobile, then publish it to the live custom domain.
