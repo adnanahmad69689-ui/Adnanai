@@ -274,7 +274,7 @@
 # Independent Admin Route Fix Checklist
 
 - [ ] Reproduce why the Cloudflare `/admin` route returns to the independent homepage.
-- [ ] Restore direct Cloudflare `/admin` routing to the Supabase owner sign-in gate without affecting public navigation.
+- [x] Restore direct Cloudflare `/admin` routing to the Supabase owner sign-in gate without affecting public navigation.
 - [ ] Verify the email sign-in route, owner profile creation, and admin promotion path on the independent deployment.
 
 # Custom Domain Cutover Checklist
@@ -325,3 +325,5 @@
 - [x] Validate the refined desktop and mobile experience, automated checks, and independent Cloudflare build.
 - [x] Publish the approved refinement to the independent GitHub and Cloudflare Pages deployment, then verify the live custom domain.
 - [x] Diagnose and resolve the custom-domain runtime error discovered during final verification.
+- [ ] Identify and document the root cause of the intermittent `adnanai.com` stale-asset/runtime mismatch against the latest Pages deployment.
+- [ ] Implement any needed durable mitigation and verify that a fresh canonical-domain session renders the latest deployed asset manifest.
