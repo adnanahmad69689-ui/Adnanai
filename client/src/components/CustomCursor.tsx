@@ -1,22 +1,50 @@
-/** Raw-pointer cursor: direct high-frequency updates with the original dot-and-ring appearance. */
-import { useEffect, useRef } from "react";
+/** Lightweight desktop pointer cursor: one frame update and a restrained interactive state. */
+import { useEffect, useRef, useState } from "react";
 
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<number | null>(null);
+  const latestPointer = useRef({ x: -100, y: -100 });
+  const [isInteractive, setIsInteractive] = useState(false);
 
   useEffect(() => {
-    const onMove = (event: Event) => {
-      const { clientX, clientY } = event as PointerEvent;
-      const transform = `translate3d(${clientX}px, ${clientY}px, 0) translate(-50%, -50%)`;
+    const pointerCapable = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!pointerCapable.matches || reducedMotion.matches) return;
+
+    const paint = () => {
+      frameRef.current = null;
+      const transform = `translate3d(${latestPointer.current.x}px, ${latestPointer.current.y}px, 0) translate(-50%, -50%)`;
       if (dotRef.current) dotRef.current.style.transform = transform;
       if (ringRef.current) ringRef.current.style.transform = transform;
     };
-    const eventName = "onpointerrawupdate" in window ? "pointerrawupdate" : "pointermove";
-    window.addEventListener(eventName, onMove, { passive: true });
-    return () => window.removeEventListener(eventName, onMove);
+
+    const onMove = (event: PointerEvent) => {
+      latestPointer.current = { x: event.clientX, y: event.clientY };
+      if (frameRef.current === null) frameRef.current = window.requestAnimationFrame(paint);
+    };
+    const onPointerOver = (event: PointerEvent) => {
+      const target = event.target as Element | null;
+      setIsInteractive(Boolean(target?.closest("a, button, input, textarea, select, [role='button'], [role='option']")));
+    };
+    const onPointerOut = (event: PointerEvent) => {
+      const related = event.relatedTarget as Element | null;
+      setIsInteractive(Boolean(related?.closest("a, button, input, textarea, select, [role='button'], [role='option']")));
+    };
+
+    window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("pointerover", onPointerOver, { passive: true });
+    window.addEventListener("pointerout", onPointerOut, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerover", onPointerOver);
+      window.removeEventListener("pointerout", onPointerOut);
+      if (frameRef.current !== null) window.cancelAnimationFrame(frameRef.current);
+    };
   }, []);
 
   const initialStyle = { transform: "translate3d(-100px, -100px, 0)" };
-  return <><div ref={dotRef} className="custom-cursor" style={initialStyle} /><div ref={ringRef} className="custom-cursor-ring" style={initialStyle} /></>;
+  const interactiveClass = isInteractive ? " is-interactive" : "";
+  return <><div ref={dotRef} aria-hidden="true" className={`custom-cursor${interactiveClass}`} style={initialStyle} /><div ref={ringRef} aria-hidden="true" className={`custom-cursor-ring${interactiveClass}`} style={initialStyle} /></>;
 }

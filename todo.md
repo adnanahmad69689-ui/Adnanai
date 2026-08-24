@@ -383,3 +383,11 @@
 - [x] Remove the horizontal underline beneath the public email address in the final contact area.
 - [x] Move the enquiry prompt and email address lower within the left side of the existing contact card without changing the overall design.
 - [x] Verify the final contact positioning on desktop and mobile, then publish it to the live custom domain.
+
+# Premium Fast Cursor Refinement Checklist
+
+- [x] Audit the existing desktop cursor implementation, its hover behavior, and its reduced-motion and touch-device safeguards.
+- [x] Refine only the custom cursor for instant pointer tracking, restrained hover feedback, and minimal rendering work without changing the website’s visual language.
+- [x] Verify the cursor never blocks forms, links, buttons, scrolling, selection, mobile/touch, or reduced-motion use across the public portfolio.
+- [x] Test cursor responsiveness and browser-console health on the homepage, navigation, Websites, AI Systems, Process, Contact, project cards, and buttons.
+- [ ] Publish the cursor refinement to GitHub and Cloudflare Pages, then verify the live custom domain.
