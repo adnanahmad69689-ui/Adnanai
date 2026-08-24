@@ -9,6 +9,9 @@ class ErrorBoundary extends Component<Props, State> {
     this.state = { hasError: false, error: null };
   }
   static getDerivedStateFromError(error: Error): State { return { hasError: true, error }; }
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error("Portfolio render error", error, errorInfo);
+  }
   render() {
     if (this.state.hasError) {
       return <main className="error-fallback"><p className="error-fallback-label">ADNAN AI</p><h1>Something interrupted the page.</h1><p>Please refresh and try again.</p><button onClick={() => window.location.reload()}>Reload page</button></main>;
