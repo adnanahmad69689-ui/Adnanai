@@ -32,12 +32,16 @@ describe("contact details and enquiry form contract", () => {
     expect(contact).toContain('autoComplete="off"');
   });
 
-  it("keeps native select menus and browser autofill states within the dark visual system", () => {
+  it("uses a controlled dark service menu and browser-autofill safeguards instead of a browser-owned select", () => {
+    const contact = readFileSync(resolve(projectRoot, "client/src/components/Contact.tsx"), "utf8");
     const styles = readFileSync(resolve(projectRoot, "client/src/index.css"), "utf8");
 
-    expect(styles).toContain(".contact-form {");
-    expect(styles).toContain("color-scheme: dark");
-    expect(styles).toContain(".contact-field select option { background: #17181b; color: #f0ece6; }");
+    expect(contact).not.toContain("<select");
+    expect(contact).toContain('role="listbox"');
+    expect(contact).toContain('role="option"');
+    expect(contact).toContain('aria-haspopup="listbox"');
+    expect(styles).toContain(".contact-service-options");
+    expect(styles).toContain("background: #17181b");
     expect(styles).toContain(".contact-field input:-webkit-autofill");
     expect(styles).toContain("-webkit-box-shadow: 0 0 0 1000px #17181b inset");
   });

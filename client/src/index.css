@@ -2335,7 +2335,7 @@
 }
 .contact-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
 .contact-field { display: grid; gap: 0.42rem; color: rgba(255, 255, 255, 0.78); font: 600 0.72rem/1.2 "Space Grotesk", sans-serif; letter-spacing: 0.08em; text-transform: uppercase; }
-.contact-field input, .contact-field select, .contact-field textarea {
+.contact-field input, .contact-field textarea, .contact-service-trigger {
   width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.11);
   border-radius: 10px;
@@ -2345,13 +2345,19 @@
   font: 400 0.9rem/1.5 "Space Grotesk", sans-serif;
   transition: border-color 160ms var(--ease-out), background-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
 }
-.contact-field input, .contact-field select { min-height: 44px; padding: 0.6rem 0.7rem; }
+.contact-field input, .contact-service-trigger { min-height: 44px; padding: 0.6rem 0.7rem; }
 .contact-field textarea { min-height: 118px; padding: 0.65rem 0.7rem; resize: vertical; }
-.contact-field select { appearance: auto; color-scheme: dark; }
-.contact-field select option { background: #17181b; color: #f0ece6; }
-.contact-field select option:disabled { color: rgba(240, 236, 230, 0.56); }
+.contact-service-picker { position: relative; }
+.contact-service-trigger { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; text-align: left; cursor: pointer; }
+.contact-service-trigger .is-placeholder { color: rgba(255, 255, 255, 0.55); }
+.contact-service-chevron { color: var(--color-accent); font-size: 1.1rem; line-height: 1; transition: transform 160ms var(--ease-out); }
+.contact-service-picker.is-open .contact-service-chevron { transform: rotate(180deg); }
+.contact-service-options { position: absolute; z-index: 6; top: calc(100% + 0.38rem); left: 0; right: 0; display: grid; overflow: hidden; border: 1px solid rgba(168, 255, 62, 0.42); border-radius: 10px; background: #17181b; box-shadow: 0 16px 34px rgba(0, 0, 0, 0.42); animation: contact-status-enter 160ms var(--ease-out) both; }
+.contact-service-options button { min-height: 40px; padding: 0.55rem 0.7rem; border: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.07); background: transparent; color: #f0ece6; font: 500 0.84rem/1.25 "Space Grotesk", sans-serif; text-align: left; cursor: pointer; transition: background-color 140ms var(--ease-out), color 140ms var(--ease-out); }
+.contact-service-options button:last-child { border-bottom: 0; }
+.contact-service-options button:hover, .contact-service-options button:focus-visible, .contact-service-options button.is-selected { outline: none; background: rgba(168, 255, 62, 0.12); color: var(--color-accent); }
 .contact-field input::placeholder, .contact-field textarea::placeholder { color: rgba(255, 255, 255, 0.38); }
-.contact-field input:focus, .contact-field select:focus, .contact-field textarea:focus { border-color: rgba(168, 255, 62, 0.78); background: rgba(168, 255, 62, 0.035); box-shadow: 0 0 0 3px rgba(168, 255, 62, 0.1); }
+.contact-field input:focus, .contact-field textarea:focus, .contact-service-trigger:focus-visible, .contact-service-picker.is-open .contact-service-trigger { border-color: rgba(168, 255, 62, 0.78); background: rgba(168, 255, 62, 0.035); box-shadow: 0 0 0 3px rgba(168, 255, 62, 0.1); }
 .contact-field input:-webkit-autofill,
 .contact-field input:-webkit-autofill:hover,
 .contact-field input:-webkit-autofill:focus,
@@ -2389,12 +2395,12 @@
   .contact-subtext { font-size: 0.9rem; }
   .contact-form { padding: 1rem; border-radius: 14px; }
   .contact-form-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .contact-field input, .contact-field select, .contact-field textarea { font-size: 16px; }
+  .contact-field input, .contact-field textarea, .contact-service-trigger { font-size: 16px; }
   .contact-submit { width: 100%; justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   .contact-form, .contact-form-status.success { animation: none; }
-  .contact-field input, .contact-field select, .contact-field textarea, .contact-submit, .contact-direct-email { transition: none; }
+  .contact-field input, .contact-field textarea, .contact-service-trigger, .contact-service-chevron, .contact-service-options button, .contact-submit, .contact-direct-email { transition: none; }
 }
 
 /* ================================ Footer ================================= */

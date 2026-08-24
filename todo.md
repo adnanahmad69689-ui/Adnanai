@@ -369,3 +369,4 @@
 - [x] Keep text, email, and textarea controls dark when focused or browser-autofilled, including Chrome saved-information states.
 - [x] Validate dark select, focus, and autofill-safe styling on desktop and mobile without changing the contact form design.
 - [ ] Publish the contact-form visual correction to GitHub and Cloudflare Pages, then verify the live custom domain.
+- [x] Replace the remaining browser-controlled white native placeholder row with an accessible, fully dark custom Service selector while preserving the existing form layout.

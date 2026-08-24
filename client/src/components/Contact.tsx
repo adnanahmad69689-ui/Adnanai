@@ -1,5 +1,5 @@
 /** Contact section: compact enquiry form and direct email contact. */
-import { FormEvent, useId, useState } from "react";
+import { FormEvent, KeyboardEvent, useId, useState } from "react";
 import { siteConfig } from "../data/siteConfig";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -13,15 +13,29 @@ const initialValues: FormValues = {
   website: "",
 };
 
+const serviceOptions = ["Website Development", "AI Automation", "AI Agents", "Other"] as const;
+
 export function Contact() {
   const { contact } = siteConfig;
   const formId = useId();
   const [values, setValues] = useState<FormValues>(initialValues);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [error, setError] = useState("");
+  const [isServiceMenuOpen, setIsServiceMenuOpen] = useState(false);
 
   const update = (field: keyof FormValues, value: string) => {
     setValues((current) => ({ ...current, [field]: value }));
+  };
+
+  const handleServiceKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "Escape") {
+      setIsServiceMenuOpen(false);
+      return;
+    }
+    if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setIsServiceMenuOpen(true);
+    }
   };
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
@@ -74,16 +88,49 @@ export function Contact() {
                 <input id={`${formId}-email`} name="email" type="email" autoComplete="off" placeholder="Your email" value={values.email} onChange={(event) => update("email", event.target.value)} required />
               </label>
             </div>
-            <label className="contact-field" htmlFor={`${formId}-service`}>
+            <div
+              className="contact-field"
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsServiceMenuOpen(false);
+              }}
+            >
               <span>Service</span>
-              <select id={`${formId}-service`} name="service" autoComplete="off" value={values.service} onChange={(event) => update("service", event.target.value)} required>
-                <option value="" disabled>Select a service</option>
-                <option value="Website Development">Website Development</option>
-                <option value="AI Automation">AI Automation</option>
-                <option value="AI Agents">AI Agents</option>
-                <option value="Other">Other</option>
-              </select>
-            </label>
+              <div className={`contact-service-picker${isServiceMenuOpen ? " is-open" : ""}`}>
+                <input type="hidden" name="service" value={values.service} />
+                <button
+                  id={`${formId}-service`}
+                  className="contact-service-trigger"
+                  type="button"
+                  aria-haspopup="listbox"
+                  aria-expanded={isServiceMenuOpen}
+                  aria-controls={`${formId}-service-options`}
+                  onClick={() => setIsServiceMenuOpen((open) => !open)}
+                  onKeyDown={handleServiceKeyDown}
+                >
+                  <span className={values.service ? "" : "is-placeholder"}>{values.service || "Select a service"}</span>
+                  <span className="contact-service-chevron" aria-hidden="true">⌄</span>
+                </button>
+                {isServiceMenuOpen ? (
+                  <div id={`${formId}-service-options`} className="contact-service-options" role="listbox" aria-label="Service">
+                    {serviceOptions.map((service) => (
+                      <button
+                        key={service}
+                        type="button"
+                        role="option"
+                        aria-selected={values.service === service}
+                        className={values.service === service ? "is-selected" : ""}
+                        onClick={() => {
+                          update("service", service);
+                          setIsServiceMenuOpen(false);
+                        }}
+                      >
+                        {service}
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            </div>
             <label className="contact-field" htmlFor={`${formId}-details`}>
               <span>Project details</span>
               <textarea id={`${formId}-details`} name="details" autoComplete="off" rows={4} placeholder="Tell me what you need" value={values.details} onChange={(event) => update("details", event.target.value)} required />
