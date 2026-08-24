@@ -307,4 +307,4 @@
 # Footer Refinement Checklist
 
 - [x] Remove the footer line `© 2026 Adnan Ai — KPK, Peshawar, Pakistan` from the public homepage.
-- [ ] Verify and publish the cleaned footer on the independent custom domain.
+- [x] Verify and publish the cleaned footer on the independent custom domain.

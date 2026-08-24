@@ -75,3 +75,7 @@ Cloudflare Pages production deployment `8d731e91-ca24-4af6-9d48-cad7fbb0dbdc` co
 ## Password recovery route
 
 Cloudflare Pages production deployment `a3d635eb-dac5-48c5-b10b-2be42022cfd0` successfully deployed the dedicated `/reset-password` route. A direct custom-domain check confirmed that `https://adnanai.com/reset-password?recovery-check=1` now renders the noindex password-recovery screen rather than the public hero. A fresh Supabase password recovery email is still required to verify session establishment and final password save after the rate limit clears.
+
+## Footer cleanup
+
+Cloudflare Pages deployment `2158b5dc-70e8-495a-a5a7-bcaefdb5e2a8` successfully published the requested footer cleanup. A live homepage check confirmed that the copyright and location line is absent from the footer while the short service tagline remains.
