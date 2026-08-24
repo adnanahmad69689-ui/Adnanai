@@ -4,7 +4,6 @@ import { Experience } from "./Experience";
 import { Footer } from "./Footer";
 import { Reviews } from "./Reviews";
 import { SampleProjectCollection } from "./SampleProjectCollection";
-import { Skills } from "./Skills";
 import { Workflows } from "./Workflows";
 import { useReveal } from "../hooks/useReveal";
 import { AppProviders } from "./AppProviders";
@@ -17,7 +16,6 @@ export default function PortfolioSections() {
     <AppProviders>
       <div ref={ref}>
         <About />
-        <Skills />
         <SampleProjectCollection />
         <Workflows />
         <Experience />

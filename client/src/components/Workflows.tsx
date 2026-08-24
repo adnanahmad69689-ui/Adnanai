@@ -77,12 +77,6 @@ export function Workflows() {
           <p className="workflows-subtitle">{workflows.subtitle}</p>
         </div>
 
-        <div className="service-pillars reveal-item" aria-label="Adnan AI core services">
-          {workflows.pillars.map((pillar) => (
-            <span key={pillar} className="service-pillar">{pillar}</span>
-          ))}
-        </div>
-
         <div className="workflows-gallery">
           {isLoading ? <p className="workflows-loading">Loading AI systems…</p> : null}
           {isError ? <p className="workflows-loading">AI system patterns are temporarily unavailable. Please check back shortly.</p> : null}
@@ -101,28 +95,6 @@ export function Workflows() {
           </a>
         </div>
 
-        <div className="social-proof-strip reveal-item">
-          <span className="social-proof-label">{workflows.trustedByLabel}</span>
-          <div className="social-proof-logos">
-            {workflows.trustedBy.map((t) => (
-              <span key={t} className="social-proof-item">
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="workflow-cta-section reveal-item">
-          <h3 className="cta-heading">{workflows.ctaHeading}</h3>
-          <p className="cta-sub">{workflows.ctaSub}</p>
-          <a className="cta-button" href={mailto(workflows.ctaSubject, workflows.ctaBody)}>
-            <span className="cta-button-icon">✦</span>
-            {workflows.ctaButton}
-            <svg fill="none" height="18" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" width="18">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
       </div>
     </section>
   );

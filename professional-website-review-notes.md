@@ -17,3 +17,7 @@ The public contact choices are email and Instagram only. These work, but the pri
 ## Recommended direction
 
 Preserve the premium dark visual identity, portrait hero, real Website projects, and AI system workflow section. Reduce duplicate lower-page sections before adding new information. Do not add a blog, fake testimonials, metrics, or extra social icons at this stage.
+
+## Applied refinement outcome
+
+The approved refinement removes the earlier duplicate Services section, the duplicate AI-system service pills, the secondary AI-system call to action, and the repeated core-services strip. The remaining page follows a clearer flow: hero, about, real Websites, practical AI-system examples, process, focused service cards, and final contact. Desktop and mobile visual checks confirmed the shortened page keeps its dark editorial identity and the retained cards remain readable.

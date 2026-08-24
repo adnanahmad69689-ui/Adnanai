@@ -26,7 +26,7 @@ export const siteConfig = {
     /** <title> tag and meta description. */
     pageTitle: "Adnan Ai | AI Web Development, Automation & Agents",
     metaDescription:
-      "Adnan Ai — portfolio of Adnan Ai, an AI automation engineer building end-to-end AI systems, mobile apps, and workflow automations.",
+      "Adnan Ai builds AI websites, automations, and AI agents for real business tasks.",
     /** City shown in the footer copyright line. */
     location: "KPK, Peshawar, Pakistan",
     /** Footer tagline. */
@@ -46,7 +46,7 @@ export const siteConfig = {
     tagline: "AI WEB DEVELOPMENT · AI AUTOMATION · AI AGENTS",
     /** Short bio under the rotating word. */
     description:
-      "Adnan AI builds clear, capable digital systems for businesses that want better websites, smarter automation, and practical AI agents. Based in KPK, Peshawar, Pakistan — available remotely.",
+      "I build AI websites, automations, and agents for real business tasks. Based in KPK, Peshawar, Pakistan — available remotely.",
     /** Right-side panel: three service lines. */
     services: ["AI Web Development", "AI Automation", "AI Agents"],
     /** Right-side panel: three small stats. */
@@ -81,7 +81,7 @@ export const siteConfig = {
     headingLead: "Let’s build something",
     headingEm: "useful.",
     subtext:
-      "Need an AI-powered website, a smoother business workflow, or an AI agent tailored to a real task? Send an email or start a conversation on Instagram.",
+      "Tell me what needs to work better. Email me or send a message on Instagram.",
   },
 
   /* ------------------------------ Navigation ----------------------------- */
@@ -91,7 +91,7 @@ export const siteConfig = {
       { id: "skills", label: "Skills" },
       { id: "projects", label: "Websites" },
       { id: "ai-systems", label: "AI Systems" },
-      { id: "experience", label: "Experience" },
+      { id: "experience", label: "Process" },
     ],
     contactLabel: "Contact",
     /** Notification bell popup content. */
@@ -113,9 +113,9 @@ export const siteConfig = {
     headingLead: "Systems designed to make work",
     headingEm: "simpler.",
     subtitle:
-      "Explore practical starting points for AI web development, automation, and agent-based workflows — shaped around the way your business actually operates.",
+      "A few practical examples of the systems I can design for your business.",
     pillars: ["AI Web Development", "AI Automation", "AI Agents"],
-    showMoreLabel: "Explore System Patterns",
+    showMoreLabel: "View all system patterns",
     trustedByLabel: "Core Services",
     trustedBy: ["✦ AI Web Development", "✦ AI Automation", "✦ AI Agents"],
     ctaHeading: "Ready to design a better system?",
@@ -137,9 +137,8 @@ export const siteConfig = {
     image: "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/uploads/migration/ed576c01-2271-4a82-8baf-5183dfe6f888.webp",
     imageAlt: "Portrait of Adnan Ai holding a laptop in a studio lounge",
     bio: [
-      "Adnan AI helps businesses turn ideas and operational pain points into practical digital systems. The focus is clear communication, thoughtful implementation, and technology that earns its place in the workflow.",
-      "Core work spans AI web development, AI automation, and AI agents — from the customer-facing website through to the systems that keep the work moving behind it.",
-      "Every engagement begins with the real task at hand, then turns it into a focused plan with the right balance of design, engineering, and automation.",
+      "I build websites, automations, and AI agents around the work that needs doing.",
+      "Each project starts with the task, then a clear plan for design, build, and handover.",
     ],
     info: [
       { label: "Location", value: "KPK, Peshawar, Pakistan" },
@@ -147,11 +146,11 @@ export const siteConfig = {
       { label: "Instagram", value: "Instagram", href: "https://instagram.com/" },
       { label: "Availability", value: "Available for client projects", highlight: true },
     ],
-    achievementsTitle: "What Adnan AI Can Build",
+    achievementsTitle: "What I can build",
     achievements: [
-      "AI-powered websites designed to communicate clearly and convert attention into action",
-      "Automated workflows that connect routine business steps into a dependable system",
-      "AI agents that support research, intake, response, and internal operations",
+      "Websites that explain your offer and make the next step clear",
+      "Automations that connect routine work and keep information moving",
+      "AI agents for research, intake, support, and internal tasks",
     ],
   },
 
@@ -164,19 +163,18 @@ export const siteConfig = {
 
   /* ------------------------------ Experience ----------------------------- */
   experience: {
-    label: "Experience",
-    headingLead: "How Adnan AI",
-    headingEm: "works",
+    label: "Process",
+    headingLead: "How I",
+    headingEm: "work",
   },
 
   /* -------------------------------- Reviews ------------------------------ */
   reviews: {
-    label: "Service Focus",
-    headingLead: "Built to make your work",
-    headingEm: "clearer.",
+    label: "Services",
+    headingLead: "Built for your next",
+    headingEm: "step.",
     headingTail: "",
-    subtitle:
-      "Adnan AI brings together focused web development, thoughtful automation, and practical AI agents to support real business needs.",
+    subtitle: "Websites, automation, and AI agents for defined business tasks.",
   },
 
   /* ----------------------------- n8n subpage ----------------------------- */
