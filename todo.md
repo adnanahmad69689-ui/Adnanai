@@ -361,4 +361,4 @@
 - [x] Preserve or correct active navigation behavior as users scroll through the corresponding homepage sections.
 - [x] Ensure mobile navigation reaches the same destinations and closes the menu after selection.
 - [x] Test every requested destination on desktop and mobile without changing the website’s visual design.
-- [ ] Publish the navigation correction to GitHub and Cloudflare Pages, then verify the live custom domain.
+- [x] Publish the navigation correction to GitHub and Cloudflare Pages, then verify the live custom domain.

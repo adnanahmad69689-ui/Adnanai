@@ -13,3 +13,7 @@ Live-preview interaction checks produced the following target positions after co
 ## Mobile behavior
 
 The mobile menu uses the same `onNavClick` action as desktop, which scrolls to the selected section and immediately closes the overlay. Its final button now routes to the Contact section and form instead of opening an email client. The mobile screenshot retains the existing menu icon and visual design without the removed desktop prompt icon.
+
+## Live custom-domain verification
+
+Cloudflare Pages production deployment `53594689-4ec7-4d12-9939-3a575d7356c5` completed successfully. Live interaction checks at `https://adnanai.com` confirmed About, Websites, AI Systems, and Process each land at a `104px` safe offset; Contact lands visibly at the document end; and the Adnan Ai logo returns to the Hero at the exact top of the homepage. The live navigation shows only the requested controls and no longer contains the unwanted bell/bill icon.
