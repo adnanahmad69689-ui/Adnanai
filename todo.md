@@ -335,3 +335,13 @@
 - [x] Correct real usability, accessibility, responsive, or technical issues discovered in the audit without adding invented proof, claims, reviews, statistics, or extra sections.
 - [x] Run automated checks, build validation, and desktop/mobile visual reviews after the targeted refinements.
 - [x] Publish the no-redesign quality improvements to GitHub and Cloudflare Pages, then verify the live custom domain.
+
+# Contact Form and Contact-Detail Update Checklist
+
+- [x] Replace every public use and mailto reference of `Adnanuop@gmail.com` with `info@adnanai.com`.
+- [x] Remove the location, email, Instagram, and availability rows from the About section without adding replacement metadata.
+- [x] Remove Instagram links, icons, labels, and references from the public site without adding another social link.
+- [x] Add a compact, accessible contact form to the existing Contact section with name, email, service, project-details, validation, subtle motion, and the exact requested success message.
+- [ ] Configure secure server-side form delivery to `info@adnanai.com` with the visitor email as Reply-To and without exposing credentials in browser code; deferred until the user returns to the Resend and Cloudflare secret setup.
+- [ ] Test desktop/mobile form validation, success/error states, public-copy replacement, and the existing visual design; success delivery remains blocked by the deferred Resend setup.
+- [ ] Publish the contact update to GitHub and Cloudflare Pages, then verify the live custom domain and final public email/contact details.

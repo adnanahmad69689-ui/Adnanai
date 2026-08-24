@@ -68,28 +68,6 @@ export function About() {
                 {p}
               </p>
             ))}
-            <div className="info-table reveal-item">
-              {about.info.map((row) => (
-                <div key={row.label} className="info-row">
-                  <span className="info-label">{row.label}</span>
-                  <span
-                    className={`info-value ${"highlight" in row && row.highlight ? "info-value--highlight" : ""}`}
-                  >
-                    {"href" in row && row.href ? (
-                      <a
-                        href={row.href}
-                        target={row.href.startsWith("http") ? "_blank" : undefined}
-                        rel={row.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      >
-                        {row.value}
-                      </a>
-                    ) : (
-                      row.value
-                    )}
-                  </span>
-                </div>
-              ))}
-            </div>
             <div className="achievements-box reveal-item">
               <h3 className="achievements-title">{about.achievementsTitle}</h3>
               <ul className="achievements-list">

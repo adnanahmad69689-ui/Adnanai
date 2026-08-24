@@ -74,14 +74,11 @@ export const siteConfig = {
 
   /* ------------------------------- Contact ------------------------------- */
   contact: {
-    email: "Adnanuop@gmail.com",
-    instagram: "https://instagram.com/",
-    instagramLabel: "Instagram",
+    email: "info@adnanai.com",
     /** Heading parts for the contact card. */
-    headingLead: "Let’s build something",
-    headingEm: "useful.",
-    subtext:
-      "Tell me what you want to improve. You can email me or send a message on Instagram.",
+    headingLead: "Have a project",
+    headingEm: "in mind?",
+    subtext: "Tell me a little about it.",
   },
 
   /* ------------------------------ Navigation ----------------------------- */
@@ -103,7 +100,7 @@ export const siteConfig = {
         "Hi Adnan,\n\nI have a task that may be worth automating.\n\nHere is what I need help with:\n\n[Describe the task]\n\nThanks,",
     },
     mobileCta: "Email me",
-    mobileFooter: "Available for client projects",
+    mobileFooter: "Websites · Automation · AI Agents",
   },
 
   /* ------------------------------- Workflows ----------------------------- */
@@ -130,12 +127,6 @@ export const siteConfig = {
     bio: [
       "I build websites, automations, and AI agents around the work that needs doing.",
       "Each project starts with the task, then a clear plan for design, build, and handover.",
-    ],
-    info: [
-      { label: "Location", value: "KPK, Peshawar, Pakistan" },
-      { label: "Email", value: "Adnanuop@gmail.com", href: "mailto:Adnanuop@gmail.com" },
-      { label: "Instagram", value: "Instagram", href: "https://instagram.com/" },
-      { label: "Availability", value: "Available for client projects", highlight: true },
     ],
     achievementsTitle: "What I can build",
     achievements: [
