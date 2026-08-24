@@ -423,4 +423,4 @@
 - [x] Remove the added full-logo treatment from desktop and mobile navigation while restoring the prior text-only navigation brand treatment.
 - [x] Remove the added Contact icon mark without changing the final Contact copy, email, or form layout.
 - [x] Preserve the existing browser favicon and all other public design, content, navigation, responsive behavior, and animation.
-- [ ] Validate the restored logo-free desktop and mobile layout, then publish it to the live custom domain.
+- [x] Validate the restored logo-free desktop and mobile layout, then publish it to the live custom domain.
