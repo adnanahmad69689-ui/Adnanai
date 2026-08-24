@@ -517,6 +517,11 @@
 - [x] Connect the existing Contact form to the new flow while keeping clear success and error feedback.
 - [ ] Test Supabase storage and end-to-end Resend delivery through the existing Email Routing, then publish and verify the result.
 
+# Live Contact Form CORS Correction Checklist
+
+- [ ] Correct the Supabase Edge Function preflight policy so the live form’s `apikey` and `authorization` request headers are permitted from `adnanai.com`.
+- [ ] Retest a submitted browser form, confirm storage and Resend delivery, then publish the corrected source without changing Email Routing.
+
 # Resumed Supabase Resend Secret Configuration Checklist
 
 - [x] Restore the Supabase browser session and securely save the already-generated Resend sending key as an Edge Function secret without exposing it in source code or browser-visible output.

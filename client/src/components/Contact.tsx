@@ -2,7 +2,7 @@
 import { FormEvent, KeyboardEvent, useId, useState } from "react";
 import { Mail } from "lucide-react";
 import { siteConfig } from "../data/siteConfig";
-import { supabasePublishableKey, supabaseUrl } from "../lib/supabase";
+import { supabaseUrl } from "../lib/supabase";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 type FormValues = { name: string; email: string; subject: string; service: string; details: string; website: string };
@@ -55,11 +55,7 @@ export function Contact() {
     try {
       const response = await fetch(`${supabaseUrl}/functions/v1/contact-submit`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: supabasePublishableKey,
-          Authorization: `Bearer ${supabasePublishableKey}`,
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: values.name,
           email: values.email,

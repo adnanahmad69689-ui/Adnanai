@@ -80,7 +80,7 @@ describe("contact details and enquiry form contract", () => {
     expect(contact).toContain('functions/v1/contact-submit');
     expect(contact).toContain("subject: values.subject");
     expect(contact).toContain("message: values.details");
-    expect(contact).toContain("supabasePublishableKey");
+    expect(contact).toContain('headers: { "Content-Type": "application/json" }');
     expect(contact).not.toContain('fetch("/api/contact"');
   });
 });
