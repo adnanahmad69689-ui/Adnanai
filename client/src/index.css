@@ -2366,7 +2366,7 @@
 .contact-service-picker { position: relative; }
 .contact-service-trigger { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; text-align: left; cursor: pointer; }
 .contact-service-trigger .is-placeholder { color: rgba(255, 255, 255, 0.55); }
-.contact-service-chevron { color: var(--color-accent); font-size: 1.1rem; line-height: 1; transition: transform 160ms var(--ease-out); }
+.contact-service-chevron { color: #f0ece6; font-size: 1.1rem; line-height: 1; transition: transform 160ms var(--ease-out); }
 .contact-service-picker.is-open .contact-service-chevron { transform: rotate(180deg); }
 .contact-service-options { position: absolute; z-index: 6; top: calc(100% + 0.38rem); left: 0; right: 0; display: grid; overflow: hidden; border: 1px solid rgba(168, 255, 62, 0.42); border-radius: 10px; background: #17181b; box-shadow: 0 16px 34px rgba(0, 0, 0, 0.42); animation: contact-status-enter 160ms var(--ease-out) both; }
 .contact-service-options button { min-height: 40px; padding: 0.55rem 0.7rem; border: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.07); background: transparent; color: #f0ece6; font: 500 0.84rem/1.25 "Space Grotesk", sans-serif; text-align: left; cursor: pointer; transition: background-color 140ms var(--ease-out), color 140ms var(--ease-out); }

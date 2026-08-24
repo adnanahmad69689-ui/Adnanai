@@ -459,3 +459,8 @@
 
 - [x] Replace only the left navigation text `Adnan Ai` with `Home` while preserving the exact existing text styling and back-to-top destination.
 - [x] Keep the Hero, the separate About item, desktop/mobile navigation behavior, and all other content unchanged; validate and publish the live update.
+
+# Service Chevron Color Correction Checklist
+
+- [x] Change only the Service selector chevron to the requested white color without changing the form’s layout, controls, or other styling.
+- [ ] Validate the refined Service selector on desktop and mobile, then publish and verify the live update.

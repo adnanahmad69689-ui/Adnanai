@@ -58,6 +58,7 @@ describe("contact details and enquiry form contract", () => {
     expect(contact).toContain('role="option"');
     expect(contact).toContain('aria-haspopup="listbox"');
     expect(styles).toContain(".contact-service-options");
+    expect(styles).toContain(".contact-service-chevron { color: #f0ece6;");
     expect(styles).toContain("background: #17181b");
     expect(styles).toContain(".contact-field input:-webkit-autofill");
     expect(styles).toContain("-webkit-box-shadow: 0 0 0 1000px #17181b inset");
