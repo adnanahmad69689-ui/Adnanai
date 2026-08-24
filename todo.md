@@ -463,4 +463,4 @@
 # Service Chevron Color Correction Checklist
 
 - [x] Change only the Service selector chevron to the requested white color without changing the form’s layout, controls, or other styling.
-- [ ] Validate the refined Service selector on desktop and mobile, then publish and verify the live update.
+- [x] Validate the refined Service selector on desktop and mobile, then publish and verify the live update.
