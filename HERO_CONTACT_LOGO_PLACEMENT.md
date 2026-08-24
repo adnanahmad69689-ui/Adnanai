@@ -13,3 +13,9 @@ The Hero full-logo check shows the mark remains compact, readable, and naturally
 ## Contact and responsive verification
 
 The final Contact card shows the icon-only mark beside the existing **Contact** label at a compact 20px scale. It adds no measurable section height, does not shift the existing heading, email, or form, and remains visually quiet against the graphite card surface. Desktop and mobile styles reduce the Hero full logo to a restrained scale so it remains part of the established typography stack instead of competing with the personal name or portrait.
+
+## Cloudflare-compatible asset verification
+
+The first public deployment exposed that the previous `/manus-storage` full-logo URL was unavailable on the independent Cloudflare domain. The exact existing full-logo SVG is now rendered inline by a reusable `BrandLogo` component, preserving the original existing icon, cream **Adnan Ai** wordmark, and proportions without relying on an unavailable external path. The browser favicon remains unchanged.
+
+Fresh full-page desktop and 390px mobile reviews confirm the Hero mark now renders with no broken image, while the compact Contact favicon mark stays present beside its label. The site keeps its original Hero, Contact card, navigation, spacing, portrait, contact form, and responsive layout.

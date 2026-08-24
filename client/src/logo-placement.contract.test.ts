@@ -5,13 +5,15 @@ import { describe, expect, it } from "vitest";
 const root = resolve(import.meta.dirname, "..");
 const hero = readFileSync(resolve(root, "src/components/Hero.tsx"), "utf8");
 const contact = readFileSync(resolve(root, "src/components/Contact.tsx"), "utf8");
+const navbar = readFileSync(resolve(root, "src/components/Navbar.tsx"), "utf8");
 const styles = readFileSync(resolve(root, "src/index.css"), "utf8");
 
 describe("Hero and Contact logo placement", () => {
   it("uses the existing light full logo subtly within the Hero", () => {
-    expect(hero).toContain('const heroLogoAsset = "/manus-storage/Adnan-AI-Logo-Light_57400ad8.svg"');
+    expect(hero).toContain('import { BrandLogo } from "./BrandLogo"');
     expect(hero).toContain('className="hero-brand-logo"');
-    expect(hero).toContain('alt="Adnan Ai"');
+    expect(navbar).toContain('import { BrandLogo } from "./BrandLogo"');
+    expect(navbar).toContain("<BrandLogo />");
   });
 
   it("uses the unchanged favicon icon compactly within the Contact label", () => {

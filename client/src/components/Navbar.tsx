@@ -1,8 +1,7 @@
 /** Lightweight pill navbar with CSS-driven transitions and responsive menu. */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { siteConfig } from "../data/siteConfig";
-
-const lightLogoAsset = "/manus-storage/Adnan-AI-Logo-Light_57400ad8.svg";
+import { BrandLogo } from "./BrandLogo";
 
 function scrollToSection(id: string) {
   if (id === "hero") {
@@ -102,7 +101,7 @@ export function Navbar() {
             }}
             aria-label="Back to top"
           >
-            <img src={lightLogoAsset} width="800" height="200" alt="Adnan Ai" decoding="async" />
+            <BrandLogo />
           </a>
           <ul className="nav-links">
             {nav.links.map((link) => (
@@ -143,7 +142,7 @@ export function Navbar() {
           <div className="mobile-menu-bg" />
           <div className="mobile-menu-gradient" />
           <div className="mobile-menu-content">
-            <button className="mobile-menu-logo" type="button" onClick={() => onNavClick("hero")} aria-label="Back to top"><img src={lightLogoAsset} width="800" height="200" alt="Adnan Ai" decoding="async" /></button>
+            <button className="mobile-menu-logo" type="button" onClick={() => onNavClick("hero")} aria-label="Back to top"><BrandLogo /></button>
             <ul className="mobile-menu-links">
               {nav.links.map((link) => (
                 <li key={link.id}>

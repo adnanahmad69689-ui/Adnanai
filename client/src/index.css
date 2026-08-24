@@ -395,7 +395,7 @@
   padding: 0 8px;
   text-decoration: none;
 }
-.nav-logo img { display: block; width: 128px; height: auto; }
+.nav-logo svg { display: block; width: 128px; height: auto; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -589,7 +589,7 @@
   border: 0;
   background: transparent;
 }
-.mobile-menu-logo img { display: block; width: 100%; height: auto; }
+.mobile-menu-logo svg { display: block; width: 100%; height: auto; }
 .mobile-menu-links {
   list-style: none;
   margin: 0;
