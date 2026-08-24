@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import type { SiteSettings } from "@/lib/portfolio";
 import { siteConfig } from "../data/siteConfig";
 
+const heroLogoAsset = "/manus-storage/Adnan-AI-Logo-Light_57400ad8.svg";
+
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
 export function Hero() {
@@ -88,6 +90,7 @@ export function Hero() {
           </div>
           <div className="hero-headline-wrapper">
             <p className="hero-tagline">{hero.tagline}</p>
+            <img className="hero-brand-logo" src={heroLogoAsset} alt="Adnan Ai" width={320} height={80} decoding="async" />
             <h1 className="hero-name"><span className="line-mask"><span className="line-inner">{identity.firstName}</span></span><span className="line-mask"><span className="line-inner"><span className="hero-lastname">{identity.lastName}{identity.lastNameSuffix}</span></span></span></h1>
             <p className="hero-rotating" aria-live="polite">{hero.rotatingWords[wordIdx]}</p>
             <p className="hero-desc">{hero.description}</p>

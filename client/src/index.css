@@ -806,6 +806,13 @@
   color: #555;
   margin: 0 0 1rem;
 }
+.hero-brand-logo {
+  display: block;
+  width: clamp(7.5rem, 13vw, 12rem);
+  height: auto;
+  margin: 0 0 1rem;
+  opacity: 0.82;
+}
 .hero-name {
   margin: 0;
   font-family: "Syne", sans-serif;
@@ -965,6 +972,7 @@
   .hero-right-panel { display: none !important; }
   .hero-headline-wrapper { padding: 0 1.25rem 2rem !important; }
   .hero-tagline { margin-bottom: 0.75rem !important; font-size: 0.5rem !important; }
+  .hero-brand-logo { width: 7.25rem; margin-bottom: 0.75rem; }
   .hero-desc { max-width: 100% !important; font-size: 0.78rem !important; }
   .hero-scroll-indicator { display: none !important; }
   .hero-phase2-container {
@@ -980,6 +988,7 @@
 @media (width <= 480px) {
   .hero-greeting { top: 1rem !important; left: 1rem !important; }
   .hero-headline-wrapper { padding: 0 1rem 1.5rem !important; }
+  .hero-brand-logo { width: 6.5rem; margin-bottom: 0.6rem; }
   .hero-phase2-container { padding: 0 1rem !important; }
 }
 
@@ -2290,6 +2299,9 @@
   pointer-events: none;
 }
 .contact-left { position: relative; display: flex; flex-direction: column; align-self: stretch; }
+.contact-brand-label { display: inline-flex; align-items: center; gap: 0.55rem; width: fit-content; margin: 0 0 1rem; }
+.contact-brand-label .section-label { margin: 0; }
+.contact-brand-icon { width: 1.25rem; height: 1.25rem; border-radius: 5px; object-fit: contain; opacity: 0.82; }
 .contact-heading {
   margin: 0 0 1.25rem;
   font-family: "Space Grotesk", sans-serif;

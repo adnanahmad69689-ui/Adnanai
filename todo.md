@@ -407,3 +407,11 @@
 - [x] Keep the existing icon as the browser favicon and verify brand files independently on transparent, light, and dark backgrounds.
 - [x] Validate desktop/mobile header alignment, browser-tab branding, output file quality, site performance, and no visual drift.
 - [x] Publish the finalized branding update to GitHub and Cloudflare Pages, then verify the live custom domain and provide downloadable asset files.
+
+# Hero and Contact Logo Placement Checklist
+
+- [x] Select the best two existing logo versions for the dark Hero and final Contact surfaces without changing the favicon or creating new logo artwork.
+- [x] Place the selected existing Hero logo subtly within the current Hero composition without affecting its text, portrait, layout, or spacing.
+- [x] Place the selected existing Contact logo within the current Contact card without increasing the section height or disrupting the email/form layout.
+- [x] Verify logo contrast, natural scale, desktop/mobile responsiveness, existing interactions, and no visual drift.
+- [ ] Publish the Hero and Contact logo treatment to GitHub and Cloudflare Pages, then verify the live custom domain.
