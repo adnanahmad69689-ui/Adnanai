@@ -8,10 +8,14 @@ const contact = readFileSync(resolve(root, "src/components/Contact.tsx"), "utf8"
 const navbar = readFileSync(resolve(root, "src/components/Navbar.tsx"), "utf8");
 const styles = readFileSync(resolve(root, "src/index.css"), "utf8");
 
-describe("Added logo placement removal", () => {
-  it("restores the existing Hero and navigation text treatment", () => {
-    expect(hero).not.toContain("BrandLogo");
-    expect(hero).not.toContain("hero-brand-logo");
+describe("Hero greeting logo treatment", () => {
+  it("replaces only the Hero greeting text with the supplied Adnan Ai logo treatment", () => {
+    expect(hero).toContain('import { BrandLogo } from "./BrandLogo"');
+    expect(hero).toContain('className="hero-greeting-logo-lockup"');
+    expect(hero).toContain('className="hero-greeting-logo"');
+    expect(hero).not.toContain("Good morning!");
+    expect(hero).not.toContain("Good afternoon!");
+    expect(hero).not.toContain("Good evening!");
     expect(navbar).not.toContain("BrandLogo");
     expect(navbar).toContain('className="nav-logo-text"');
     expect(navbar).toContain('className="mobile-menu-logo-text"');

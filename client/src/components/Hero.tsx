@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { SiteSettings } from "@/lib/portfolio";
 import { siteConfig } from "../data/siteConfig";
+import { BrandLogo } from "./BrandLogo";
 
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
@@ -11,16 +12,10 @@ export function Hero() {
   const heroImage = settings?.heroImageUrl || hero.backgroundImage;
   const heroAlt = settings?.heroImageAlt || hero.backgroundAlt;
   const [wordIdx, setWordIdx] = useState(0);
-  const [greeting, setGreeting] = useState("");
   const sectionRef = useRef<HTMLElement>(null);
   const bgWrapRef = useRef<HTMLDivElement>(null);
   const phase1Ref = useRef<HTMLDivElement>(null);
   const phase2Ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const hour = new Date().getHours();
-    setGreeting(hour < 12 ? "Good morning!" : hour < 18 ? "Good afternoon!" : "Good evening!");
-  }, []);
 
   useEffect(() => {
     let active = true;
@@ -79,7 +74,7 @@ export function Hero() {
         </div>
         <div className="hero-overlay-left" /><div className="hero-overlay-bottom" />
         <div ref={phase1Ref} className="hero-phase1-container hero-phase-enter">
-          <div className="hero-greeting"><p className="hero-greeting-small">{greeting}</p><p className="hero-greeting-name">{identity.firstName} <em>{identity.lastName}</em></p></div>
+          <div className="hero-greeting-logo-lockup"><BrandLogo className="hero-greeting-logo" title="Adnan Ai" /></div>
           <div className="hero-right-panel">
             {hero.services.map((service) => <span key={service} className="hero-service-line">{service}</span>)}
             <div className="hero-panel-divider" />

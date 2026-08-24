@@ -431,6 +431,12 @@
 - [x] Add only that selected existing logo below the email with a restrained scale, natural spacing, and no changes to the contact form or surrounding layout.
 - [x] Verify the final Contact logo placement on desktop and mobile, then publish it to the live custom domain.
 
+# Hero Greeting-to-Logo Replacement Checklist
+- [x] Remove the small “Good afternoon! / Adnan Ai” greeting text from the Hero without affecting the main Hero title, portrait, or content.
+- [x] Insert the user-supplied existing Adnan Ai light logo in that exact Hero position with professional desktop and mobile scale.
+- [x] Verify the replacement logo contrast, visual balance, Hero layout, and responsive behavior without changing other site areas.
+- [ ] Publish the Hero logo replacement to GitHub and Cloudflare Pages, then verify the live custom domain.
+
 # Read-Only Cloudflare Email Routing Investigation Checklist
 
 - [x] Inspect public website email configuration and published mail-related DNS records without changing any DNS or website files.
