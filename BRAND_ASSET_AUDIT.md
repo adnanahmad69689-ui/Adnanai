@@ -21,3 +21,7 @@ The public footer was intentionally left absent because the current website ends
 The exported PNG files are confirmed as RGBA transparent assets: the full logo variants are 3200 × 800px and the icon-only file is 1024 × 1024px. The SVG files remain scalable. The branded ZIP archive contains all requested files plus an asset-usage README. The existing `/favicon.svg` remains the favicon reference in the public document.
 
 TypeScript, the complete 30-assertion regression suite, and the independent Cloudflare build passed. Desktop and 390px mobile views retained the existing layout with no observed navigation, spacing, or performance drift.
+
+## Live publication verification
+
+Cloudflare Pages production deployment `e659edaa-d552-4891-ae16-1506671e0269` completed successfully. A fresh `adnanai.com` check confirmed the desktop header now exposes the preserved icon-plus-**Adnan Ai** full logo asset and the rest of the public navigation, cards, project links, contact form, and page layout remain available. The browser continues to request the unchanged `/favicon.svg` icon.
