@@ -454,3 +454,8 @@
 
 - [x] Remove only the small favicon logo below `info@adnanai.com` from the final Contact area.
 - [x] Verify the Contact email, form, Hero, and existing About navigation label remain unchanged on desktop and mobile, then publish the live update.
+
+# Left Navigation Home Label Checklist
+
+- [x] Replace only the left navigation text `Adnan Ai` with `Home` while preserving the exact existing text styling and back-to-top destination.
+- [ ] Keep the Hero, the separate About item, desktop/mobile navigation behavior, and all other content unchanged; validate and publish the live update.

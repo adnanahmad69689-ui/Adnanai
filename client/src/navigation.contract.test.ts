@@ -24,11 +24,14 @@ describe("portfolio navigation contract", () => {
     expect(styles).toContain("scroll-margin-top: 104px");
   });
 
-  it("uses the original text-only brand treatment in desktop and mobile navigation", () => {
+  it("uses the requested Home text at the desktop back-to-top control while preserving the separate About item and mobile brand treatment", () => {
     const navbar = readFileSync(resolve(projectRoot, "client/src/components/Navbar.tsx"), "utf8");
+    const config = readFileSync(resolve(projectRoot, "client/src/data/siteConfig.ts"), "utf8");
     const styles = readFileSync(resolve(projectRoot, "client/src/index.css"), "utf8");
 
     expect(navbar).toContain('className="nav-logo-text"');
+    expect(navbar).toContain('className="nav-logo-text">Home</span>');
+    expect(config).toContain('{ id: "about", label: "About" }');
     expect(navbar).toContain("mobile-menu-logo");
     expect(navbar).toContain('className="mobile-menu-logo-text"');
     expect(styles).toContain(".nav-logo-text");

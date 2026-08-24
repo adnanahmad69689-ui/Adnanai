@@ -100,7 +100,7 @@ export function Navbar() {
             }}
             aria-label="Back to top"
           >
-            <span className="nav-logo-text">{identity.firstName} <em>{identity.lastName}</em></span>
+            <span className="nav-logo-text">Home</span>
           </a>
           <ul className="nav-links">
             {nav.links.map((link) => (
