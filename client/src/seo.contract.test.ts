@@ -33,12 +33,11 @@ describe("launch-critical SEO contract", () => {
     const app = readFileSync(resolve(projectRoot, "client/src/App.tsx"), "utf8");
     const notFound = readFileSync(resolve(projectRoot, "client/src/pages/NotFound.tsx"), "utf8");
     const middleware = readFileSync(resolve(projectRoot, "functions/_middleware.ts"), "utf8");
-    const headers = readFileSync(resolve(projectRoot, "client/public/_headers"), "utf8");
 
     expect(app).toContain('location === "/" ? <PublicPortfolio /> : <NotFound />');
     expect(notFound).toContain('"noindex,nofollow,noarchive"');
     expect(middleware).toContain('headers.set("X-Robots-Tag", "noindex, nofollow, noarchive")');
     expect(middleware).toContain("status: 404");
-    expect(headers).toContain("X-Content-Type-Options: nosniff");
+    expect(middleware).toContain('headers.set("X-Content-Type-Options", "nosniff")');
   });
 });

@@ -14,6 +14,8 @@ describe("Cloudflare SEO route middleware", () => {
 
     expect(response.status).toBe(200);
     expect(response.headers.get("X-Robots-Tag")).toBeNull();
+    expect(response.headers.get("X-Content-Type-Options")).toBe("nosniff");
+    expect(response.headers.get("Referrer-Policy")).toBe("strict-origin-when-cross-origin");
   });
 
   it("serves private routes with a crawlable noindex response header", async () => {
@@ -28,5 +30,11 @@ describe("Cloudflare SEO route middleware", () => {
 
     expect(response.status).toBe(404);
     expect(response.headers.get("X-Robots-Tag")).toBe("noindex, nofollow, noarchive");
+  });
+
+  it("makes crawl assets revalidate so updated robots rules and sitemap entries are not stale", async () => {
+    const response = await onRequest(context("/robots.txt"));
+
+    expect(response.headers.get("Cache-Control")).toBe("public, max-age=0, must-revalidate");
   });
 });
