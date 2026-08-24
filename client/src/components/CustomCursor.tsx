@@ -6,12 +6,12 @@ export function CustomCursor() {
   const ringRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
   const latestPointer = useRef({ x: -100, y: -100 });
+  const cursorActivated = useRef(false);
   const [isInteractive, setIsInteractive] = useState(false);
 
   useEffect(() => {
-    const pointerCapable = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!pointerCapable.matches || reducedMotion.matches) return;
+    if (reducedMotion.matches) return;
 
     const paint = () => {
       frameRef.current = null;
@@ -21,6 +21,11 @@ export function CustomCursor() {
     };
 
     const onMove = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+      if (!cursorActivated.current) {
+        cursorActivated.current = true;
+        document.documentElement.classList.add("custom-cursor-active");
+      }
       latestPointer.current = { x: event.clientX, y: event.clientY };
       if (frameRef.current === null) frameRef.current = window.requestAnimationFrame(paint);
     };
@@ -41,6 +46,7 @@ export function CustomCursor() {
       window.removeEventListener("pointerover", onPointerOver);
       window.removeEventListener("pointerout", onPointerOut);
       if (frameRef.current !== null) window.cancelAnimationFrame(frameRef.current);
+      document.documentElement.classList.remove("custom-cursor-active");
     };
   }, []);
 

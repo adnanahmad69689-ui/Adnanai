@@ -275,15 +275,19 @@
 }
 .custom-cursor.is-interactive { opacity: 0.84; }
 .custom-cursor-ring.is-interactive { width: 38px; height: 38px; opacity: 0.78; border-color: #f0ece6; }
-@media (hover: none), (width <= 1024px) {
+@media (width <= 1024px) {
   .custom-cursor, .custom-cursor-ring { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .custom-cursor, .custom-cursor-ring { display: none; }
 }
-@media (hover: hover) and (width > 1024px) {
-  body { cursor: none; }
-  a, button, [role="button"] { cursor: none; }
+@media (width > 1024px) {
+  html.custom-cursor-active body,
+  html.custom-cursor-active a,
+  html.custom-cursor-active button,
+  html.custom-cursor-active input,
+  html.custom-cursor-active textarea,
+  html.custom-cursor-active [role="button"] { cursor: none; }
 }
 
 /* Neon outline button */

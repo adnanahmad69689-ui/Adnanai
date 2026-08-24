@@ -392,6 +392,13 @@
 - [x] Test cursor responsiveness and browser-console health on the homepage, navigation, Websites, AI Systems, Process, Contact, project cards, and buttons.
 - [x] Publish the cursor refinement to GitHub and Cloudflare Pages, then verify the live custom domain.
 
+# Cursor Reliability Correction Checklist
+
+- [x] Diagnose why the published desktop custom cursor is not appearing on the user’s device.
+- [x] Restore a reliable custom cursor fallback for supported desktop mouse/trackpad devices without enabling it on touch or reduced-motion users.
+- [x] Test live cursor visibility, tracking, controls, touch-device behavior, and reduced-motion behavior after the correction.
+- [ ] Publish the cursor reliability correction to GitHub and Cloudflare Pages, then verify the live custom domain.
+
 # Final Logo, Favicon, and Reusable Brand Assets Checklist
 
 - [x] Audit the existing favicon/icon, current header/mobile/footer branding, and image asset constraints without changing the existing symbol.

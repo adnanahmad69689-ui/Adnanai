@@ -16,8 +16,8 @@ describe("admin custom cursor contract", () => {
     expect(stylesheet).toMatch(/\.custom-cursor,[\s\S]*?pointer-events:\s*none/);
   });
 
-  it("keeps the custom cursor disabled for touch and narrow-screen admin layouts", () => {
-    expect(stylesheet).toContain("@media (hover: none), (width <= 1024px)");
+  it("keeps the custom cursor unavailable on narrow screens and disabled for reduced motion", () => {
+    expect(stylesheet).toContain("@media (width <= 1024px)");
     expect(stylesheet).toMatch(/\.custom-cursor, \.custom-cursor-ring \{ display:\s*none;/);
     expect(stylesheet).toContain("@media (prefers-reduced-motion: reduce)");
   });
@@ -27,5 +27,12 @@ describe("admin custom cursor contract", () => {
     expect(cursorComponent).toContain("isInteractive");
     expect(stylesheet).toContain(".custom-cursor-ring.is-interactive");
     expect(stylesheet).toContain("width: 38px");
+  });
+
+  it("activates only after a real desktop pointer move instead of relying on a fragile hover media query", () => {
+    expect(cursorComponent).toContain('event.pointerType !== "mouse" && event.pointerType !== "pen"');
+    expect(cursorComponent).toContain('classList.add("custom-cursor-active")');
+    expect(cursorComponent).toContain('classList.remove("custom-cursor-active")');
+    expect(stylesheet).toContain("html.custom-cursor-active body");
   });
 });
