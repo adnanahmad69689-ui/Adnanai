@@ -30,6 +30,16 @@ The homepage retained its current dark editorial visual identity after the techn
 
 The 390px mobile review confirmed that the existing public portfolio remains readable, touch-friendly, and free of horizontal overflow. The fallback view also fits a narrow screen without crowding or visual drift.
 
+## Final live verification
+
+Cloudflare Pages deployment `c4ad47c0-8ccd-43ae-9363-4854ce60c3b8` completed successfully with Pages Functions enabled. The canonical homepage returns HTTPS `200`, a canonical link to `https://adnanai.com/`, index/follow robots metadata, factual title and description, and the existing public portfolio presentation.
+
+The live sitemap returns `200` as `application/xml`, and the live robots file returns `200` with `Allow: /` and the absolute sitemap reference. The manifest is publicly served. The private `/admin` route returns `200` with `X-Robots-Tag: noindex, nofollow, noarchive`; an arbitrary unknown route now returns an HTTP `404` with the same noindex header. The live site also returns `X-Content-Type-Options`, `Referrer-Policy`, and `Permissions-Policy` headers without affecting the public layout.
+
+The root Pages middleware necessarily processes the static assets, so Cloudflare retains its platform-controlled default cache duration on `robots.txt`; its current body is correct and the sitemap revalidates immediately. This is not an indexing block, and the active canonical crawl directives are verified.
+
+All source checks passed: TypeScript, 25 Vitest assertions, the independent Cloudflare build, static asset output, desktop visual review, and 390px mobile visual review.
+
 ## Official guidance consulted
 
 Google states that sitemaps should use fully qualified canonical URLs and include URLs intended for search results. For this single-page public portfolio, a root XML sitemap containing only the canonical homepage is appropriate. [1]

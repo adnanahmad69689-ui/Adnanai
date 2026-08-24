@@ -351,5 +351,5 @@
 - [x] Audit the live canonical site for sitemap, robots directives, canonical behavior, indexability, redirects, metadata, structured data, public headers, and duplicate URLs.
 - [x] Audit public semantic structure, heading order, image alt text, internal links, favicon and platform metadata, responsive accessibility, performance, and real security exposure without redesigning the site.
 - [x] Implement only necessary truthful technical SEO, accessibility, indexing, favicon, and performance improvements while keeping current public content, design, and contact-form delivery deferral intact.
-- [ ] Validate the live sitemap, robots file, canonical domain, public headers, semantic HTML, structured data, desktop/mobile behavior, and production build.
-- [ ] Publish the completed SEO readiness update to GitHub and Cloudflare Pages, then confirm the custom-domain result for Google Search Console use.
+- [x] Validate the live sitemap, robots file, canonical domain, public headers, semantic HTML, structured data, desktop/mobile behavior, and production build.
+- [x] Publish the completed SEO readiness update to GitHub and Cloudflare Pages, then confirm the custom-domain result for Google Search Console use.
