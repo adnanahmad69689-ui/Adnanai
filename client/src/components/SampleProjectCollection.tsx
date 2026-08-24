@@ -12,7 +12,7 @@ export function SampleProjectCollection() {
       <div className="sample-projects-intro reveal-item">
         <span className="section-label">Websites</span>
         <h2 id="sample-projects-heading">Built for the <em>browser.</em></h2>
-        <p>Public links appear only where supplied. Every featured project can be reviewed through its live site or direct project discussion.</p>
+        <p>Two public website projects. Open either one to see the work live.</p>
       </div>
       <div className="sample-projects-grid">
         {isLoading ? <p className="sample-projects-loading">Loading website projects…</p> : null}
@@ -26,8 +26,8 @@ export function SampleProjectCollection() {
             <h3>{project.title}</h3><p>{project.description}</p>
             <ul>{project.details.map((detail) => <li key={detail}>✓ {detail}</li>)}</ul>
             <div className="sample-project-footer">
-              <span>{project.publicUrl ? "Public project · live website available" : "Project discussion available"}</span>
-              {project.publicUrl ? <a className="sample-project-action" href={project.publicUrl} target="_blank" rel="noreferrer">Visit live site ↗</a> : <a className="sample-project-action" href={mailto(`Adnan AI — ${project.title}`, `Hi Adnan Ai,\n\nI would like to request more details about ${project.title}.\n\nThanks!`)}>Discuss project ↗</a>}
+              <span>{project.publicUrl ? "Live website" : "Project discussion available"}</span>
+              {project.publicUrl ? <a className="sample-project-action" href={project.publicUrl} target="_blank" rel="noreferrer">View live site ↗</a> : <a className="sample-project-action" href={mailto(`Adnan Ai — ${project.title}`, `Hi Adnan Ai,\n\nI would like to request more details about ${project.title}.\n\nThanks!`)}>Discuss project ↗</a>}
             </div>
           </div>
         </article>)}

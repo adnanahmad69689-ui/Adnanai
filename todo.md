@@ -327,3 +327,11 @@
 - [x] Diagnose and resolve the custom-domain runtime error discovered during final verification.
 - [x] Identify and document the root cause of the intermittent `adnanai.com` stale-asset/runtime mismatch against the latest Pages deployment.
 - [x] Implement any needed durable mitigation and verify that a fresh canonical-domain session renders the latest deployed asset manifest.
+
+# A–Z Human Copy, Quality, and Launch-Readiness Checklist
+
+- [x] Audit the live public site across desktop and mobile for clarity, duplicate wording, conversion, accessibility, links, responsive behavior, and public technical assets without redesigning it.
+- [x] Apply only useful human-copy, terminology, call-to-action, and navigation refinements while keeping the existing premium visual system and section structure.
+- [x] Correct real usability, accessibility, responsive, or technical issues discovered in the audit without adding invented proof, claims, reviews, statistics, or extra sections.
+- [x] Run automated checks, build validation, and desktop/mobile visual reviews after the targeted refinements.
+- [ ] Publish the no-redesign quality improvements to GitHub and Cloudflare Pages, then verify the live custom domain.

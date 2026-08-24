@@ -1,0 +1,20 @@
+# Adnan Ai
+
+> A personal portfolio by Adnan Ahmad. Adnan Ai builds websites, automations, and AI agents for real business tasks.
+
+## Services
+
+- Web development
+- Automation
+- AI agents
+
+## Selected public work
+
+- Aqualume water website: https://1st-water-website.vercel.app/
+- N A Metal website: https://n-a-metal-lr1v.vercel.app/
+
+## Contact
+
+- Email: Adnanuop@gmail.com
+- Location: KPK, Peshawar, Pakistan
+- Website: https://adnanai.com/

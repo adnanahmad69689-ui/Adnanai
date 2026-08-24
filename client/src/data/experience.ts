@@ -9,25 +9,25 @@ export interface ExperienceEntry {
 
 export const experienceEntries: ExperienceEntry[] = [
   {
-    role: "AI Web Development",
-    date: "From positioning to launch",
-    company: "Adnan AI",
+    role: "Web Development",
+    date: "From idea to launch",
+    company: "Adnan Ai",
     companyType: "Web Strategy · UI/UX · Development",
     bullets: [
-      "Clarify the offer, audience, and client journey before interface decisions are made.",
-      "Create responsive websites that pair premium visual design with a clear reason to take action.",
-      "Keep pages lightweight, accessible, and ready to evolve as the business grows.",
+      "I clarify your offer, audience, and the action you want visitors to take.",
+      "I design and build a responsive website around that journey.",
+      "I keep the result light, accessible, and easy to update.",
     ],
   },
   {
-    role: "AI Automation & Agents",
-    date: "From discovery to a working system",
-    company: "Adnan AI",
+    role: "Automation & AI Agents",
+    date: "From discovery to a working setup",
+    company: "Adnan Ai",
     companyType: "Workflow Design · AI Agents · Operations",
     bullets: [
-      "Map the real manual steps before selecting tools or automating anything.",
-      "Design focused automations and AI agents around a defined task, approved context, and useful hand-offs.",
-      "Prioritize systems that remain understandable and maintainable after the first launch.",
+      "I map the manual work before choosing tools.",
+      "I build focused automations and agents around a clear task and hand-off.",
+      "I keep the system understandable after launch.",
     ],
   },
 ];

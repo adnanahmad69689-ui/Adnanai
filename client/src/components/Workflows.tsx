@@ -1,7 +1,6 @@
 /**
  * "Real Results" workflows section: heading, count-up metrics bar,
- * 2-col gallery of workflow cards with pipeline overlays, show-more button,
- * social proof strip, and the gradient audit CTA.
+ * A concise three-card gallery of practical workflow examples.
  */
 import { siteConfig, mailto } from "../data/siteConfig";
 import { listPublishedPortfolioItems, type PortfolioItem } from "@/lib/portfolio";
@@ -85,16 +84,6 @@ export function Workflows() {
           ))}
           {!isLoading && !isError && workflowsToFeature.length === 0 ? <p className="workflows-loading">AI system patterns will appear here when published.</p> : null}
         </div>
-
-        <div className="show-more-container">
-          <a className="show-more-button" href="#n8n-projects" style={{ textDecoration: "none" }}>
-            {workflows.showMoreLabel}
-            <svg fill="none" height="16" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" style={{ marginLeft: 8 }} viewBox="0 0 24 24" width="16">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
-
       </div>
     </section>
   );

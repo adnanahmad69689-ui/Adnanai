@@ -20,22 +20,12 @@ export function Reviews() {
         <div className="reviews-grid outcomes-grid">
           {outcomes.map((outcome) => (
             <article key={outcome.title} className="review-card outcome-card reveal-item">
-              <div className="outcome-card-top">
-                <span className="outcome-tag" style={{ borderColor: `${outcome.accent}55`, color: outcome.accent }}>
-                  {outcome.tag}
-                </span>
-                <span className="outcome-orbit" style={{ backgroundColor: outcome.accent }} />
-              </div>
               <div className="outcome-metric" style={{ color: outcome.accent }}>
                 {outcome.metric}
               </div>
               <div className="outcome-metric-label">{outcome.metricLabel}</div>
               <h3 className="outcome-title">{outcome.title}</h3>
               <p className="outcome-detail">{outcome.detail}</p>
-              <div className="outcome-card-footer">
-                <span className="outcome-footer-mark">◇</span>
-                <span>Adnan AI service focus</span>
-              </div>
             </article>
           ))}
         </div>

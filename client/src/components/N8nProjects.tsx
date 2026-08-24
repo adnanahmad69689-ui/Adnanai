@@ -15,8 +15,8 @@ function getMetric(label: string) {
 function SystemPatternCard({ project }: { project: Workflow }) {
   const { metric, metricLabel } = getMetric(project.label);
   const href = mailto(
-    `Adnan AI — ${project.title}`,
-    `Hi Adnan AI,\n\nI’d like to discuss a system related to ${project.title}.\n\nHere is my business context:\n\n[Describe your task]\n\nThanks!`
+    `Adnan Ai — ${project.title}`,
+    `Hi Adnan,\n\nI’d like to discuss a system related to ${project.title}.\n\nHere is the task I have in mind:\n\n[Describe your task]\n\nThanks!`
   );
   return (
     <article className="n8n-card">

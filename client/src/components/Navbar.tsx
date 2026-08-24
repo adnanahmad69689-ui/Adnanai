@@ -123,7 +123,7 @@ export function Navbar() {
             </svg>
           </button>
           <div className="nav-cta-wrapper">
-            <button className="neon-btn" onClick={() => onNavClick("contact")} aria-label="Contact Adnan AI">
+            <button className="neon-btn" onClick={() => onNavClick("contact")} aria-label="Contact Adnan Ai">
               {nav.contactLabel}
             </button>
           </div>
