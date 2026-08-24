@@ -425,6 +425,12 @@
 - [x] Preserve the existing browser favicon and all other public design, content, navigation, responsive behavior, and animation.
 - [x] Validate the restored logo-free desktop and mobile layout, then publish it to the live custom domain.
 
+# Final Contact Logo Addition Checklist
+
+- [x] Select the one existing logo version that fits the final Contact area below the public email without affecting the favicon or other site surfaces.
+- [x] Add only that selected existing logo below the email with a restrained scale, natural spacing, and no changes to the contact form or surrounding layout.
+- [x] Verify the final Contact logo placement on desktop and mobile, then publish it to the live custom domain.
+
 # Read-Only Cloudflare Email Routing Investigation Checklist
 
 - [x] Inspect public website email configuration and published mail-related DNS records without changing any DNS or website files.
