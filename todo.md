@@ -458,4 +458,4 @@
 # Left Navigation Home Label Checklist
 
 - [x] Replace only the left navigation text `Adnan Ai` with `Home` while preserving the exact existing text styling and back-to-top destination.
-- [ ] Keep the Hero, the separate About item, desktop/mobile navigation behavior, and all other content unchanged; validate and publish the live update.
+- [x] Keep the Hero, the separate About item, desktop/mobile navigation behavior, and all other content unchanged; validate and publish the live update.
