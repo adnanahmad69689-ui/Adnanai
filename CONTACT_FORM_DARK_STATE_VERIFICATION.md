@@ -25,3 +25,7 @@ The responsive contact-form rules preserve the same dark controls on narrow scre
 The native selector was replaced because Chrome continued to render its placeholder row as a browser-controlled white surface on the live site. The replacement opens as an in-page `listbox` with four dark options, each rendered by the site rather than the browser. Preview interaction verified that the menu opens without any white system dropdown, selecting **Website Development** updates the visible value, and the menu closes immediately after selection.
 
 Keyboard verification confirmed that the Service trigger opens with **Arrow Down** and closes with **Escape**, while retaining focus on the trigger. The control also exposes `aria-haspopup`, `aria-expanded`, `aria-controls`, a labelled `listbox`, and option-level selected state.
+
+## Live publication verification
+
+Cloudflare Pages production deployment `397e43d3-05e0-452e-9e5a-2bd4b5a2d725` successfully published the controlled selector. The live `adnanai.com` Contact section now exposes a Service button and an in-page listbox, not a browser-native select. Opening the live menu confirmed the full option panel remains dark, and the prior browser-owned white placeholder row is absent.
