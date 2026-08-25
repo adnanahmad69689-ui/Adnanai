@@ -22,6 +22,8 @@ The public navigation, sections, contact information, project links, responsive 
 
 HTTPS, HTTP-to-HTTPS and `www` redirects, canonical URL, robots, sitemap, public indexability, metadata, Open Graph/Twitter data, image alternatives, headings, structured data, `llms.txt`, and machine-readable project links were checked. The final correction removes public canonical/index metadata from private HTML responses, adds mobile menu expanded/control semantics, and represents the two live public projects as factual `CreativeWork` entities in the JSON-LD graph.
 
+The GitHub-published production deployment was rechecked on the real domain. Private HTML now contains only `noindex,nofollow,noarchive` robots metadata and no public homepage canonical link; the public JSON-LD contains both project `CreativeWork` entries.
+
 The project passed TypeScript, **37** regression tests, and the independent Cloudflare build after these corrections.
 
 ## 2. NEEDS MY ACTION

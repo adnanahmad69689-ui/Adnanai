@@ -578,5 +578,5 @@
 
 - [x] Validate the live website’s navigation, sections, desktop/mobile presentation, links, form behavior, official email usage, browser console health, and accessibility interactions.
 - [x] Validate HTTPS, redirects, canonical, indexability, robots, sitemap, metadata, headings, structured data, llms guidance, internal links, image alternatives, and measurable performance signals.
-- [x] Apply the verified final corrections for private-route metadata, mobile menu accessibility, and project structured data, then prepare the real-domain revalidation.
-- [ ] Deliver the requested final scorecard with only DONE, NEEDS MY ACTION, and NOT NEEDED, plus explicit readiness answers.
+- [x] Apply the verified final corrections for private-route metadata, mobile menu accessibility, and project structured data, then verify them on the real domain.
+- [x] Deliver the requested final scorecard with only DONE, NEEDS MY ACTION, and NOT NEEDED, plus explicit readiness answers.
