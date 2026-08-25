@@ -564,5 +564,5 @@
 
 - [x] Audit page titles, descriptions, H1/H2/H3 hierarchy, canonical public URL, internal links, image alt text, content relevance, search intent, structured data, and Open Graph metadata.
 - [x] Remove only genuine repetition, generic AI-sounding phrasing, filler, jargon, and unsupported claims; retain concise factual copy without keyword stuffing or invented proof.
-- [ ] Apply and validate targeted on-page Google SEO improvements without redesigning the website, then publish through GitHub and verify the real domain.
-- [ ] Report the practical Google SEO score, main improvements, and remaining issues without claiming unverified rankings or indexing.
+- [x] Apply and validate targeted on-page Google SEO improvements without redesigning the website, then publish through GitHub and verify the real domain.
+- [x] Report the practical Google SEO score, main improvements, and remaining issues without claiming unverified rankings or indexing.
