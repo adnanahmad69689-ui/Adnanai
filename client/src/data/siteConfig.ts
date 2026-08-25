@@ -24,9 +24,9 @@ export const siteConfig = {
     /** Kept empty so the visible identity remains exactly “Adnan Ai”. */
     lastNameSuffix: "",
     /** <title> tag and meta description. */
-    pageTitle: "Adnan Ai | Websites, Automation & AI Agents",
+    pageTitle: "Adnan Ai | Websites, Automation & AI Agents in Peshawar",
     metaDescription:
-      "Adnan Ai builds AI websites, automations, and AI agents for real business tasks.",
+      "Adnan Ai builds clear websites, practical automation, and AI agents for business tasks in Peshawar and remotely.",
     /** City shown in the footer copyright line. */
     location: "KPK, Peshawar, Pakistan",
     /** Footer tagline. */
@@ -39,14 +39,14 @@ export const siteConfig = {
   hero: {
     /** Background portrait. Recommended: 1600×900, subject on the RIGHT. */
     backgroundImage: "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/hero/migration/72a17e27-37ab-4c13-b1b5-ada0f02c2d17.webp",
-    backgroundAlt: "Portrait of Adnan Ai seated with a laptop",
+    backgroundAlt: "Adnan Ahmad seated with a laptop",
     /** Rotating words under the big name (cycles every 2.5s). */
     rotatingWords: ["WEB DEVELOPMENT", "AUTOMATION", "AI AGENTS"],
     /** Small tagline above the big name. */
     tagline: "WEB DEVELOPMENT · AUTOMATION · AI AGENTS",
     /** Short bio under the rotating word. */
     description:
-      "I build websites, automations, and AI agents for real business tasks. Based in KPK, Peshawar, Pakistan — available remotely.",
+      "I build clear websites, practical automation, and AI agents for business tasks. Based in KPK, Peshawar, Pakistan — available remotely.",
     /** Right-side panel: three service lines. */
     services: ["Web Development", "Automation", "AI Agents"],
     /** Right-side panel: three small stats. */
@@ -123,7 +123,7 @@ export const siteConfig = {
     headingEm: "better work.",
     /** Portrait image. Recommended: 3:4 vertical, ~600×800. */
     image: "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/uploads/migration/ed576c01-2271-4a82-8baf-5183dfe6f888.webp",
-    imageAlt: "Portrait of Adnan Ai holding a laptop in a studio lounge",
+    imageAlt: "Adnan Ahmad holding a laptop in a studio lounge",
     bio: [
       "I build websites, automations, and AI agents around the work that needs doing.",
       "Each project starts with the task, then a clear plan for design, build, and handover.",
@@ -140,7 +140,7 @@ export const siteConfig = {
   skills: {
     label: "Services",
     headingLead: "What I",
-    headingEm: "builds",
+    headingEm: "build",
   },
 
   /* ------------------------------ Experience ----------------------------- */

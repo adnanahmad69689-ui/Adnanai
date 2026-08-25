@@ -11,7 +11,7 @@ describe("A–Z no-redesign quality safeguards", () => {
     const llmsPath = resolve(projectRoot, "client/public/llms.txt");
 
     expect(html).not.toContain("maximum-scale=1");
-    expect(html).toContain("Adnan Ai builds websites, automations, and AI agents for real business tasks.");
+    expect(html).toContain("Adnan Ai builds clear websites, practical automation, and AI agents for business tasks in Peshawar and remotely.");
     expect(robots).toContain("Allow: /");
     expect(robots).not.toContain("Disallow: /admin");
     expect(robots).not.toContain("Disallow: /reset-password");

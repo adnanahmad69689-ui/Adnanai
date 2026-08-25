@@ -11,11 +11,15 @@ describe("launch-critical SEO contract", () => {
     const sitemap = readFileSync(resolve(projectRoot, "client/public/sitemap.xml"), "utf8");
 
     expect(html).toContain('rel="canonical" href="https://adnanai.com/"');
+    expect(html).toContain("Adnan Ai | Websites, Automation & AI Agents in Peshawar");
+    expect(html).toContain("Clear websites, practical automation, and AI agents for business tasks in Peshawar and remotely.");
     expect(html).toContain('property="og:title"');
+    expect(html).toContain('property="og:image:alt" content="Adnan Ahmad seated with a laptop"');
     expect(html).toContain('application/ld+json');
     expect(html).toContain('"@type": "ProfessionalService"');
     expect(html).toContain('"@type": "WebSite"');
     expect(html).toContain('"@type": "WebPage"');
+    expect(html).toContain('"primaryImageOfPage"');
     expect(html).toContain('rel="manifest" href="/site.webmanifest"');
     expect(robots).toContain("Allow: /");
     expect(robots).not.toContain("Disallow: /admin");
@@ -51,5 +55,11 @@ describe("launch-critical SEO contract", () => {
     expect(home).toContain("<PortfolioSections />");
     expect(home).not.toContain("setTimeout(() => setShouldLoadSections");
     expect(hero).toContain('<h1 className="hero-name">');
+  });
+
+  it("keeps the primary Home control as a crawlable anchor to the main landmark", () => {
+    const navbar = readFileSync(resolve(projectRoot, "client/src/components/Navbar.tsx"), "utf8");
+
+    expect(navbar).toContain('href="#main"');
   });
 });

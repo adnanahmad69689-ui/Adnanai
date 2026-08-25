@@ -92,7 +92,7 @@ export function Navbar() {
       >
         <div className="nav-inner">
           <a
-            href="#"
+            href="#main"
             className="nav-logo"
             onClick={(event) => {
               event.preventDefault();
