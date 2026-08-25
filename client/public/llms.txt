@@ -1,20 +1,38 @@
 # Adnan Ai
 
-> A personal portfolio by Adnan Ahmad. Adnan Ai builds websites, automations, and AI agents for real business tasks.
+> Adnan Ai is the personal portfolio and independent service practice of Adnan Ahmad. It builds clear websites, practical automation, and task-focused AI agents for business work in Peshawar and remotely.
+
+## Business information
+
+- Name: Adnan Ai
+- Founder: Adnan Ahmad
+- Website: https://adnanai.com/
+- Email: info@adnanai.com
+- Location: KPK, Peshawar, Pakistan
 
 ## Services
 
-- Web development
-- Automation
-- AI agents
+### Website Development
 
-## Selected public work
+Responsive websites that explain an offer and make the next step clear for visitors.
+
+### AI Automation
+
+Connected steps for intake, data, notifications, and follow-up around an existing business task.
+
+### AI Agents
+
+Task-focused support for research, intake, recurring questions, and internal work using approved context and human handoff where needed.
+
+## Public projects
 
 - Aqualume water website: https://1st-water-website.vercel.app/
 - N A Metal website: https://n-a-metal-lr1v.vercel.app/
 
+## AI system examples
+
+The AI system cards on the website describe practical service patterns, not client testimonials, performance results, or claims about completed client work.
+
 ## Contact
 
-- Email: info@adnanai.com
-- Location: KPK, Peshawar, Pakistan
-- Website: https://adnanai.com/
+For a project enquiry, use the Contact form on https://adnanai.com/ or email info@adnanai.com.

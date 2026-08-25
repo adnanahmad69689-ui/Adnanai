@@ -130,9 +130,9 @@ export const siteConfig = {
     ],
     achievementsTitle: "What I can build",
     achievements: [
-      "Websites that explain your offer and make the next step clear",
-      "Automations that connect repeated work and keep information moving",
-      "AI agents for research, intake, support, and internal tasks",
+      "Website Development: responsive websites that explain your offer and make the next step clear",
+      "AI Automation: connected steps for intake, data, notifications, and follow-up",
+      "AI Agents: task-focused support for research, intake, questions, and internal work",
     ],
   },
 

@@ -566,3 +566,10 @@
 - [x] Remove only genuine repetition, generic AI-sounding phrasing, filler, jargon, and unsupported claims; retain concise factual copy without keyword stuffing or invented proof.
 - [x] Apply and validate targeted on-page Google SEO improvements without redesigning the website, then publish through GitHub and verify the real domain.
 - [x] Report the practical Google SEO score, main improvements, and remaining issues without claiming unverified rankings or indexing.
+
+# AI and LLM SEO Step 6 Checklist
+
+- [x] Audit current public content, llms.txt, Schema.org data, service descriptions, projects, contact details, internal structure, and business-information consistency for human and AI readability.
+- [x] Improve only factual existing copy and structured data so Adnan AI, Adnan Ahmad, service meanings, real projects, and contact route are clear without an FAQ, keyword stuffing, Instagram, or invented claims.
+- [ ] Validate the public HTML, llms.txt, canonical business information, crawlability, and production domain, then publish through GitHub.
+- [ ] Report the practical AI/LLM SEO score, changes, and remaining issues without claiming unverified model retrieval or rankings.

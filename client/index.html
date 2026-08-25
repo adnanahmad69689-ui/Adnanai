@@ -46,8 +46,13 @@
             "url": "https://adnanai.com/",
             "description": "Adnan Ai builds clear websites, practical automation, and AI agents for business tasks in Peshawar and remotely.",
             "email": "info@adnanai.com",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "info@adnanai.com",
+              "contactType": "project enquiries"
+            },
             "image": "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/hero/migration/72a17e27-37ab-4c13-b1b5-ada0f02c2d17.webp",
-            "founder": { "@type": "Person", "name": "Adnan Ahmad" },
+            "founder": { "@id": "https://adnanai.com/#adnan-ahmad" },
             "areaServed": ["Pakistan", "Remote"],
             "address": {
               "@type": "PostalAddress",
@@ -55,7 +60,45 @@
               "addressRegion": "KPK",
               "addressCountry": "PK"
             },
-            "serviceType": ["AI Web Development", "AI Automation", "AI Agents"]
+            "serviceType": ["Website Development", "AI Automation", "AI Agents"],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Adnan Ai services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Website Development",
+                    "description": "Responsive websites that explain an offer and make the next step clear."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "AI Automation",
+                    "description": "Connected steps for intake, data, notifications, and follow-up."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "AI Agents",
+                    "description": "Task-focused support for research, intake, questions, and internal work."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://adnanai.com/#adnan-ahmad",
+            "name": "Adnan Ahmad",
+            "url": "https://adnanai.com/",
+            "worksFor": { "@id": "https://adnanai.com/#business" },
+            "knowsAbout": ["Website Development", "AI Automation", "AI Agents"]
           },
           {
             "@type": "WebSite",
@@ -73,6 +116,7 @@
             "description": "Adnan Ai builds clear websites, practical automation, and AI agents for business tasks in Peshawar and remotely.",
             "isPartOf": { "@id": "https://adnanai.com/#website" },
             "about": { "@id": "https://adnanai.com/#business" },
+            "mainEntity": { "@id": "https://adnanai.com/#business" },
             "primaryImageOfPage": "https://xlskgkechyngzsrttxap.supabase.co/storage/v1/object/public/hero/migration/72a17e27-37ab-4c13-b1b5-ada0f02c2d17.webp",
             "inLanguage": "en"
           }
