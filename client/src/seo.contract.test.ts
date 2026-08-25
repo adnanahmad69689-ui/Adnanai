@@ -20,6 +20,9 @@ describe("launch-critical SEO contract", () => {
     expect(html).toContain('"@type": "WebSite"');
     expect(html).toContain('"@type": "WebPage"');
     expect(html).toContain('"primaryImageOfPage"');
+    expect(html).toContain('"@type": "CreativeWork"');
+    expect(html).toContain("Aqualume water website");
+    expect(html).toContain("N A Metal website");
     expect(html).toContain('rel="manifest" href="/site.webmanifest"');
     expect(robots).toContain("Allow: /");
     expect(robots).not.toContain("Disallow: /admin");

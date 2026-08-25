@@ -25,6 +25,20 @@ describe("Cloudflare SEO route middleware", () => {
     expect(response.headers.get("X-Robots-Tag")).toBe("noindex, nofollow, noarchive");
   });
 
+  it("removes public canonical and index metadata from private HTML responses", async () => {
+    const response = await onRequest({
+      request: new Request("https://adnanai.com/admin"),
+      next: async () => new Response(
+        '<html><head><meta name="robots" content="index,follow,max-image-preview:large" /><link rel="canonical" href="https://adnanai.com/" /></head></html>',
+        { headers: { "Content-Type": "text/html; charset=utf-8" } }
+      ),
+    });
+    const html = await response.text();
+
+    expect(html).toContain('<meta name="robots" content="noindex,nofollow,noarchive" />');
+    expect(html).not.toContain('rel="canonical"');
+  });
+
   it("turns unrecognised HTML paths into noindex 404 responses", async () => {
     const response = await onRequest(context("/an-old-link"));
 

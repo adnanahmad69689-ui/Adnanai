@@ -573,3 +573,10 @@
 - [x] Improve only factual existing copy and structured data so Adnan AI, Adnan Ahmad, service meanings, real projects, and contact route are clear without an FAQ, keyword stuffing, Instagram, or invented claims.
 - [x] Validate the public HTML, llms.txt, canonical business information, crawlability, and production domain, then publish through GitHub.
 - [x] Report the practical AI/LLM SEO score, changes, and remaining issues without claiming unverified model retrieval or rankings.
+
+# Final A–Z Website Inspection Checklist
+
+- [x] Validate the live website’s navigation, sections, desktop/mobile presentation, links, form behavior, official email usage, browser console health, and accessibility interactions.
+- [x] Validate HTTPS, redirects, canonical, indexability, robots, sitemap, metadata, headings, structured data, llms guidance, internal links, image alternatives, and measurable performance signals.
+- [x] Apply the verified final corrections for private-route metadata, mobile menu accessibility, and project structured data, then prepare the real-domain revalidation.
+- [ ] Deliver the requested final scorecard with only DONE, NEEDS MY ACTION, and NOT NEEDED, plus explicit readiness answers.

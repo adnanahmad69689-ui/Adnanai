@@ -34,6 +34,8 @@ describe("portfolio navigation contract", () => {
     expect(config).toContain('{ id: "about", label: "About" }');
     expect(navbar).toContain("mobile-menu-logo");
     expect(navbar).toContain('className="mobile-menu-logo-text"');
+    expect(navbar).toContain('aria-controls="primary-mobile-menu"');
+    expect(navbar).toContain('id="primary-mobile-menu"');
     expect(styles).toContain(".nav-logo-text");
     expect(styles).toContain(".mobile-menu-logo-text");
   });

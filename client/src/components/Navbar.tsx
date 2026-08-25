@@ -128,6 +128,7 @@ export function Navbar() {
         onClick={() => setMenuOpen((value) => !value)}
         aria-label={menuOpen ? "Close menu" : "Open menu"}
         aria-expanded={menuOpen}
+        aria-controls="primary-mobile-menu"
       >
         <span className={`hamburger-wrapper ${menuOpen ? "open" : ""}`}>
           <span className="hamburger-line line-1" />
@@ -137,7 +138,7 @@ export function Navbar() {
       </button>
 
       {menuOpen && (
-        <div className="mobile-menu-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <div id="primary-mobile-menu" className="mobile-menu-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
           <div className="mobile-menu-bg" />
           <div className="mobile-menu-gradient" />
           <div className="mobile-menu-content">
