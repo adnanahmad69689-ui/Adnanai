@@ -554,3 +554,8 @@
 - [x] Validate live sitemap, robots, indexability signals, canonical URLs, HTTPS, redirects, important public URLs, metadata, structured data, mobile presentation, and measurable performance signals for the existing verified Domain property.
 - [x] Prepare the exact manual Google Search Console workflow for sitemap submission, URL inspection, indexing requests, Page Indexing, Core Web Vitals, HTTPS, Security Issues, Manual Actions, and Performance.
 - [x] Report readiness findings, explicit limitations, and user actions without claiming unverified Google indexing or creating another property.
+
+# GitHub and Real-Domain Delivery Preference Checklist
+
+- [x] Use `adnanahmad69689-ui/Adnanai` on GitHub as the source publication path for future source changes.
+- [x] Use `https://adnanai.com/` as the only public website reference in future delivery messages; do not present a Manus preview domain as the public site.
