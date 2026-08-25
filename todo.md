@@ -606,4 +606,4 @@
 
 - [x] Audit favicon files, canonical HTML declarations, and live favicon responses against Google Search favicon discovery requirements.
 - [x] Add a stable 192×192 square PNG and multi-size ICO alongside the existing SVG, declare the raster icon in the canonical head and manifest, and retain the existing brand artwork.
-- [ ] Publish through GitHub, verify the real-domain favicon files, and provide the Google Search recrawl action without claiming an immediate Search-result icon update.
+- [x] Publish through GitHub and verify that the real domain serves the PNG and ICO favicon assets with their canonical head declarations; provide the Google Search recrawl action without claiming an immediate Search-result icon update.
