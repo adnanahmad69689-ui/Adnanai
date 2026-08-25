@@ -23,6 +23,8 @@ describe("launch-critical SEO contract", () => {
     expect(html).toContain('"@type": "CreativeWork"');
     expect(html).toContain("Aqualume water website");
     expect(html).toContain("N A Metal website");
+    expect(html).toContain('rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"');
+    expect(html).toContain('rel="shortcut icon" href="/favicon.ico"');
     expect(html).toContain('rel="manifest" href="/site.webmanifest"');
     expect(robots).toContain("Allow: /");
     expect(robots).not.toContain("Disallow: /admin");

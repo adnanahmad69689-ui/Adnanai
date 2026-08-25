@@ -601,3 +601,9 @@
 
 - [x] Verify the existing Supabase Contact submission route and add an explicit accessible name to the visible Service selector because the live form lacked a programmatic label relationship.
 - [x] Reconfirm mobile behavior and interpret observed loading timing without claiming field Core Web Vitals; no further evidence-based correction is required at this time.
+
+# Google Search Favicon Correction Checklist
+
+- [x] Audit favicon files, canonical HTML declarations, and live favicon responses against Google Search favicon discovery requirements.
+- [x] Add a stable 192×192 square PNG and multi-size ICO alongside the existing SVG, declare the raster icon in the canonical head and manifest, and retain the existing brand artwork.
+- [ ] Publish through GitHub, verify the real-domain favicon files, and provide the Google Search recrawl action without claiming an immediate Search-result icon update.
