@@ -548,3 +548,9 @@
 - [x] Audit the live and source `sitemap.xml` plus `robots.txt` against the real canonical public URL set.
 - [x] No correction was needed: the sitemap contains only the canonical public homepage and `robots.txt` permits public crawling with the canonical sitemap reference.
 - [x] Validate both URLs and record sitemap status, robots status, URL count, and invalid URL count.
+
+# Google Search Console Preparation Step 4 Checklist
+
+- [x] Validate live sitemap, robots, indexability signals, canonical URLs, HTTPS, redirects, important public URLs, metadata, structured data, mobile presentation, and measurable performance signals for the existing verified Domain property.
+- [x] Prepare the exact manual Google Search Console workflow for sitemap submission, URL inspection, indexing requests, Page Indexing, Core Web Vitals, HTTPS, Security Issues, Manual Actions, and Performance.
+- [x] Report readiness findings, explicit limitations, and user actions without claiming unverified Google indexing or creating another property.
