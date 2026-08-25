@@ -607,3 +607,8 @@
 - [x] Audit favicon files, canonical HTML declarations, and live favicon responses against Google Search favicon discovery requirements.
 - [x] Add a stable 192×192 square PNG and multi-size ICO alongside the existing SVG, declare the raster icon in the canonical head and manifest, and retain the existing brand artwork.
 - [x] Publish through GitHub and verify that the real domain serves the PNG and ICO favicon assets with their canonical head declarations; provide the Google Search recrawl action without claiming an immediate Search-result icon update.
+
+# Bing Favicon Discovery Checklist
+
+- [x] Audit Bing-facing favicon discovery assets and live response headers after the corrected icon publication; the Bingbot user agent receives HTTP 200 for the homepage, robots, PNG, ICO, and SVG assets.
+- [x] No further Bing favicon correction is necessary; provide the Bing Webmaster recrawl action and realistic cache timing without claiming an immediate result update.
