@@ -542,3 +542,9 @@
 - [x] Audit public-page semantic HTML, heading structure, image alt text, metadata, internal and broken links, redirects, and browser console errors without redesigning the website.
 - [x] Apply only verified technical SEO, crawlability, semantic, link, metadata, and redirect fixes; preserve truthful content and do not begin AI SEO.
 - [x] Test local and production behavior, publish the completed technical SEO update, and report fixed, not-needed, and user-action items.
+
+# Sitemap and Robots Step 3 Checklist
+
+- [x] Audit the live and source `sitemap.xml` plus `robots.txt` against the real canonical public URL set.
+- [x] No correction was needed: the sitemap contains only the canonical public homepage and `robots.txt` permits public crawling with the canonical sitemap reference.
+- [x] Validate both URLs and record sitemap status, robots status, URL count, and invalid URL count.
