@@ -21,6 +21,7 @@ export const onRequest = async ({ request, next }: PagesContext) => {
   headers.set("X-Content-Type-Options", "nosniff");
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   headers.set("Permissions-Policy", "camera=(), geolocation=(), microphone=()");
+  headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   if (crawlAssets.has(url.pathname)) {
     headers.set("Cache-Control", "public, max-age=0, must-revalidate");
   }

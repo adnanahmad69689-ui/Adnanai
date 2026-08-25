@@ -535,3 +535,10 @@
 
 - [x] Preserve the original icon’s exact side spacing, AI scale, and position from the supplied reference while retaining only the `Adnan Ai` wordmark below it.
 - [x] Verify and deliver the corrected profile image without changing the paused Contact workflow or the website.
+
+# Technical SEO Step 2 Checklist
+
+- [x] Audit HTTPS, HTTP-to-HTTPS behavior, www/non-www routing, canonical URLs, duplicate URLs, indexability, robots directives, meta robots, X-Robots-Tag headers, and sitemap accessibility on the live public site.
+- [x] Audit public-page semantic HTML, heading structure, image alt text, metadata, internal and broken links, redirects, and browser console errors without redesigning the website.
+- [x] Apply only verified technical SEO, crawlability, semantic, link, metadata, and redirect fixes; preserve truthful content and do not begin AI SEO.
+- [ ] Test local and production behavior, publish the completed technical SEO update, and report fixed, not-needed, and user-action items.

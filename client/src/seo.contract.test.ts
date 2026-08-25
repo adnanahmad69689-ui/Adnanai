@@ -39,5 +39,17 @@ describe("launch-critical SEO contract", () => {
     expect(middleware).toContain('headers.set("X-Robots-Tag", "noindex, nofollow, noarchive")');
     expect(middleware).toContain("status: 404");
     expect(middleware).toContain('headers.set("X-Content-Type-Options", "nosniff")');
+    expect(middleware).toContain('headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains")');
+  });
+
+  it("keeps the public H1 and crawl-relevant sections inside the main landmark without an artificial delay", () => {
+    const home = readFileSync(resolve(projectRoot, "client/src/pages/Home.tsx"), "utf8");
+    const hero = readFileSync(resolve(projectRoot, "client/src/components/Hero.tsx"), "utf8");
+
+    expect(home).toContain('<main id="main">');
+    expect(home).toContain("<Hero />");
+    expect(home).toContain("<PortfolioSections />");
+    expect(home).not.toContain("setTimeout(() => setShouldLoadSections");
+    expect(hero).toContain('<h1 className="hero-name">');
   });
 });
