@@ -114,7 +114,7 @@ export function Contact() {
                 if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsServiceMenuOpen(false);
               }}
             >
-              <span>Service</span>
+              <span id={`${formId}-service-label`}>Service</span>
               <div className={`contact-service-picker${isServiceMenuOpen ? " is-open" : ""}`}>
                 <input type="hidden" name="service" value={values.service} />
                 <button
@@ -124,10 +124,11 @@ export function Contact() {
                   aria-haspopup="listbox"
                   aria-expanded={isServiceMenuOpen}
                   aria-controls={`${formId}-service-options`}
+                  aria-labelledby={`${formId}-service-label ${formId}-service-value`}
                   onClick={() => setIsServiceMenuOpen((open) => !open)}
                   onKeyDown={handleServiceKeyDown}
                 >
-                  <span className={values.service ? "" : "is-placeholder"}>{values.service || "Select a service"}</span>
+                  <span id={`${formId}-service-value`} className={values.service ? "" : "is-placeholder"}>{values.service || "Select a service"}</span>
                   <span className="contact-service-chevron" aria-hidden="true">⌄</span>
                 </button>
                 {isServiceMenuOpen ? (

@@ -590,3 +590,14 @@
 ## Research Scope Note
 
 - [x] Stop the broad parallel research after the returned audit findings and complete the focused quality pass using verified results only.
+
+# Final Production Recheck Checklist
+
+- [x] Revalidate live website behavior, official email consistency, contact form route, HTTPS, redirects, canonical, indexability, robots, sitemap, metadata, structured data, and AI-readable signals.
+- [x] Reconfirm focused performance, mobile, and accessibility findings without further broad research or redesign.
+- [x] Apply the newly verified Contact Service selector accessibility label correction, then prepare production validation and the requested final scorecard.
+
+## Focused Recheck Follow-up
+
+- [x] Verify the existing Supabase Contact submission route and add an explicit accessible name to the visible Service selector because the live form lacked a programmatic label relationship.
+- [x] Reconfirm mobile behavior and interpret observed loading timing without claiming field Core Web Vitals; no further evidence-based correction is required at this time.
