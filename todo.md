@@ -571,5 +571,5 @@
 
 - [x] Audit current public content, llms.txt, Schema.org data, service descriptions, projects, contact details, internal structure, and business-information consistency for human and AI readability.
 - [x] Improve only factual existing copy and structured data so Adnan AI, Adnan Ahmad, service meanings, real projects, and contact route are clear without an FAQ, keyword stuffing, Instagram, or invented claims.
-- [ ] Validate the public HTML, llms.txt, canonical business information, crawlability, and production domain, then publish through GitHub.
-- [ ] Report the practical AI/LLM SEO score, changes, and remaining issues without claiming unverified model retrieval or rankings.
+- [x] Validate the public HTML, llms.txt, canonical business information, crawlability, and production domain, then publish through GitHub.
+- [x] Report the practical AI/LLM SEO score, changes, and remaining issues without claiming unverified model retrieval or rankings.
