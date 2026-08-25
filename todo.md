@@ -580,3 +580,13 @@
 - [x] Validate HTTPS, redirects, canonical, indexability, robots, sitemap, metadata, headings, structured data, llms guidance, internal links, image alternatives, and measurable performance signals.
 - [x] Apply the verified final corrections for private-route metadata, mobile menu accessibility, and project structured data, then verify them on the real domain.
 - [x] Deliver the requested final scorecard with only DONE, NEEDS MY ACTION, and NOT NEEDED, plus explicit readiness answers.
+
+# Performance, Mobile, and Accessibility Step 7 Checklist
+
+- [x] Audit production images, loading, JavaScript, CSS, fonts, scripts, animations, layout stability, mobile navigation, text, buttons, images, contact form, overflow, touch targets, semantic HTML, keyboard use, focus, alternatives, labels, and contrast.
+- [x] No new correction was applied because the focused audit found no current user-facing defect requiring a speculative design or animation change; the prior verified mobile-menu accessibility correction remains in effect.
+- [x] Test desktop and phone-width behavior, document scores plus remaining evidence-based opportunities, and publish the quality-pass record through GitHub.
+
+## Research Scope Note
+
+- [x] Stop the broad parallel research after the returned audit findings and complete the focused quality pass using verified results only.
