@@ -352,6 +352,16 @@
   transform: translateY(40px);
   visibility: visible;
 }
+.reveal-item.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (max-width: 768px) {
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .reveal-item { opacity: 1 !important; transform: none !important; }
 }

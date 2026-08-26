@@ -16,10 +16,7 @@ export function useReveal<T extends HTMLElement>(options: { stagger?: number } =
       items.forEach((item) => item.classList.add("is-revealed"));
       return;
     }
-    items.forEach((item, index) => {
-      item.classList.add("reveal-managed");
-      item.style.setProperty("--reveal-delay", `${Math.min(index, 8) * stagger}s`);
-    });
+    let revealIndex = 0;
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -30,8 +27,30 @@ export function useReveal<T extends HTMLElement>(options: { stagger?: number } =
       },
       { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
     );
-    items.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
+    const observeItem = (item: HTMLElement) => {
+      if (item.classList.contains("reveal-managed") || item.classList.contains("is-revealed")) return;
+      item.classList.add("reveal-managed");
+      item.style.setProperty("--reveal-delay", `${Math.min(revealIndex, 8) * stagger}s`);
+      revealIndex += 1;
+      observer.observe(item);
+    };
+
+    items.forEach(observeItem);
+    const mutationObserver = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        mutation.addedNodes.forEach((node) => {
+          if (!(node instanceof HTMLElement)) return;
+          if (node.matches(".reveal-item")) observeItem(node);
+          node.querySelectorAll<HTMLElement>(".reveal-item").forEach(observeItem);
+        });
+      }
+    });
+    mutationObserver.observe(root, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, [stagger]);
 
   return ref;
