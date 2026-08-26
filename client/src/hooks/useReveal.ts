@@ -11,7 +11,8 @@ export function useReveal<T extends HTMLElement>(options: { stagger?: number } =
     const items = Array.from(root.querySelectorAll<HTMLElement>(".reveal-item"));
     if (!items.length) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) {
+    const compactViewport = window.matchMedia("(max-width: 768px)").matches;
+    if (reducedMotion || compactViewport || !("IntersectionObserver" in window)) {
       items.forEach((item) => item.classList.add("is-revealed"));
       return;
     }

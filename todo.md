@@ -609,6 +609,11 @@
 - [x] Publish through GitHub and verify that the real domain serves the PNG and ICO favicon assets with their canonical head declarations; provide the Google Search recrawl action without claiming an immediate Search-result icon update.
 
 # Bing Favicon Discovery Checklist
-
 - [x] Audit Bing-facing favicon discovery assets and live response headers after the corrected icon publication; the Bingbot user agent receives HTTP 200 for the homepage, robots, PNG, ICO, and SVG assets.
 - [x] No further Bing favicon correction is necessary; provide the Bing Webmaster recrawl action and realistic cache timing without claiming an immediate result update.
+
+# Portfolio and AI System Mobile Visibility Checklist
+- [x] Inspect Experience/Portfolio and AI System rendering at 320px, 375px, 390px, 414px, 768px, and desktop; identify the scroll-reveal opacity state as the mobile-risk cause. All requested widths show existing cards without clipping or horizontal overflow after the fallback.
+- [x] Add a mobile-safe reveal fallback so a failed or delayed Intersection Observer cannot leave existing Experience/Portfolio or AI System content hidden on narrow screens.
+- [x] Apply only the minimum correction needed to keep all existing Experience/Portfolio and AI System cards, images, text, buttons, links, icons, and animations visible and usable on mobile without changing desktop design.
+- [ ] Revalidate all requested widths, publish through GitHub, and confirm the real `https://adnanai.com/#experience` page works on mobile and desktop.
