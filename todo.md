@@ -616,4 +616,4 @@
 - [x] Inspect Experience/Portfolio and AI System rendering at 320px, 375px, 390px, 414px, 768px, and desktop; identify the scroll-reveal opacity state as the mobile-risk cause. All requested widths show existing cards without clipping or horizontal overflow after the fallback.
 - [x] Add a mobile-safe reveal fallback so a failed or delayed Intersection Observer cannot leave existing Experience/Portfolio or AI System content hidden on narrow screens.
 - [x] Apply only the minimum correction needed to keep all existing Experience/Portfolio and AI System cards, images, text, buttons, links, icons, and animations visible and usable on mobile without changing desktop design.
-- [ ] Revalidate all requested widths, publish through GitHub, and confirm the real `https://adnanai.com/#experience` page works on mobile and desktop.
+- [x] Revalidate all requested widths, publish through GitHub, and confirm the real `https://adnanai.com/#experience` page serves the mobile reveal fallback while desktop retains its existing reveal behavior.
