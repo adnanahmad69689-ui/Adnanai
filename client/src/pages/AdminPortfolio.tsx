@@ -101,6 +101,23 @@ const emptyForm = (kind: PortfolioKind, sortOrder = 1): PortfolioForm => ({
   ...DEFAULT_FRAMING,
 });
 
+/**
+ * Turns the highlights box into a clean list.
+ *
+ * Text pasted from another app often arrives with the line breaks written out
+ * as the characters backslash-n rather than as real newlines, which produced
+ * one long run-on bullet. Leading tick and bullet marks are stripped too,
+ * because the card already draws its own, and pasted copy usually brings one
+ * along, giving the doubled marks seen on the cards.
+ */
+function parseHighlights(text: string) {
+  return text
+    .replace(/\\r\\n|\\n|\\r/g, "\n")
+    .split(/\r?\n/)
+    .map((line) => line.replace(/^[\s.•\-–—*]*[✓✔√]?[\s.]*/, "").trim())
+    .filter(Boolean);
+}
+
 function FieldLabel({ children, optional }: { children: string; optional?: boolean }) {
   return (
     <label className="mb-2 block text-[10px] font-medium uppercase tracking-[0.18em] text-[#8f8f8f]">
@@ -244,7 +261,7 @@ function AdminPortfolioContent() {
       imageAlt: form.imageAlt.trim(),
       imageKey: form.imageKey.trim() || null,
       publicUrl: form.publicUrl.trim() || null,
-      details: form.detailsText.split("\n").map(item => item.trim()).filter(Boolean),
+      details: parseHighlights(form.detailsText),
       trigger: form.kind === "ai_system" ? form.trigger.trim() || null : null,
       aiProcess: form.kind === "ai_system" ? form.aiProcess.trim() || null : null,
       output: form.kind === "ai_system" ? form.output.trim() || null : null,
