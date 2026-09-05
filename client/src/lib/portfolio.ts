@@ -303,8 +303,29 @@ export async function createPortfolioItem(input: PortfolioInput) {
 }
 
 export async function updatePortfolioItem({ id, ...input }: PortfolioInput & { id: number }) {
+  // Read the stored image first so a replaced file can be cleaned up. Without
+  // this, every image swap left the old object behind in storage forever, and
+  // the bucket grew with each edit.
+  const { data: existing } = await supabase
+    .from("portfolio_items")
+    .select("image_key")
+    .eq("id", id)
+    .maybeSingle();
+  const previousKey = (existing as { image_key: string | null } | null)?.image_key ?? null;
+
   const { error } = await supabase.from("portfolio_items").update(await portfolioPayload(input)).eq("id", id);
   throwIfError(error);
+
+  // Only after the row is safely updated, so a failed save never orphans the
+  // image the record still points at.
+  if (previousKey && previousKey !== input.imageKey) {
+    const [bucket, ...pathParts] = previousKey.split("/");
+    const objectPath = pathParts.join("/");
+    if (bucket && objectPath) {
+      const { error: storageError } = await supabase.storage.from(bucket).remove([objectPath]);
+      if (storageError) throw new Error(`The project was saved, but the previous image could not be removed: ${storageError.message}`);
+    }
+  }
 }
 
 export async function deletePortfolioItem(item: PortfolioItem) {
