@@ -18,6 +18,25 @@ describe("A–Z no-redesign quality safeguards", () => {
     expect(existsSync(llmsPath)).toBe(true);
   });
 
+  it("keeps every portfolio item in the database, with no hardcoded project data in the source", () => {
+    // Anything the site shows must be manageable in the admin console. Bundled
+    // project lists were shipped once and became invisible content the owner
+    // could not edit or delete, so they must not come back.
+    for (const dead of ["projects.ts", "sampleProjects.ts", "reviews.ts"]) {
+      expect(existsSync(resolve(projectRoot, "client/src/data", dead))).toBe(false);
+    }
+
+    // Every section that shows projects reads them from the portfolio source.
+    for (const file of [
+      "client/src/components/SampleProjectCollection.tsx",
+      "client/src/components/Workflows.tsx",
+      "client/src/components/N8nProjects.tsx",
+    ]) {
+      const source = readFileSync(resolve(projectRoot, file), "utf8");
+      expect(source).toMatch(/listPublishedPortfolioItems|listAgentSectionItems/);
+    }
+  });
+
   it("renders every published item from the admin console rather than a fixed selection", () => {
     const workflows = readFileSync(resolve(projectRoot, "client/src/components/Workflows.tsx"), "utf8");
     const projects = readFileSync(resolve(projectRoot, "client/src/components/SampleProjectCollection.tsx"), "utf8");
