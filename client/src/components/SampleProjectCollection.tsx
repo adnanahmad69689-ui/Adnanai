@@ -2,7 +2,7 @@
 import { listPublishedPortfolioItems, type PortfolioItem } from "@/lib/portfolio";
 import { useQuery } from "@tanstack/react-query";
 import { mailto } from "../data/siteConfig";
-import { framingStyle } from "@/lib/framing";
+import { framingStyle, isDefaultFraming } from "@/lib/framing";
 
 export function SampleProjectCollection() {
   const { data: rawProjects, isLoading, isError } = useQuery({ queryKey: ["portfolio", "website"], queryFn: () => listPublishedPortfolioItems("website") });
@@ -19,7 +19,7 @@ export function SampleProjectCollection() {
         {isError ? <p className="sample-projects-loading">Website projects are temporarily unavailable. Please check back shortly.</p> : null}
         {projects.map((project) => <article key={project.id} className="sample-project-card reveal-item">
           <figure className="sample-project-image">
-            <img src={project.imageUrl} alt={project.imageAlt} loading="lazy" decoding="async" style={framingStyle(project)} />
+            <img src={project.imageUrl} alt={project.imageAlt} loading="lazy" decoding="async" style={isDefaultFraming(project) ? undefined : framingStyle(project)} />
           </figure>
           <div className="sample-project-content">
             <span className="sample-project-label">{project.label}</span>

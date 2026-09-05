@@ -9,7 +9,7 @@ import { useState } from "react";
 import { siteConfig, mailto } from "../data/siteConfig";
 import { listAgentSectionItems, listPublishedPortfolioItems, type PortfolioItem } from "@/lib/portfolio";
 import { useQuery } from "@tanstack/react-query";
-import { framingStyle } from "@/lib/framing";
+import { framingStyle, isDefaultFraming } from "@/lib/framing";
 
 type Workflow = Pick<PortfolioItem, "id" | "title" | "imageUrl" | "imageAlt" | "label" | "description" | "trigger" | "aiProcess" | "output" | "focalX" | "focalY" | "zoom">;
 
@@ -38,7 +38,9 @@ export function WorkflowCard({ workflow }: { workflow: Workflow }) {
             loading="lazy"
             decoding="async"
             src={workflow.imageUrl}
-            style={framingStyle(workflow)}
+            // Applying the default inline would override the object-position
+            // the stylesheet gives these cards, so only a saved crop is used.
+            style={isDefaultFraming(workflow) ? undefined : framingStyle(workflow)}
           />
         </div>
         <div className="workflow-info">

@@ -4,8 +4,9 @@ import { siteConfig, mailto } from "../data/siteConfig";
 import { listPublishedPortfolioItems, type PortfolioItem } from "@/lib/portfolio";
 import { useQuery } from "@tanstack/react-query";
 import { PipelineOverlay } from "./PipelineOverlay";
+import { framingStyle, isDefaultFraming } from "@/lib/framing";
 
-type Workflow = Pick<PortfolioItem, "id" | "title" | "imageUrl" | "imageAlt" | "label" | "description" | "trigger" | "aiProcess" | "output">;
+type Workflow = Pick<PortfolioItem, "id" | "title" | "imageUrl" | "imageAlt" | "label" | "description" | "trigger" | "aiProcess" | "output" | "focalX" | "focalY" | "zoom">;
 
 function getMetric(label: string) {
   const [metric = "AI", ...rest] = label.split("·");
@@ -21,7 +22,7 @@ function SystemPatternCard({ project }: { project: Workflow }) {
   return (
     <article className="n8n-card">
       <div className="n8n-img-container">
-        <img alt={project.imageAlt} className="n8n-img" loading="lazy" decoding="async" src={project.imageUrl} />
+        <img alt={project.imageAlt} className="n8n-img" loading="lazy" decoding="async" src={project.imageUrl} style={isDefaultFraming(project) ? undefined : framingStyle(project)} />
         <PipelineOverlay sub />
       </div>
       <div className="n8n-info">
