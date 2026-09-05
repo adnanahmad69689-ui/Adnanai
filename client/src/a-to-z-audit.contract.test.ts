@@ -31,8 +31,9 @@ describe("A–Z no-redesign quality safeguards", () => {
     expect(workflows).not.toMatch(/\.slice\(\s*0\s*,\s*\d+\s*\)/);
     expect(projects).not.toMatch(/\.slice\(\s*0\s*,\s*\d+\s*\)/);
 
-    // The count in the intro copy is derived, not written by hand, so it stays
-    // correct as projects are added and removed.
-    expect(projects).toContain("projects.length");
+    // The intro carries no project count at all. A hardcoded one went stale as
+    // soon as a project was added, and a derived one was unnecessary noise, so
+    // neither should come back.
+    expect(projects).not.toMatch(/public website projects?\./);
   });
 });
