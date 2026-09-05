@@ -1969,9 +1969,12 @@
 }
 .workflows-reveal-icon.is-open { transform: rotate(180deg); }
 
-/* The agents section follows the automation section directly, so it drops the
-   repeated top glow and tightens the gap between the two. */
-.workflows-section--agents { padding-top: 0; }
+/* The agents section follows the automation section directly. It drops the
+   repeated background glow and tightens the gap above it, so the two read as a
+   related pair rather than two identical blocks stacked up.
+   Qualified with the element so it outranks the later .workflows-section
+   padding shorthand instead of being silently overridden by it. */
+section.workflows-section--agents { padding-top: 2.25rem; }
 .workflows-section--agents .workflows-bg-glow { display: none; }
 
 .experience-company-type {

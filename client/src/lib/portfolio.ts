@@ -169,13 +169,38 @@ function throwIfError(error: { message: string } | null) {
  * The capability is probed once and cached, so a pending migration degrades to
  * "framing unavailable" instead of "nothing can be saved".
  */
-async function columnExists(table: "portfolio_items" | "site_settings", column: string) {
-  try {
-    const { error } = await supabase.from(table).select(column).limit(1);
-    return !error;
-  } catch {
-    return false;
+/**
+ * Reads one row with select('*') and inspects its keys.
+ *
+ * Selecting the column by name would be the obvious probe, but PostgREST
+ * answers 400 when the column does not exist, and that lands in the browser
+ * console on every visit. Asking for the whole row always succeeds, so the
+ * capability checks stay silent.
+ */
+const rowShapes = new Map<string, Promise<Set<string>>>();
+
+function tableColumns(table: "portfolio_items" | "site_settings"): Promise<Set<string>> {
+  let cached = rowShapes.get(table);
+  if (!cached) {
+    cached = (async () => {
+      try {
+        const { data, error } = await supabase.from(table).select("*").limit(1);
+        if (error || !data?.length) return new Set<string>();
+        return new Set(Object.keys(data[0] as Record<string, unknown>));
+      } catch {
+        return new Set<string>();
+      }
+    })();
+    rowShapes.set(table, cached);
   }
+  return cached;
+}
+
+async function columnExists(table: "portfolio_items" | "site_settings", column: string) {
+  const columns = await tableColumns(table);
+  // An empty table tells us nothing about its shape, so assume support rather
+  // than permanently disabling a feature on an empty database.
+  return columns.size === 0 ? true : columns.has(column);
 }
 
 let framingProbe: Promise<boolean> | null = null;
