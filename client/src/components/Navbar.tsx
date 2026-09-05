@@ -27,45 +27,74 @@ export function Navbar() {
   const { nav, identity } = siteConfig;
 
   useEffect(() => {
+    // One authoritative reading of the real scroll position.
+    //
+    // This previously ran a scroll handler AND an IntersectionObserver, each
+    // using different geometry (a 200px line vs a -20%/-70% band). They
+    // disagreed constantly, and whichever fired last won, so the highlight
+    // drifted, stuck, or landed on the wrong section — including showing a
+    // section as active while the page was still at the very top.
+    //
+    // Deriving the state from the scroll position on every scroll event covers
+    // every input method at once, because the wheel, a trackpad, a scrollbar
+    // drag, a scrollbar track click, the keyboard and touch all produce the
+    // same scroll event.
     const updateScrollState = () => {
       rafRef.current = 0;
+      const scrollY = window.scrollY;
+
       setScrolled((previous) => {
-        const next = window.scrollY > 400;
+        const next = scrollY > 400;
         return previous === next ? previous : next;
       });
 
+      // The section that owns the point one third down the viewport. Measuring
+      // a single reference line means exactly one section can ever match.
+      const line = window.innerHeight / 3;
+      let current = "";
       for (const link of nav.links) {
         const section = document.getElementById(link.id);
         if (!section) continue;
         const rect = section.getBoundingClientRect();
-        if (rect.top <= 200 && rect.bottom >= 200) {
-          setActiveSection((previous) => (previous === section.id ? previous : section.id));
+        if (rect.top <= line && rect.bottom > line) {
+          current = link.id;
           break;
         }
       }
+
+      // Past the end of the last section (the footer, for instance) keep the
+      // final section lit rather than clearing the highlight.
+      if (!current && scrollY > 0) {
+        const bottomReached = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+        if (bottomReached) {
+          for (let index = nav.links.length - 1; index >= 0; index -= 1) {
+            if (document.getElementById(nav.links[index].id)) { current = nav.links[index].id; break; }
+          }
+        }
+      }
+
+      setActiveSection((previous) => (previous === current ? previous : current));
     };
+
     const onScroll = () => {
       if (!rafRef.current) rafRef.current = requestAnimationFrame(updateScrollState);
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    updateScrollState();
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        }
-      },
-      { threshold: 0.3, rootMargin: "-20% 0px -70% 0px" }
-    );
-    nav.links.forEach((link) => {
-      const section = document.getElementById(link.id);
-      if (section) observer.observe(section);
-    });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // Resize changes the reference line and every section offset.
+    window.addEventListener("resize", onScroll, { passive: true });
+
+    // Sections are lazy-loaded, so their heights change after first paint.
+    // Re-measure whenever the document actually changes size.
+    const resizeObserver = typeof ResizeObserver !== "undefined" ? new ResizeObserver(onScroll) : null;
+    resizeObserver?.observe(document.body);
+
+    updateScrollState();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      observer.disconnect();
+      window.removeEventListener("resize", onScroll);
+      resizeObserver?.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [nav.links]);

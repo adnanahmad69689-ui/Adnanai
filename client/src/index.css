@@ -710,11 +710,22 @@
   will-change: transform;
 }
 .hero-bg-image {
+  /* --hero-subject-shift is the single knob for how far the seated portrait
+     sits from the navigation. The image is already anchored at object-position
+     left top, so there is no room left to move the subject right by shifting
+     the crop window; scaling from that same top-left anchor moves the subject
+     right and down together, which is what pulls the head clear of the Contact
+     button. It is a uniform scale, so nothing is stretched or distorted.
+     Raise it to move the head further right/down, lower it to move it back. */
+  --hero-subject-shift: 1.06;
+
   width: 100%;
   height: 100%;
   object-fit: cover;
   /* Align source image left so the seated portrait and laptop shift right in the hero frame. */
   object-position: left top;
+  transform: scale(var(--hero-subject-shift));
+  transform-origin: left top;
   will-change: transform;
 }
 .hero-overlay-left {
@@ -980,7 +991,9 @@
 
 @media (width <= 768px) {
   /* The supplied portrait is centered further left than the original asset. */
-  .hero-bg-image { object-position: 68% top !important; }
+  /* The compact composition is framed by object-position instead, and the nav
+     collapses to a menu button here, so the desktop shift is not needed. */
+  .hero-bg-image { object-position: 68% top !important; --hero-subject-shift: 1; }
   .hero-phase2-stats { display: none !important; }
   .hero-phase2-left { max-width: 100% !important; }
   .hero-greeting-logo-lockup { top: 1.35rem !important; left: 1.25rem !important; }
