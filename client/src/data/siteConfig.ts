@@ -46,7 +46,7 @@ export const siteConfig = {
     tagline: "WEB DEVELOPMENT · AUTOMATION · AI AGENTS",
     /** Short bio under the rotating word. */
     description:
-      "I build clear websites, practical automation, and AI agents for business tasks. Based in KPK, Peshawar, Pakistan — available remotely.",
+      "I build clear websites, practical automation, and AI agents for business tasks. Based in Peshawar, KPK. Available remotely.",
     /** Right-side panel: three service lines. */
     services: ["Web Development", "Automation", "AI Agents"],
     /** Right-side panel: three small stats. */
@@ -109,7 +109,7 @@ export const siteConfig = {
     headingLead: "Systems designed to make work",
     headingEm: "simpler.",
     subtitle:
-      "Three practical examples of work I can design for a business.",
+      "Practical examples of work I can design for a business.",
     ctaSubject: "Adnan Ai — Project enquiry",
     ctaBody:
       "Hi Adnan,\n\nI’d like to discuss a website, an automation, or an AI agent for my business.\n\nHere is the task I want to solve:\n\n[Describe your task]\n\nThanks!",

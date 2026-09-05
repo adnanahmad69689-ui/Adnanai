@@ -97,7 +97,6 @@ export function Hero() {
             <p className="hero-rotating" aria-live="polite">{hero.rotatingWords[wordIdx]}</p>
             <p className="hero-desc">{hero.description}</p>
           </div>
-          <div className="hero-scroll-indicator"><span className="hero-scroll-text">(Scroll down)</span><div className="hero-scroll-line" /></div>
         </div>
         <div className="hero-phase2-container" ref={phase2Ref} style={{ opacity: 0, transform: "translate3d(0, 60px, 0)" }}>
           <div className="hero-phase2-left"><p className="hero-phase2-label">{hero.phase2.label}</p><h2 className="hero-phase2-heading">{hero.phase2.headingLead}<br /><em>{hero.phase2.headingEm}</em></h2><p className="hero-phase2-desc">{hero.phase2.description}</p><div className="hero-phase2-actions"><a className="neon-btn" href={`#${hero.phase2.primaryCta.target}`}>{hero.phase2.primaryCta.label}</a><a className="hero-talk-link" href={`mailto:${contact.email}`}>{hero.phase2.secondaryCta.label}</a></div></div>
