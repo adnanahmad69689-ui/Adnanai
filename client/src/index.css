@@ -172,10 +172,20 @@
     color: #0a0a0a;
   }
 
-  ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: #0a0a0a; }
-  ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 5px; }
-  ::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
+  /* Slim thumb on a transparent track, so the page shows through instead of a
+     dark strip down the edge. The track was painted #0a0a0a against a #2a2a2a
+     thumb, which read as a black line. Nothing here changes layout width. */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(168, 255, 62, 0.16);
+    border-radius: 100px;
+    transition: background 200ms ease;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(168, 255, 62, 0.32); }
+  ::-webkit-scrollbar-corner { background: transparent; }
+  /* Firefox equivalent. */
+  html { scrollbar-width: thin; scrollbar-color: rgba(168, 255, 62, 0.22) transparent; }
 
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -311,9 +321,12 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #080808;
+  /* Matches the chip language used across the AI sections: a faint accent wash
+     behind a low-opacity accent border, rather than solid black behind a
+     full-strength one. The old treatment sat apart from everything around it. */
+  background: rgba(168, 255, 62, 0.07);
   color: var(--color-accent);
-  border: 1px solid var(--color-accent);
+  border: 1px solid rgba(168, 255, 62, 0.28);
   border-radius: 100px;
   padding: 10px 22px;
   font-family: "Space Grotesk", sans-serif;
@@ -322,19 +335,28 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.25s ease;
-  box-shadow: 0 0 0 rgba(168, 255, 62, 0);
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   white-space: nowrap;
+  cursor: pointer;
 }
 .neon-btn::before {
   content: "✦";
   font-size: 10px;
 }
+/* Lights up rather than jumping. The previous state scaled the button by 6%,
+   lifted it 2px and threw an 84px glow, which pushed the neighbouring nav links
+   around and read as the loudest thing on the page. */
 .neon-btn:hover {
-  transform: scale(1.06) translateY(-2px);
-  box-shadow: 0 0 24px rgba(168, 255, 62, 0.35), 0 0 60px rgba(168, 255, 62, 0.12);
+  background: rgba(168, 255, 62, 0.14);
+  border-color: rgba(168, 255, 62, 0.55);
+  box-shadow: 0 0 18px rgba(168, 255, 62, 0.14);
 }
-.neon-btn:active { transform: scale(0.97); }
+.neon-btn:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(168, 255, 62, 0.28);
+}
+.neon-btn:active { background: rgba(168, 255, 62, 0.2); }
 
 /* Gradient CTA pill */
 .cta-button {
