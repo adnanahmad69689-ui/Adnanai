@@ -2,13 +2,30 @@
  * About section: tilt-able portrait with glare, bio paragraphs,
  * glass info table, and achievements box.
  */
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { SiteSettings } from "@/lib/portfolio";
 import { siteConfig } from "../data/siteConfig";
 
 export function About() {
   const { about } = siteConfig;
   const wrapRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0, gx: 50, gy: 50, glare: 0 });
+  const [settings, setSettings] = useState<SiteSettings | null>(null);
+  const aboutImage = settings?.aboutImageUrl || about.image;
+  const aboutImageAlt = settings?.aboutImageAlt || about.imageAlt;
+
+  useEffect(() => {
+    let active = true;
+    void import("@/lib/portfolio")
+      .then(({ getSiteSettings }) => getSiteSettings())
+      .then(result => {
+        if (active) setSettings(result);
+      })
+      .catch(() => {
+        // Keep the built-in portrait visible if the public settings request is unavailable.
+      });
+    return () => { active = false; };
+  }, []);
 
   const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -46,8 +63,8 @@ export function About() {
               }}
             >
               <img
-                src={about.image}
-                alt={about.imageAlt}
+                src={aboutImage}
+                alt={aboutImageAlt}
                 className="about-img tilt-content"
                 loading="lazy"
                 decoding="async"

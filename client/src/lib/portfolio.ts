@@ -52,6 +52,9 @@ type SiteSettingsRow = {
   hero_image_url: string | null;
   hero_image_key: string | null;
   hero_image_alt: string | null;
+  about_image_url: string | null;
+  about_image_key: string | null;
+  about_image_alt: string | null;
   updated_at: string;
 };
 
@@ -59,6 +62,9 @@ export type SiteSettings = {
   heroImageUrl: string | null;
   heroImageKey: string | null;
   heroImageAlt: string | null;
+  aboutImageUrl: string | null;
+  aboutImageKey: string | null;
+  aboutImageAlt: string | null;
   updatedAt: Date;
 };
 
@@ -185,6 +191,9 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
     heroImageUrl: row.hero_image_url,
     heroImageKey: row.hero_image_key,
     heroImageAlt: row.hero_image_alt,
+    aboutImageUrl: row.about_image_url ?? null,
+    aboutImageKey: row.about_image_key ?? null,
+    aboutImageAlt: row.about_image_alt ?? null,
     updatedAt: new Date(row.updated_at),
   };
 }
@@ -192,6 +201,16 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
 export async function uploadHeroImage(file: File) {
   const extension = file.type === "image/png" ? "png" : file.type === "image/jpeg" ? "jpg" : "webp";
   const objectPath = `admin/${crypto.randomUUID()}.${extension}`;
+  const { error } = await supabase.storage.from("hero").upload(objectPath, file, { contentType: file.type, upsert: false });
+  throwIfError(error);
+  const { data } = supabase.storage.from("hero").getPublicUrl(objectPath);
+  return { key: `hero/${objectPath}`, url: data.publicUrl };
+}
+
+/** Stored in the existing hero bucket under about/ so no new storage policy is needed. */
+export async function uploadAboutImage(file: File) {
+  const extension = file.type === "image/png" ? "png" : file.type === "image/jpeg" ? "jpg" : "webp";
+  const objectPath = `about/${crypto.randomUUID()}.${extension}`;
   const { error } = await supabase.storage.from("hero").upload(objectPath, file, { contentType: file.type, upsert: false });
   throwIfError(error);
   const { data } = supabase.storage.from("hero").getPublicUrl(objectPath);
@@ -213,6 +232,27 @@ export async function updateHeroSettings(input: { imageUrl: string | null; image
     if (bucket && objectPath) {
       const { error: storageError } = await supabase.storage.from(bucket).remove([objectPath]);
       if (storageError) throw new Error(`Hero settings were saved, but the previous image could not be removed: ${storageError.message}`);
+    }
+  }
+}
+
+export async function updateAboutSettings(input: { imageUrl: string | null; imageKey: string | null; imageAlt: string | null; previousKey?: string | null }) {
+  // Only the about_* columns are sent, so the hero image on the same row is
+  // left exactly as it is.
+  const { error } = await supabase.from("site_settings").upsert({
+    id: "global",
+    about_image_url: input.imageUrl,
+    about_image_key: input.imageKey,
+    about_image_alt: input.imageAlt,
+  });
+  throwIfError(error);
+
+  if (input.previousKey && input.previousKey !== input.imageKey) {
+    const [bucket, ...pathParts] = input.previousKey.split("/");
+    const objectPath = pathParts.join("/");
+    if (bucket && objectPath) {
+      const { error: storageError } = await supabase.storage.from(bucket).remove([objectPath]);
+      if (storageError) throw new Error(`About settings were saved, but the previous image could not be removed: ${storageError.message}`);
     }
   }
 }

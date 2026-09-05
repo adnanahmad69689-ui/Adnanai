@@ -15,8 +15,10 @@ import {
   reorderPortfolioItems,
   type PortfolioInput,
   type PortfolioItem,
+  updateAboutSettings,
   updateHeroSettings,
   updatePortfolioItem,
+  uploadAboutImage,
   uploadHeroImage,
   uploadPortfolioImage,
 } from "@/lib/portfolio";
@@ -94,6 +96,7 @@ function AdminPortfolioContent() {
   const [form, setForm] = useState<PortfolioForm>(() => emptyForm("website"));
   const [isUploading, setIsUploading] = useState(false);
   const [isUploadingHero, setIsUploadingHero] = useState(false);
+  const [isUploadingAbout, setIsUploadingAbout] = useState(false);
   const canManage = isAuthenticated && user?.role === "admin";
   const { data, isLoading } = useQuery({ queryKey: ["portfolio", "admin"], queryFn: listAdminPortfolioItems, enabled: canManage });
   const { data: siteSettings } = useQuery({ queryKey: ["site-settings"], queryFn: getSiteSettings, enabled: canManage });
@@ -151,6 +154,14 @@ function AdminPortfolioContent() {
     onSuccess: async () => {
       await refreshSiteSettings();
       toast.success("Hero image updated.");
+    },
+    onError: error => toast.error(error.message),
+  });
+  const aboutMutation = useMutation({
+    mutationFn: updateAboutSettings,
+    onSuccess: async () => {
+      await refreshSiteSettings();
+      toast.success("About image updated.");
     },
     onError: error => toast.error(error.message),
   });
@@ -269,6 +280,40 @@ function AdminPortfolioContent() {
     await heroMutation.mutateAsync({ imageUrl: null, imageKey: null, imageAlt: null, previousKey: siteSettings.heroImageKey });
   };
 
+  const changeAboutImage = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+      toast.error("Use a JPG, PNG, or WebP image.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("About image files must be 5 MB or smaller.");
+      return;
+    }
+    setIsUploadingAbout(true);
+    try {
+      const uploaded = await uploadAboutImage(file);
+      await aboutMutation.mutateAsync({
+        imageUrl: uploaded.url,
+        imageKey: uploaded.key,
+        imageAlt: file.name.replace(/\.[^/.]+$/, "").replace(/[-_]+/g, " "),
+        previousKey: siteSettings?.aboutImageKey,
+      });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "The about image upload failed.");
+    } finally {
+      setIsUploadingAbout(false);
+    }
+  };
+
+  const removeAboutImage = async () => {
+    if (!siteSettings?.aboutImageUrl) return;
+    if (!window.confirm("Remove the managed About image and return to the built-in fallback portrait?")) return;
+    await aboutMutation.mutateAsync({ imageUrl: null, imageKey: null, imageAlt: null, previousKey: siteSettings.aboutImageKey });
+  };
+
   const move = (id: number, direction: -1 | 1) => {
     const index = activeItems.findIndex(item => item.id === id);
     const swapIndex = index + direction;
@@ -294,6 +339,11 @@ function AdminPortfolioContent() {
       <section className="mb-6 grid gap-4 border border-white/10 bg-[#111] p-5 lg:grid-cols-[220px_minmax(0,1fr)]">
         <div className="overflow-hidden bg-black/30">{siteSettings?.heroImageUrl ? <img src={siteSettings.heroImageUrl} alt={siteSettings.heroImageAlt || "Current hero preview"} className="aspect-[16/10] h-full w-full object-cover" /> : <div className="grid aspect-[16/10] place-items-center p-4 text-center text-xs text-[#777]">Built-in hero portrait is active.</div>}</div>
         <div className="flex flex-col justify-between gap-4"><div><p className="text-[10px] uppercase tracking-[0.18em] text-[#a8ff3e]">Hero image</p><h2 className="mt-2 text-2xl">Manage the first impression.</h2><p className="mt-2 max-w-xl text-sm leading-6 text-[#9e9e9e]">Upload one portrait or hero visual. Replacing it removes the old managed file. Removing it restores the built-in fallback portrait.</p></div><div className="flex flex-wrap gap-3"><label className="inline-flex cursor-pointer items-center gap-2 bg-[#a8ff3e] px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-[#111]"><ImageUp className="h-4 w-4" /> {isUploadingHero ? "Uploading…" : siteSettings?.heroImageUrl ? "Replace hero" : "Upload hero"}<input type="file" accept="image/jpeg,image/png,image/webp" className="hidden" disabled={isUploadingHero || heroMutation.isPending} onChange={changeHeroImage} /></label>{siteSettings?.heroImageUrl ? <Button type="button" variant="outline" disabled={heroMutation.isPending} onClick={() => void removeHeroImage()} className="border-white/15 text-[#d9d9d9] hover:bg-white/5 hover:text-white">Remove hero</Button> : null}</div></div>
+      </section>
+
+      <section className="mb-6 grid gap-4 border border-white/10 bg-[#111] p-5 lg:grid-cols-[220px_minmax(0,1fr)]">
+        <div className="overflow-hidden bg-black/30">{siteSettings?.aboutImageUrl ? <img src={siteSettings.aboutImageUrl} alt={siteSettings.aboutImageAlt || "Current About preview"} className="aspect-[16/10] h-full w-full object-cover" /> : <div className="grid aspect-[16/10] place-items-center p-4 text-center text-xs text-[#777]">Built-in About portrait is active.</div>}</div>
+        <div className="flex flex-col justify-between gap-4"><div><p className="text-[10px] uppercase tracking-[0.18em] text-[#a8ff3e]">About image</p><h2 className="mt-2 text-2xl">The portrait beside your bio.</h2><p className="mt-2 max-w-xl text-sm leading-6 text-[#9e9e9e]">This is the tilting portrait in the About section. Replacing it removes the old managed file. Removing it restores the built-in fallback portrait.</p></div><div className="flex flex-wrap gap-3"><label className="inline-flex cursor-pointer items-center gap-2 bg-[#a8ff3e] px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-[#111]"><ImageUp className="h-4 w-4" /> {isUploadingAbout ? "Uploading…" : siteSettings?.aboutImageUrl ? "Replace About image" : "Upload About image"}<input type="file" accept="image/jpeg,image/png,image/webp" className="hidden" disabled={isUploadingAbout || aboutMutation.isPending} onChange={changeAboutImage} /></label>{siteSettings?.aboutImageUrl ? <Button type="button" variant="outline" disabled={aboutMutation.isPending} onClick={() => void removeAboutImage()} className="border-white/15 text-[#d9d9d9] hover:bg-white/5 hover:text-white">Remove About image</Button> : null}</div></div>
       </section>
 
       <Tabs value={activeKind} onValueChange={value => beginNew(value as PortfolioKind)} className="gap-6">
