@@ -1134,6 +1134,21 @@
 }
 .workflow-card:hover .workflow-img { transform: scale(1.03); }
 
+/* The same slow image push on the website cards and the n8n cards, so every
+   project on the site signals that it can be opened in the same way. Only the
+   image moves inside its own frame; the card does not resize, so nothing
+   around it shifts. */
+.sample-project-image > img:first-child,
+.n8n-img { transition: transform 0.5s ease; }
+.sample-project-card:hover .sample-project-image > img:first-child,
+.n8n-card:hover .n8n-img { transform: scale(1.03); }
+
+@media (prefers-reduced-motion: reduce) {
+  .workflow-card:hover .workflow-img,
+  .sample-project-card:hover .sample-project-image > img:first-child,
+  .n8n-card:hover .n8n-img { transform: none; }
+}
+
 .pipeline-overlay {
   position: absolute;
   inset: 0;

@@ -91,7 +91,11 @@ const emptyForm = (kind: PortfolioKind, sortOrder = 1): PortfolioForm => ({
   aiProcess: "",
   output: "",
   approvalRequired: kind === "ai_system",
-  status: "draft",
+  // New projects go live on save. Defaulting to draft meant a project could be
+  // filled in, saved successfully, and still never appear on the site, which
+  // reads as the admin console being broken. The visibility switch is still
+  // there to take something down again.
+  status: "published",
   sortOrder,
   agentExample: false,
   ...DEFAULT_FRAMING,
@@ -416,6 +420,19 @@ function AdminPortfolioContent() {
         </div>
         <a href="/" className="inline-flex items-center gap-2 self-start text-xs uppercase tracking-[0.16em] text-[#bdbdbd] transition-colors hover:text-[#a8ff3e] lg:self-auto"><Globe2 className="h-4 w-4" /> View public portfolio</a>
       </header>
+
+      {/* The crop controls need columns from a pending migration. Saying so
+          once, here, is clearer than three editors quietly not appearing. */}
+      {framingReady === false ? (
+        <div className="mb-6 border border-[#a8ff3e]/25 bg-[#a8ff3e]/[0.05] p-4">
+          <p className="text-sm text-[#e6ffd0]">Image cropping is not switched on yet.</p>
+          <p className="mt-1 text-xs leading-5 text-[#9e9e9e]">
+            Everything else works normally: you can add, edit, delete and publish projects, and upload or replace images.
+            Zoom and repositioning need one database update before they can save. Run the migration in Supabase and these
+            controls appear here automatically.
+          </p>
+        </div>
+      ) : null}
 
       <section className="mb-6 grid gap-4 border border-white/10 bg-[#111] p-5 lg:grid-cols-[220px_minmax(0,1fr)]">
         <div className="overflow-hidden bg-black/30">{siteSettings?.heroImageUrl ? <img src={siteSettings.heroImageUrl} alt={siteSettings.heroImageAlt || "Current hero preview"} className="aspect-[16/10] h-full w-full object-cover" /> : <div className="grid aspect-[16/10] place-items-center p-4 text-center text-xs text-[#777]">Built-in hero portrait is active.</div>}</div>
