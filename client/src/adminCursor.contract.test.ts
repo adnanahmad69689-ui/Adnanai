@@ -20,8 +20,21 @@ describe("admin custom cursor contract", () => {
     // for no saving: browsers already coalesce pointermove to one per frame.
     expect(cursorComponent).toContain("dot.style.transform = transform");
     expect(cursorComponent).toContain("ring.style.transform = transform");
-    // No frame scheduling call (the prose above may still name the API).
-    expect(cursorComponent).not.toMatch(/requestAnimationFrame\s*\(/);
+
+    // The position write must sit inside the pointermove handler itself.
+    const onMoveBody = cursorComponent.slice(
+      cursorComponent.indexOf("const onMove"),
+      cursorComponent.indexOf("const onPointerOver"),
+    );
+    expect(onMoveBody).toContain("dot.style.transform = transform");
+    expect(onMoveBody).not.toMatch(/requestAnimationFrame\s*\(/);
+
+    // Frame scheduling is allowed elsewhere, but only to throttle the hover
+    // re-test after scrolling — never to move the cursor.
+    const frameCalls = cursorComponent.match(/requestAnimationFrame\s*\(\s*(\w+)/g) ?? [];
+    for (const call of frameCalls) {
+      expect(call).toContain("syncHoverAfterScroll");
+    }
   });
 
   it("never transitions the transform that tracks the pointer", () => {

@@ -284,6 +284,12 @@
 }
 .custom-cursor.is-interactive .custom-cursor__mark { opacity: 0.84; }
 .custom-cursor-ring.is-interactive .custom-cursor-ring__mark { transform: scale(1); opacity: 0.78; border-color: #f0ece6; }
+/* Hidden while the pointer is outside the document — over the scrollbar or the
+   browser chrome — where the page receives no pointer events and the mark
+   would otherwise sit frozen next to the moving scrollbar. Applied to the
+   inner marks so the tracked elements keep no transition of their own. */
+.custom-cursor.is-hidden .custom-cursor__mark,
+.custom-cursor-ring.is-hidden .custom-cursor-ring__mark { opacity: 0; }
 @media (width <= 1024px) {
   .custom-cursor, .custom-cursor-ring { display: none; }
 }
