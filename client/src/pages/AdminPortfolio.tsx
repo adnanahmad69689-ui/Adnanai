@@ -16,6 +16,7 @@ import {
   reorderPortfolioItems,
   type PortfolioInput,
   type PortfolioItem,
+  supportsAgentCategory,
   supportsFraming,
   updateAboutSettings,
   updateHeroSettings,
@@ -37,11 +38,18 @@ import {
   Pencil,
   Trash2,
   Workflow,
+  Bot,
 } from "lucide-react";
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
-type PortfolioKind = "website" | "ai_system";
+type PortfolioKind = "website" | "ai_system" | "ai_agent";
+
+const KIND_TITLES: Record<PortfolioKind, string> = {
+  website: "Website projects",
+  ai_system: "AI automation",
+  ai_agent: "AI agents",
+};
 type PortfolioStatus = "draft" | "published";
 
 type ManagedItem = PortfolioItem;
@@ -66,12 +74,13 @@ type PortfolioForm = {
   focalX: number;
   focalY: number;
   zoom: number;
+  agentExample: boolean;
 };
 
 const emptyForm = (kind: PortfolioKind, sortOrder = 1): PortfolioForm => ({
   kind,
   title: "",
-  label: kind === "website" ? "LIVE WEBSITE" : "AI SYSTEM",
+  label: kind === "website" ? "LIVE WEBSITE" : kind === "ai_agent" ? "AI AGENT" : "AI AUTOMATION",
   description: "",
   imageUrl: "",
   imageAlt: "",
@@ -84,6 +93,7 @@ const emptyForm = (kind: PortfolioKind, sortOrder = 1): PortfolioForm => ({
   approvalRequired: kind === "ai_system",
   status: "draft",
   sortOrder,
+  agentExample: false,
   ...DEFAULT_FRAMING,
 });
 
@@ -109,6 +119,10 @@ function AdminPortfolioContent() {
   // Hiding the editors is better than letting a crop be silently discarded.
   const [framingReady, setFramingReady] = useState<boolean | null>(null);
   useEffect(() => { void supportsFraming().then(setFramingReady); }, []);
+  // The agent category needs its own migration, so the toggle is hidden until
+  // the column exists rather than saving a value the database would reject.
+  const [agentReady, setAgentReady] = useState<boolean | null>(null);
+  useEffect(() => { void supportsAgentCategory().then(setAgentReady); }, []);
   const canManage = isAuthenticated && user?.role === "admin";
   const { data, isLoading } = useQuery({ queryKey: ["portfolio", "admin"], queryFn: listAdminPortfolioItems, enabled: canManage });
   const { data: siteSettings } = useQuery({ queryKey: ["site-settings"], queryFn: getSiteSettings, enabled: canManage });
@@ -200,6 +214,7 @@ function AdminPortfolioContent() {
       focalX: item.focalX,
       focalY: item.focalY,
       zoom: item.zoom,
+      agentExample: item.agentExample,
       detailsText: item.details.join("\n"),
       trigger: item.trigger ?? "",
       aiProcess: item.aiProcess ?? "",
@@ -235,6 +250,8 @@ function AdminPortfolioContent() {
       focalX: form.focalX,
       focalY: form.focalY,
       zoom: form.zoom,
+      // Only an automation can stand in as an agent example.
+      agentExample: form.kind === "ai_system" ? form.agentExample : false,
     };
     if (form.id) updateMutation.mutate({ id: form.id, ...input });
     else createMutation.mutate(input);
@@ -447,14 +464,15 @@ function AdminPortfolioContent() {
       <Tabs value={activeKind} onValueChange={value => beginNew(value as PortfolioKind)} className="gap-6">
         <TabsList className="h-auto w-full justify-start rounded-none border-b border-white/10 bg-transparent p-0 sm:w-auto sm:rounded-lg sm:border sm:border-white/10 sm:bg-white/[0.03] sm:p-1">
           <TabsTrigger value="website" className="h-11 rounded-none px-4 text-[#bdbdbd] data-[state=active]:bg-transparent data-[state=active]:text-[#a8ff3e] sm:rounded-md sm:data-[state=active]:bg-[#a8ff3e] sm:data-[state=active]:text-[#111]"><Globe2 className="h-4 w-4" /> Websites</TabsTrigger>
-          <TabsTrigger value="ai_system" className="h-11 rounded-none px-4 text-[#bdbdbd] data-[state=active]:bg-transparent data-[state=active]:text-[#a8ff3e] sm:rounded-md sm:data-[state=active]:bg-[#a8ff3e] sm:data-[state=active]:text-[#111]"><Workflow className="h-4 w-4" /> AI Systems</TabsTrigger>
+          <TabsTrigger value="ai_system" className="h-11 rounded-none px-4 text-[#bdbdbd] data-[state=active]:bg-transparent data-[state=active]:text-[#a8ff3e] sm:rounded-md sm:data-[state=active]:bg-[#a8ff3e] sm:data-[state=active]:text-[#111]"><Workflow className="h-4 w-4" /> AI Automation</TabsTrigger>
+          <TabsTrigger value="ai_agent" className="h-11 rounded-none px-4 text-[#bdbdbd] data-[state=active]:bg-transparent data-[state=active]:text-[#a8ff3e] sm:rounded-md sm:data-[state=active]:bg-[#a8ff3e] sm:data-[state=active]:text-[#111]"><Bot className="h-4 w-4" /> AI Agents</TabsTrigger>
         </TabsList>
       </Tabs>
 
       <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1fr)_470px]">
         <section className="min-w-0">
           <div className="mb-4 flex items-center justify-between gap-4">
-            <div><p className="text-lg">{activeKind === "website" ? "Website projects" : "AI system patterns"}</p><p className="text-xs text-[#777]">{activeItems.length} managed {activeItems.length === 1 ? "item" : "items"}</p></div>
+            <div><p className="text-lg">{KIND_TITLES[activeKind]}</p><p className="text-xs text-[#777]">{activeItems.length} managed {activeItems.length === 1 ? "item" : "items"}</p></div>
             <Button onClick={() => beginNew()} className="bg-[#a8ff3e] text-[#101010] hover:bg-[#c0ff6e]"><FilePlus2 className="mr-2 h-4 w-4" /> Add {activeKind === "website" ? "website" : "AI system"}</Button>
           </div>
           {isLoading ? <div className="grid min-h-48 place-items-center border border-white/10 bg-white/[0.025] text-sm text-[#9e9e9e]"><LoaderCircle className="mr-2 h-4 w-4 animate-spin" /> Loading content…</div> : null}
@@ -483,7 +501,7 @@ function AdminPortfolioContent() {
               <div><FieldLabel>Image description</FieldLabel><Input required value={form.imageAlt} onChange={event => patchForm({ imageAlt: event.target.value })} placeholder="Describe the image for screen readers" className="border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div>
               <div><FieldLabel optional>Live public URL</FieldLabel><Input type="url" value={form.publicUrl} onChange={event => patchForm({ publicUrl: event.target.value })} placeholder="https://your-live-project.vercel.app" className="border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div>
               <div><FieldLabel optional>{activeKind === "website" ? "Project highlights" : "Short supporting points"}</FieldLabel><Textarea value={form.detailsText} onChange={event => patchForm({ detailsText: event.target.value })} placeholder="One short point per line" className="min-h-20 border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div>
-              {activeKind === "ai_system" ? <div className="space-y-5 border-t border-white/10 pt-5"><div><FieldLabel>Trigger</FieldLabel><Textarea value={form.trigger} onChange={event => patchForm({ trigger: event.target.value })} placeholder="What starts this system?" className="min-h-20 border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div><div><FieldLabel>AI process</FieldLabel><Textarea value={form.aiProcess} onChange={event => patchForm({ aiProcess: event.target.value })} placeholder="What does the workflow or agent do?" className="min-h-20 border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div><div><FieldLabel>Output</FieldLabel><Textarea value={form.output} onChange={event => patchForm({ output: event.target.value })} placeholder="What useful result is prepared?" className="min-h-20 border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div><div className="flex items-center justify-between gap-3 border border-white/10 bg-black/20 p-3"><div><p className="text-sm">Human approval</p><p className="mt-1 text-xs text-[#777]">Show that a person reviews important outcomes.</p></div><Switch checked={form.approvalRequired} onCheckedChange={approvalRequired => patchForm({ approvalRequired })} /></div></div> : null}
+              {activeKind === "ai_system" ? <div className="space-y-5 border-t border-white/10 pt-5"><div><FieldLabel>Trigger</FieldLabel><Textarea value={form.trigger} onChange={event => patchForm({ trigger: event.target.value })} placeholder="What starts this system?" className="min-h-20 border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div><div><FieldLabel>AI process</FieldLabel><Textarea value={form.aiProcess} onChange={event => patchForm({ aiProcess: event.target.value })} placeholder="What does the workflow or agent do?" className="min-h-20 border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div><div><FieldLabel>Output</FieldLabel><Textarea value={form.output} onChange={event => patchForm({ output: event.target.value })} placeholder="What useful result is prepared?" className="min-h-20 border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div><div className="flex items-center justify-between gap-3 border border-white/10 bg-black/20 p-3"><div><p className="text-sm">Human approval</p><p className="mt-1 text-xs text-[#777]">Show that a person reviews important outcomes.</p></div><Switch checked={form.approvalRequired} onCheckedChange={approvalRequired => patchForm({ approvalRequired })} /></div>{agentReady ? <div className="flex items-center justify-between gap-3 border border-white/10 bg-black/20 p-3"><div><p className="text-sm">Show in AI Agents as a temporary example</p><p className="mt-1 text-xs text-[#777]">Borrows this automation into the AI Agents section without duplicating it. Switch off once real agent projects replace it.</p></div><Switch checked={form.agentExample} onCheckedChange={agentExample => patchForm({ agentExample })} /></div> : null}</div> : null}
               <div className="flex items-center justify-between gap-3 border-t border-white/10 pt-5"><div><p className="text-sm">Public visibility</p><p className="mt-1 text-xs text-[#777]">Only published items appear on the portfolio.</p></div><Switch checked={form.status === "published"} onCheckedChange={checked => patchForm({ status: checked ? "published" : "draft" })} /></div>
               <div className="grid grid-cols-2 gap-3 pt-2"><Button type="button" variant="outline" onClick={() => beginNew()} className="border-white/15 text-[#d9d9d9] hover:bg-white/5 hover:text-white">Reset</Button><Button type="submit" disabled={isSaving || isUploading} className="bg-[#a8ff3e] text-[#111] hover:bg-[#c0ff6e]">{isSaving ? <LoaderCircle className="mr-2 h-4 w-4 animate-spin" /> : <Check className="mr-2 h-4 w-4" />}{form.id ? "Save changes" : "Create item"}</Button></div>
               {form.publicUrl ? <a href={form.publicUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 text-xs uppercase tracking-[0.14em] text-[#9e9e9e] transition-colors hover:text-[#a8ff3e]"><ExternalLink className="h-3.5 w-3.5" /> Open public URL</a> : null}

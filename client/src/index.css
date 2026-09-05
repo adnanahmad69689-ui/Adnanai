@@ -1935,6 +1935,45 @@
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
+/* Reveal control for the AI sections. Only rendered when more than four
+   projects exist, so it never appears as decoration. */
+.workflows-reveal {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+.workflows-reveal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 26px;
+  border: 1px solid rgba(168, 255, 62, 0.35);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--color-accent);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 220ms ease, background-color 220ms ease, color 220ms ease;
+}
+.workflows-reveal-btn:hover {
+  border-color: var(--color-accent);
+  background: rgba(168, 255, 62, 0.08);
+}
+.workflows-reveal-icon {
+  display: inline-flex;
+  transition: transform 260ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.workflows-reveal-icon.is-open { transform: rotate(180deg); }
+
+/* The agents section follows the automation section directly, so it drops the
+   repeated top glow and tightens the gap between the two. */
+.workflows-section--agents { padding-top: 0; }
+.workflows-section--agents .workflows-bg-glow { display: none; }
+
 .experience-company-type {
   /* Carries the 10px top gap that the removed company line used to provide,
      so the spacing under the date is unchanged. */

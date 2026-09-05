@@ -86,7 +86,8 @@ export const siteConfig = {
     links: [
       { id: "about", label: "About" },
       { id: "projects", label: "Websites" },
-      { id: "ai-systems", label: "AI Systems" },
+      { id: "ai-systems", label: "Automation" },
+      { id: "ai-agents", label: "AI Agents" },
       { id: "experience", label: "Process" },
     ],
     contactLabel: "Contact",
@@ -103,17 +104,26 @@ export const siteConfig = {
     mobileFooter: "Websites · Automation · AI Agents",
   },
 
-  /* ------------------------------- Workflows ----------------------------- */
+  /* ---------------------------- AI Automation ---------------------------- */
   workflows: {
-    label: "AI Systems",
+    label: "AI Automation",
     headingLead: "Systems designed to make work",
     headingEm: "simpler.",
     subtitle:
-      "Practical examples of work I can design for a business.",
-    ctaSubject: "Adnan Ai — Project enquiry",
+      "Practical automations designed to streamline workflows, connect tools, reduce repetitive tasks, and save businesses valuable time.",
+    ctaSubject: "Adnan Ai project enquiry",
     ctaBody:
       "Hi Adnan,\n\nI’d like to discuss a website, an automation, or an AI agent for my business.\n\nHere is the task I want to solve:\n\n[Describe your task]\n\nThanks!",
     cardCta: "Discuss this system",
+  },
+
+  /* ------------------------------- AI Agents ----------------------------- */
+  agents: {
+    label: "AI Agents",
+    headingLead: "Intelligent systems built to handle",
+    headingEm: "real work.",
+    subtitle:
+      "AI systems designed to understand tasks, use tools, make decisions, and support real business operations.",
   },
 
   /* -------------------------------- About -------------------------------- */

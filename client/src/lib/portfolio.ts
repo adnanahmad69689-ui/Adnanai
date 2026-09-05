@@ -1,6 +1,17 @@
 import { supabase } from "./supabase";
 
-export type PortfolioKind = "website" | "ai_system";
+/**
+ * 'ai_system' is the original value and is presented as AI Automation.
+ * 'ai_agent' is for genuine agent projects. Existing rows were never rewritten,
+ * so the historical value stays meaningful.
+ */
+export type PortfolioKind = "website" | "ai_system" | "ai_agent";
+
+export const PORTFOLIO_KINDS: { id: PortfolioKind; label: string }[] = [
+  { id: "website", label: "Website Projects" },
+  { id: "ai_system", label: "AI Automation" },
+  { id: "ai_agent", label: "AI Agents" },
+];
 export type PortfolioStatus = "draft" | "published";
 
 type PortfolioRow = {
@@ -23,6 +34,7 @@ type PortfolioRow = {
   image_focal_x: number | string | null;
   image_focal_y: number | string | null;
   image_zoom: number | string | null;
+  agent_example: boolean | null;
   created_at: string;
   updated_at: string;
 };
@@ -53,6 +65,8 @@ export type PortfolioItem = {
   focalX: number;
   focalY: number;
   zoom: number;
+  /** Temporarily borrowed into the AI Agents section. Automations only. */
+  agentExample: boolean;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -113,6 +127,7 @@ function mapRow(row: PortfolioRow): PortfolioItem {
     focalX: toNumber(row.image_focal_x, 50),
     focalY: toNumber(row.image_focal_y, 50),
     zoom: toNumber(row.image_zoom, 1),
+    agentExample: row.agent_example === true,
     createdAt: new Date(row.created_at),
     updatedAt: new Date(row.updated_at),
   };
@@ -138,6 +153,7 @@ function mapInput(input: PortfolioInput) {
     image_focal_x: input.focalX,
     image_focal_y: input.focalY,
     image_zoom: input.zoom,
+    agent_example: input.agentExample,
   };
 }
 
@@ -182,7 +198,21 @@ function withoutKeys<T extends Record<string, unknown>>(payload: T, keys: string
   return copy;
 }
 
+let agentCategoryProbe: Promise<boolean> | null = null;
+
+/**
+ * Whether the agent-category migration has been applied. Until it has, the
+ * agent_example column and the 'ai_agent' kind do not exist, so those fields
+ * are stripped from writes and the Agents section simply stays empty rather
+ * than every save failing.
+ */
+export function supportsAgentCategory(): Promise<boolean> {
+  agentCategoryProbe ??= columnExists("portfolio_items", "agent_example");
+  return agentCategoryProbe;
+}
+
 const FRAMING_KEYS = ["image_focal_x", "image_focal_y", "image_zoom"];
+const AGENT_KEYS = ["agent_example"];
 const ABOUT_FRAMING_KEYS = ["about_image_focal_x", "about_image_focal_y", "about_image_zoom"];
 const HERO_FRAMING_KEYS = ["hero_image_focal_x", "hero_image_focal_y", "hero_image_zoom"];
 
@@ -198,6 +228,32 @@ export async function listPublishedPortfolioItems(kind: PortfolioKind) {
   return ((data ?? []) as PortfolioRow[]).map(mapRow);
 }
 
+/**
+ * Everything the AI Agents section shows: genuine agent projects, plus any
+ * automation the owner has flagged as a temporary agent-style example.
+ *
+ * The flagged automations are the same rows the automation section renders, not
+ * copies, so editing one updates both places and un-flagging it removes it from
+ * here with no other change.
+ */
+export async function listAgentSectionItems() {
+  const genuine = await listPublishedPortfolioItems("ai_agent");
+  if (!(await supportsAgentCategory())) return genuine;
+
+  const { data, error } = await supabase
+    .from("portfolio_items")
+    .select("*")
+    .eq("kind", "ai_system")
+    .eq("status", "published")
+    .eq("agent_example", true)
+    .order("sort_order", { ascending: true })
+    .order("id", { ascending: true });
+  throwIfError(error);
+
+  // Genuine agent work leads; borrowed examples follow it.
+  return [...genuine, ...((data ?? []) as PortfolioRow[]).map(mapRow)];
+}
+
 export async function listAdminPortfolioItems() {
   const { data, error } = await supabase
     .from("portfolio_items")
@@ -210,8 +266,10 @@ export async function listAdminPortfolioItems() {
 }
 
 async function portfolioPayload(input: PortfolioInput) {
-  const payload = mapInput(input);
-  return (await supportsFraming()) ? payload : withoutKeys(payload, FRAMING_KEYS);
+  let payload: Record<string, unknown> = mapInput(input);
+  if (!(await supportsFraming())) payload = withoutKeys(payload, FRAMING_KEYS);
+  if (!(await supportsAgentCategory())) payload = withoutKeys(payload, AGENT_KEYS);
+  return payload;
 }
 
 export async function createPortfolioItem(input: PortfolioInput) {

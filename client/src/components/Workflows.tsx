@@ -1,13 +1,20 @@
 /**
- * "Real Results" workflows section: heading, count-up metrics bar,
- * A concise three-card gallery of practical workflow examples.
+ * The two AI portfolio sections.
+ *
+ * AI Automation and AI Agents share one card and one section shell so they stay
+ * visually consistent, but each is driven by its own query and its own copy.
+ * Nothing is hardcoded: both render whatever the admin console has published.
  */
+import { useState } from "react";
 import { siteConfig, mailto } from "../data/siteConfig";
-import { listPublishedPortfolioItems, type PortfolioItem } from "@/lib/portfolio";
+import { listAgentSectionItems, listPublishedPortfolioItems, type PortfolioItem } from "@/lib/portfolio";
 import { useQuery } from "@tanstack/react-query";
 import { framingStyle } from "@/lib/framing";
 
 type Workflow = Pick<PortfolioItem, "id" | "title" | "imageUrl" | "imageAlt" | "label" | "description" | "trigger" | "aiProcess" | "output" | "focalX" | "focalY" | "zoom">;
+
+/** Cards beyond this stay collapsed behind the reveal button. */
+const VISIBLE_LIMIT = 4;
 
 function getMetric(label: string) {
   const [metric = "AI", ...rest] = label.split("·");
@@ -62,34 +69,118 @@ export function WorkflowCard({ workflow }: { workflow: Workflow }) {
   );
 }
 
-export function Workflows() {
-  const { workflows } = siteConfig;
-  const { data: rawWorkflows, isLoading, isError } = useQuery({ queryKey: ["portfolio", "ai_system"], queryFn: () => listPublishedPortfolioItems("ai_system") });
-  // Every published AI system is shown, in the order set in the admin console.
-  // This was previously capped at the first three, which meant anything added
-  // afterwards never appeared on the site at all.
-  const workflowsToFeature = (rawWorkflows ?? []) as Workflow[];
+function AiSection({
+  id,
+  label,
+  heading,
+  headingEm,
+  description,
+  items,
+  isLoading,
+  isError,
+  revealLabel,
+  emptyMessage,
+  variant,
+}: {
+  id: string;
+  label: string;
+  heading: string;
+  headingEm: string;
+  description: string;
+  items: Workflow[];
+  isLoading: boolean;
+  isError: boolean;
+  revealLabel: string;
+  emptyMessage: string;
+  variant?: "agents";
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const canCollapse = items.length > VISIBLE_LIMIT;
+  const visible = canCollapse && !expanded ? items.slice(0, VISIBLE_LIMIT) : items;
+
   return (
-    <section id="ai-systems" className="workflows-section">
+    <section id={id} className={`workflows-section${variant === "agents" ? " workflows-section--agents" : ""}`}>
       <div className="workflows-bg-glow" />
       <div className="workflows-container">
         <div className="workflows-heading-block reveal-item">
-          <span className="section-label">{workflows.label}</span>
+          <span className="section-label">{label}</span>
           <h2 className="workflows-heading">
-            {workflows.headingLead} <em>{workflows.headingEm}</em>
+            {heading} <em>{headingEm}</em>
           </h2>
-          <p className="workflows-subtitle">{workflows.subtitle}</p>
+          <p className="workflows-subtitle">{description}</p>
         </div>
 
         <div className="workflows-gallery">
-          {isLoading ? <p className="workflows-loading">Loading AI systems…</p> : null}
-          {isError ? <p className="workflows-loading">AI system patterns are temporarily unavailable. Please check back shortly.</p> : null}
-          {workflowsToFeature.map((w) => (
-            <WorkflowCard key={w.id} workflow={w} />
+          {isLoading ? <p className="workflows-loading">Loading…</p> : null}
+          {isError ? <p className="workflows-loading">This section is temporarily unavailable. Please check back shortly.</p> : null}
+          {visible.map((item) => (
+            <WorkflowCard key={item.id} workflow={item} />
           ))}
-          {!isLoading && !isError && workflowsToFeature.length === 0 ? <p className="workflows-loading">AI system patterns will appear here when published.</p> : null}
+          {!isLoading && !isError && items.length === 0 ? <p className="workflows-loading">{emptyMessage}</p> : null}
         </div>
+
+        {canCollapse ? (
+          <div className="workflows-reveal">
+            <button
+              type="button"
+              className="workflows-reveal-btn"
+              onClick={() => setExpanded((open) => !open)}
+              aria-expanded={expanded}
+              aria-controls={`${id}-gallery`}
+            >
+              {expanded ? "Show Less" : revealLabel}
+              <span className={`workflows-reveal-icon${expanded ? " is-open" : ""}`} aria-hidden="true">
+                <svg fill="none" height="14" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" width="14">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </span>
+            </button>
+          </div>
+        ) : null}
       </div>
     </section>
+  );
+}
+
+export function Workflows() {
+  const { workflows, agents } = siteConfig;
+
+  const automation = useQuery({
+    queryKey: ["portfolio", "ai_system"],
+    queryFn: () => listPublishedPortfolioItems("ai_system"),
+  });
+  const agentItems = useQuery({
+    queryKey: ["portfolio", "agent-section"],
+    queryFn: listAgentSectionItems,
+  });
+
+  return (
+    <>
+      <AiSection
+        id="ai-systems"
+        label={workflows.label}
+        heading={workflows.headingLead}
+        headingEm={workflows.headingEm}
+        description={workflows.subtitle}
+        items={(automation.data ?? []) as Workflow[]}
+        isLoading={automation.isLoading}
+        isError={automation.isError}
+        revealLabel="View All Automations"
+        emptyMessage="Automations will appear here when published."
+      />
+      <AiSection
+        id="ai-agents"
+        variant="agents"
+        label={agents.label}
+        heading={agents.headingLead}
+        headingEm={agents.headingEm}
+        description={agents.subtitle}
+        items={(agentItems.data ?? []) as Workflow[]}
+        isLoading={agentItems.isLoading}
+        isError={agentItems.isError}
+        revealLabel="View All AI Agents"
+        emptyMessage="Agent projects will appear here when published."
+      />
+    </>
   );
 }
