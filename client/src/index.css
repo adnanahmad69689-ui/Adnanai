@@ -1935,14 +1935,10 @@
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
-.experience-company {
-  margin: 10px 0 2px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--color-accent);
-}
 .experience-company-type {
-  margin: 0 0 14px;
+  /* Carries the 10px top gap that the removed company line used to provide,
+     so the spacing under the date is unchanged. */
+  margin: 10px 0 14px;
   font-size: 13px;
   color: var(--color-text-muted);
 }
@@ -1970,7 +1966,7 @@
 @media (width <= 768px) {
   .experience-entry { padding-left: var(--space-sm); }
   .experience-role { font-size: clamp(16px, 3vw, 20px); }
-  .experience-company, .experience-bullet { font-size: 14px; }
+  .experience-bullet { font-size: 14px; }
 }
 @media (width <= 480px) {
   .experience-entry { border-left-width: 1px; padding-left: 12px; }

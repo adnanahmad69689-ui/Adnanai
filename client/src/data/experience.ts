@@ -2,7 +2,6 @@
 export interface ExperienceEntry {
   role: string;
   date: string;
-  company: string;
   companyType: string;
   bullets: string[];
 }
@@ -10,24 +9,22 @@ export interface ExperienceEntry {
 export const experienceEntries: ExperienceEntry[] = [
   {
     role: "Web Development",
-    date: "From idea to launch",
-    company: "Adnan Ai",
-    companyType: "Web Strategy · UI/UX · Development",
+    date: "Idea to launch",
+    companyType: "Strategy, design and build",
     bullets: [
-      "I clarify your offer, audience, and the action you want visitors to take.",
-      "I design and build a responsive website around that journey.",
-      "I keep the result light, accessible, and easy to update.",
+      "First we get clear on what you sell, who it is for, and what a visitor should do next.",
+      "Then the site gets designed and built around that one journey, not around a template.",
+      "What you are left with is fast, accessible, and easy to update yourself.",
     ],
   },
   {
     role: "Automation & AI Agents",
-    date: "From discovery to a working setup",
-    company: "Adnan Ai",
-    companyType: "Workflow Design · AI Agents · Operations",
+    date: "Discovery to working setup",
+    companyType: "Workflow design and operations",
     bullets: [
-      "I map the manual work before choosing tools.",
-      "I build focused automations and agents around a clear task and hand-off.",
-      "I keep the system understandable after launch.",
+      "Before any tool gets picked, we map the work you are actually doing by hand.",
+      "The automation is then built around one clear task, with a sensible hand-off back to a person.",
+      "It stays understandable afterwards, so you are never locked out of your own system.",
     ],
   },
 ];

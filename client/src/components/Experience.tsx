@@ -18,7 +18,8 @@ export function Experience() {
             <div key={entry.role} className="experience-entry reveal-item">
               <h3 className="experience-role">{entry.role}</h3>
               <span className="experience-date">{entry.date}</span>
-              <p className="experience-company">{entry.company}</p>
+              {/* The company line said "Adnan Ai" on every entry, on his own
+                  site, which was pure repetition. */}
               <p className="experience-company-type">{entry.companyType}</p>
               <ul className="experience-bullets">
                 {entry.bullets.map((b) => (
