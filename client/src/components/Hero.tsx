@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { SiteSettings } from "@/lib/portfolio";
 import { siteConfig } from "../data/siteConfig";
 import { BrandLogo } from "./BrandLogo";
+import { framingStyle } from "@/lib/framing";
 
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
@@ -11,6 +12,11 @@ export function Hero() {
   const [settings, setSettings] = useState<SiteSettings | null>(null);
   const heroImage = settings?.heroImageUrl || hero.backgroundImage;
   const heroAlt = settings?.heroImageAlt || hero.backgroundAlt;
+  // Framing only applies to a managed upload; the built-in background keeps
+  // whatever positioning the stylesheet already gives it.
+  const heroFraming = settings?.heroImageUrl
+    ? { focalX: settings.heroFocalX, focalY: settings.heroFocalY, zoom: settings.heroZoom }
+    : null;
   const [wordIdx, setWordIdx] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const bgWrapRef = useRef<HTMLDivElement>(null);
@@ -70,7 +76,7 @@ export function Hero() {
     <section id="hero" className="hero-section" ref={sectionRef}>
       <div className="hero-sticky">
         <div className="hero-bg-wrap" ref={bgWrapRef}>
-          <img src={heroImage} alt={heroAlt} className="hero-bg-image" fetchPriority="high" decoding="async" />
+          <img src={heroImage} alt={heroAlt} className="hero-bg-image" fetchPriority="high" decoding="async" style={heroFraming ? framingStyle(heroFraming) : undefined} />
         </div>
         <div className="hero-overlay-left" /><div className="hero-overlay-bottom" />
         <div ref={phase1Ref} className="hero-phase1-container hero-phase-enter">

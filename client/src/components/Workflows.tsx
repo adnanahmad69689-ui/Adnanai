@@ -5,8 +5,9 @@
 import { siteConfig, mailto } from "../data/siteConfig";
 import { listPublishedPortfolioItems, type PortfolioItem } from "@/lib/portfolio";
 import { useQuery } from "@tanstack/react-query";
+import { framingStyle } from "@/lib/framing";
 
-type Workflow = Pick<PortfolioItem, "id" | "title" | "imageUrl" | "imageAlt" | "label" | "description" | "trigger" | "aiProcess" | "output">;
+type Workflow = Pick<PortfolioItem, "id" | "title" | "imageUrl" | "imageAlt" | "label" | "description" | "trigger" | "aiProcess" | "output" | "focalX" | "focalY" | "zoom">;
 
 function getMetric(label: string) {
   const [metric = "AI", ...rest] = label.split("·");
@@ -30,6 +31,7 @@ export function WorkflowCard({ workflow }: { workflow: Workflow }) {
             loading="lazy"
             decoding="async"
             src={workflow.imageUrl}
+            style={framingStyle(workflow)}
           />
         </div>
         <div className="workflow-info">

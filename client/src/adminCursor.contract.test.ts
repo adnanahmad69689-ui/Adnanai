@@ -10,10 +10,29 @@ const stylesheet = readFileSync(resolve(projectRoot, "client/src/index.css"), "u
 describe("admin custom cursor contract", () => {
   it("mounts the lightweight cursor without allowing it to intercept dashboard controls", () => {
     expect(adminPage).toContain("<CustomCursor />");
-    expect(cursorComponent).toContain("requestAnimationFrame");
-    expect(cursorComponent).toContain("cancelAnimationFrame");
     expect(cursorComponent).toContain("pointermove");
     expect(stylesheet).toMatch(/\.custom-cursor,[\s\S]*?pointer-events:\s*none/);
+  });
+
+  it("writes the pointer position straight to the DOM so the cursor cannot fall behind", () => {
+    // Position is applied inside the pointermove handler rather than being
+    // deferred to a frame callback, which previously cost a frame of latency
+    // for no saving: browsers already coalesce pointermove to one per frame.
+    expect(cursorComponent).toContain("dot.style.transform = transform");
+    expect(cursorComponent).toContain("ring.style.transform = transform");
+    // No frame scheduling call (the prose above may still name the API).
+    expect(cursorComponent).not.toMatch(/requestAnimationFrame\s*\(/);
+  });
+
+  it("never transitions the transform that tracks the pointer", () => {
+    // Regression guard. A transition on transform makes the cursor trail the
+    // real pointer by exactly its duration, which is what made it feel laggy.
+    // Only the inner marks may animate.
+    const trackedRules = stylesheet.match(/\.custom-cursor \{[^}]*\}|\.custom-cursor-ring \{[^}]*\}/g) ?? [];
+    expect(trackedRules.length).toBeGreaterThan(0);
+    for (const rule of trackedRules) {
+      expect(rule).not.toContain("transition");
+    }
   });
 
   it("keeps the custom cursor unavailable on narrow screens and disabled for reduced motion", () => {
@@ -22,11 +41,14 @@ describe("admin custom cursor contract", () => {
     expect(stylesheet).toContain("@media (prefers-reduced-motion: reduce)");
   });
 
-  it("keeps hover feedback subtle and limited to interactive elements", () => {
+  it("keeps hover feedback subtle, limited to interactive elements, and free of layout work", () => {
     expect(cursorComponent).toContain("a, button, input, textarea, select");
-    expect(cursorComponent).toContain("isInteractive");
+    // The hover state is a class toggle rather than React state, so moving the
+    // mouse never re-renders the component.
+    expect(cursorComponent).toContain('classList.toggle("is-interactive"');
     expect(stylesheet).toContain(".custom-cursor-ring.is-interactive");
-    expect(stylesheet).toContain("width: 38px");
+    // The ring scales instead of animating width/height, which would relayout.
+    expect(stylesheet).toMatch(/\.custom-cursor-ring\.is-interactive[^{]*\{[^}]*transform:\s*scale\(/);
   });
 
   it("activates only after a real desktop pointer move instead of relying on a fragile hover media query", () => {

@@ -1,41 +1,54 @@
-/** Lightweight desktop pointer cursor: one frame update and a restrained interactive state. */
-import { useEffect, useRef, useState } from "react";
+/**
+ * Desktop pointer cursor.
+ *
+ * Position is written straight to the DOM in the pointermove handler rather
+ * than being deferred to requestAnimationFrame. Browsers already coalesce
+ * pointermove to at most one event per frame, so rAF added a frame of latency
+ * without saving any work. The hover state is toggled with a class rather than
+ * React state, so moving the mouse never re-renders the component.
+ */
+import { useEffect, useRef } from "react";
+
+const INTERACTIVE_SELECTOR = "a, button, input, textarea, select, [role='button'], [role='option']";
 
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const frameRef = useRef<number | null>(null);
-  const latestPointer = useRef({ x: -100, y: -100 });
-  const cursorActivated = useRef(false);
-  const [isInteractive, setIsInteractive] = useState(false);
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reducedMotion.matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const paint = () => {
-      frameRef.current = null;
-      const transform = `translate3d(${latestPointer.current.x}px, ${latestPointer.current.y}px, 0) translate(-50%, -50%)`;
-      if (dotRef.current) dotRef.current.style.transform = transform;
-      if (ringRef.current) ringRef.current.style.transform = transform;
-    };
+    const dot = dotRef.current;
+    const ring = ringRef.current;
+    if (!dot || !ring) return;
+
+    let activated = false;
+    let interactive = false;
 
     const onMove = (event: PointerEvent) => {
       if (event.pointerType !== "mouse" && event.pointerType !== "pen") return;
-      if (!cursorActivated.current) {
-        cursorActivated.current = true;
+      if (!activated) {
+        activated = true;
         document.documentElement.classList.add("custom-cursor-active");
       }
-      latestPointer.current = { x: event.clientX, y: event.clientY };
-      if (frameRef.current === null) frameRef.current = window.requestAnimationFrame(paint);
+      // Two writes, no reads: nothing here can force a synchronous layout.
+      const transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+      dot.style.transform = transform;
+      ring.style.transform = transform;
     };
+
+    const setInteractive = (next: boolean) => {
+      if (next === interactive) return;
+      interactive = next;
+      dot.classList.toggle("is-interactive", next);
+      ring.classList.toggle("is-interactive", next);
+    };
+
     const onPointerOver = (event: PointerEvent) => {
-      const target = event.target as Element | null;
-      setIsInteractive(Boolean(target?.closest("a, button, input, textarea, select, [role='button'], [role='option']")));
+      setInteractive(Boolean((event.target as Element | null)?.closest(INTERACTIVE_SELECTOR)));
     };
     const onPointerOut = (event: PointerEvent) => {
-      const related = event.relatedTarget as Element | null;
-      setIsInteractive(Boolean(related?.closest("a, button, input, textarea, select, [role='button'], [role='option']")));
+      setInteractive(Boolean((event.relatedTarget as Element | null)?.closest(INTERACTIVE_SELECTOR)));
     };
 
     window.addEventListener("pointermove", onMove, { passive: true });
@@ -45,12 +58,19 @@ export function CustomCursor() {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerover", onPointerOver);
       window.removeEventListener("pointerout", onPointerOut);
-      if (frameRef.current !== null) window.cancelAnimationFrame(frameRef.current);
       document.documentElement.classList.remove("custom-cursor-active");
     };
   }, []);
 
-  const initialStyle = { transform: "translate3d(-100px, -100px, 0)" };
-  const interactiveClass = isInteractive ? " is-interactive" : "";
-  return <><div ref={dotRef} aria-hidden="true" className={`custom-cursor${interactiveClass}`} style={initialStyle} /><div ref={ringRef} aria-hidden="true" className={`custom-cursor-ring${interactiveClass}`} style={initialStyle} /></>;
+  const offscreen = { transform: "translate3d(-100px, -100px, 0)" };
+  return (
+    <>
+      <div ref={dotRef} aria-hidden="true" className="custom-cursor" style={offscreen}>
+        <div className="custom-cursor__mark" />
+      </div>
+      <div ref={ringRef} aria-hidden="true" className="custom-cursor-ring" style={offscreen}>
+        <div className="custom-cursor-ring__mark" />
+      </div>
+    </>
+  );
 }

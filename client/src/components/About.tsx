@@ -4,6 +4,7 @@
  */
 import { useEffect, useRef, useState } from "react";
 import type { SiteSettings } from "@/lib/portfolio";
+import { framingStyle } from "@/lib/framing";
 import { siteConfig } from "../data/siteConfig";
 
 export function About() {
@@ -13,6 +14,11 @@ export function About() {
   const [settings, setSettings] = useState<SiteSettings | null>(null);
   const aboutImage = settings?.aboutImageUrl || about.image;
   const aboutImageAlt = settings?.aboutImageAlt || about.imageAlt;
+  // Only apply a saved framing to a managed image; the built-in fallback keeps
+  // whatever the stylesheet already does with it.
+  const aboutFraming = settings?.aboutImageUrl
+    ? { focalX: settings.aboutFocalX, focalY: settings.aboutFocalY, zoom: settings.aboutZoom }
+    : null;
 
   useEffect(() => {
     let active = true;
@@ -68,6 +74,7 @@ export function About() {
                 className="about-img tilt-content"
                 loading="lazy"
                 decoding="async"
+                style={aboutFraming ? framingStyle(aboutFraming) : undefined}
               />
               <div
                 className="glare-effect"

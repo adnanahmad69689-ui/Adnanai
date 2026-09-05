@@ -20,9 +20,18 @@ type PortfolioRow = {
   approval_required: boolean;
   status: PortfolioStatus;
   sort_order: number;
+  image_focal_x: number | string | null;
+  image_focal_y: number | string | null;
+  image_zoom: number | string | null;
   created_at: string;
   updated_at: string;
 };
+
+/** Postgres numeric columns arrive as strings over PostgREST. */
+function toNumber(value: number | string | null | undefined, fallback: number) {
+  const parsed = typeof value === "string" ? Number.parseFloat(value) : value;
+  return typeof parsed === "number" && Number.isFinite(parsed) ? parsed : fallback;
+}
 
 export type PortfolioItem = {
   id: number;
@@ -41,6 +50,9 @@ export type PortfolioItem = {
   approvalRequired: boolean;
   status: PortfolioStatus;
   sortOrder: number;
+  focalX: number;
+  focalY: number;
+  zoom: number;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -55,6 +67,12 @@ type SiteSettingsRow = {
   about_image_url: string | null;
   about_image_key: string | null;
   about_image_alt: string | null;
+  about_image_focal_x: number | string | null;
+  about_image_focal_y: number | string | null;
+  about_image_zoom: number | string | null;
+  hero_image_focal_x: number | string | null;
+  hero_image_focal_y: number | string | null;
+  hero_image_zoom: number | string | null;
   updated_at: string;
 };
 
@@ -65,6 +83,12 @@ export type SiteSettings = {
   aboutImageUrl: string | null;
   aboutImageKey: string | null;
   aboutImageAlt: string | null;
+  aboutFocalX: number;
+  aboutFocalY: number;
+  aboutZoom: number;
+  heroFocalX: number;
+  heroFocalY: number;
+  heroZoom: number;
   updatedAt: Date;
 };
 
@@ -86,6 +110,9 @@ function mapRow(row: PortfolioRow): PortfolioItem {
     approvalRequired: row.approval_required,
     status: row.status,
     sortOrder: row.sort_order,
+    focalX: toNumber(row.image_focal_x, 50),
+    focalY: toNumber(row.image_focal_y, 50),
+    zoom: toNumber(row.image_zoom, 1),
     createdAt: new Date(row.created_at),
     updatedAt: new Date(row.updated_at),
   };
@@ -108,6 +135,9 @@ function mapInput(input: PortfolioInput) {
     approval_required: input.approvalRequired,
     status: input.status,
     sort_order: input.sortOrder,
+    image_focal_x: input.focalX,
+    image_focal_y: input.focalY,
+    image_zoom: input.zoom,
   };
 }
 
@@ -194,6 +224,12 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
     aboutImageUrl: row.about_image_url ?? null,
     aboutImageKey: row.about_image_key ?? null,
     aboutImageAlt: row.about_image_alt ?? null,
+    aboutFocalX: toNumber(row.about_image_focal_x, 50),
+    aboutFocalY: toNumber(row.about_image_focal_y, 50),
+    aboutZoom: toNumber(row.about_image_zoom, 1),
+    heroFocalX: toNumber(row.hero_image_focal_x, 50),
+    heroFocalY: toNumber(row.hero_image_focal_y, 50),
+    heroZoom: toNumber(row.hero_image_zoom, 1),
     updatedAt: new Date(row.updated_at),
   };
 }
@@ -217,12 +253,15 @@ export async function uploadAboutImage(file: File) {
   return { key: `hero/${objectPath}`, url: data.publicUrl };
 }
 
-export async function updateHeroSettings(input: { imageUrl: string | null; imageKey: string | null; imageAlt: string | null; previousKey?: string | null }) {
+export async function updateHeroSettings(input: { imageUrl: string | null; imageKey: string | null; imageAlt: string | null; focalX?: number; focalY?: number; zoom?: number; previousKey?: string | null }) {
   const { error } = await supabase.from("site_settings").upsert({
     id: "global",
     hero_image_url: input.imageUrl,
     hero_image_key: input.imageKey,
     hero_image_alt: input.imageAlt,
+    hero_image_focal_x: input.focalX ?? 50,
+    hero_image_focal_y: input.focalY ?? 50,
+    hero_image_zoom: input.zoom ?? 1,
   });
   throwIfError(error);
 
@@ -236,7 +275,7 @@ export async function updateHeroSettings(input: { imageUrl: string | null; image
   }
 }
 
-export async function updateAboutSettings(input: { imageUrl: string | null; imageKey: string | null; imageAlt: string | null; previousKey?: string | null }) {
+export async function updateAboutSettings(input: { imageUrl: string | null; imageKey: string | null; imageAlt: string | null; focalX?: number; focalY?: number; zoom?: number; previousKey?: string | null }) {
   // Only the about_* columns are sent, so the hero image on the same row is
   // left exactly as it is.
   const { error } = await supabase.from("site_settings").upsert({
@@ -244,6 +283,9 @@ export async function updateAboutSettings(input: { imageUrl: string | null; imag
     about_image_url: input.imageUrl,
     about_image_key: input.imageKey,
     about_image_alt: input.imageAlt,
+    about_image_focal_x: input.focalX ?? 50,
+    about_image_focal_y: input.focalY ?? 50,
+    about_image_zoom: input.zoom ?? 1,
   });
   throwIfError(error);
 
