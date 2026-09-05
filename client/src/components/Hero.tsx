@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { SiteSettings } from "@/lib/portfolio";
 import { siteConfig } from "../data/siteConfig";
 import { BrandLogo } from "./BrandLogo";
-import { framingStyle } from "@/lib/framing";
+import { framingStyle, isDefaultFraming } from "@/lib/framing";
 
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
@@ -14,9 +14,13 @@ export function Hero() {
   const heroAlt = settings?.heroImageAlt || hero.backgroundAlt;
   // Framing only applies to a managed upload; the built-in background keeps
   // whatever positioning the stylesheet already gives it.
-  const heroFraming = settings?.heroImageUrl
+  const savedHeroFraming = settings?.heroImageUrl
     ? { focalX: settings.heroFocalX, focalY: settings.heroFocalY, zoom: settings.heroZoom }
     : null;
+  // Applying the default inline would override the stylesheet's own
+  // object-position and quietly change the composition, so only a framing the
+  // owner actually chose is applied here.
+  const heroFraming = isDefaultFraming(savedHeroFraming) ? null : savedHeroFraming;
   const [wordIdx, setWordIdx] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const bgWrapRef = useRef<HTMLDivElement>(null);

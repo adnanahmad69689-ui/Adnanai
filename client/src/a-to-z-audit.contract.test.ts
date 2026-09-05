@@ -18,12 +18,21 @@ describe("A–Z no-redesign quality safeguards", () => {
     expect(existsSync(llmsPath)).toBe(true);
   });
 
-  it("keeps the homepage focused on its three curated system patterns", () => {
+  it("renders every published item from the admin console rather than a fixed selection", () => {
     const workflows = readFileSync(resolve(projectRoot, "client/src/components/Workflows.tsx"), "utf8");
     const projects = readFileSync(resolve(projectRoot, "client/src/components/SampleProjectCollection.tsx"), "utf8");
 
     expect(workflows).not.toContain('href="#n8n-projects"');
-    expect(projects).toContain("Two public website projects. Open either one to see the work live.");
     expect(projects).toContain("View live site ↗");
+
+    // Both sections must render the full published list. A fixed cap here
+    // silently hid everything added after the first few items, which looked
+    // to the owner like the admin console had stopped saving.
+    expect(workflows).not.toMatch(/\.slice\(\s*0\s*,\s*\d+\s*\)/);
+    expect(projects).not.toMatch(/\.slice\(\s*0\s*,\s*\d+\s*\)/);
+
+    // The count in the intro copy is derived, not written by hand, so it stays
+    // correct as projects are added and removed.
+    expect(projects).toContain("projects.length");
   });
 });

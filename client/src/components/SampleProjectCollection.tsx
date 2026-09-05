@@ -13,7 +13,9 @@ export function SampleProjectCollection() {
       <div className="sample-projects-intro reveal-item">
         <span className="section-label">Websites</span>
         <h2 id="sample-projects-heading">Built for the <em>browser.</em></h2>
-        <p>Two public website projects. Open either one to see the work live.</p>
+        {/* Derived from the data so the copy cannot go stale as projects are
+            added or removed from the admin console. */}
+        <p>{projects.length === 1 ? "One public website project. Open it to see the work live." : `${projects.length} public website projects. Open any one to see the work live.`}</p>
       </div>
       <div className="sample-projects-grid">
         {isLoading ? <p className="sample-projects-loading">Loading website projects…</p> : null}

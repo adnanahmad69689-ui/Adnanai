@@ -145,6 +145,47 @@ function throwIfError(error: { message: string } | null) {
   if (error) throw new Error(error.message);
 }
 
+/**
+ * Image framing lives in columns added by a later migration. Until that
+ * migration is applied, sending those fields makes PostgREST reject the whole
+ * write, which would silently break every save from the admin console.
+ *
+ * The capability is probed once and cached, so a pending migration degrades to
+ * "framing unavailable" instead of "nothing can be saved".
+ */
+async function columnExists(table: "portfolio_items" | "site_settings", column: string) {
+  try {
+    const { error } = await supabase.from(table).select(column).limit(1);
+    return !error;
+  } catch {
+    return false;
+  }
+}
+
+let framingProbe: Promise<boolean> | null = null;
+
+export function supportsFraming(): Promise<boolean> {
+  framingProbe ??= columnExists("portfolio_items", "image_focal_x");
+  return framingProbe;
+}
+
+let aboutImageProbe: Promise<boolean> | null = null;
+
+export function supportsAboutImage(): Promise<boolean> {
+  aboutImageProbe ??= columnExists("site_settings", "about_image_url");
+  return aboutImageProbe;
+}
+
+function withoutKeys<T extends Record<string, unknown>>(payload: T, keys: string[]) {
+  const copy: Record<string, unknown> = { ...payload };
+  for (const key of keys) delete copy[key];
+  return copy;
+}
+
+const FRAMING_KEYS = ["image_focal_x", "image_focal_y", "image_zoom"];
+const ABOUT_FRAMING_KEYS = ["about_image_focal_x", "about_image_focal_y", "about_image_zoom"];
+const HERO_FRAMING_KEYS = ["hero_image_focal_x", "hero_image_focal_y", "hero_image_zoom"];
+
 export async function listPublishedPortfolioItems(kind: PortfolioKind) {
   const { data, error } = await supabase
     .from("portfolio_items")
@@ -168,13 +209,18 @@ export async function listAdminPortfolioItems() {
   return ((data ?? []) as PortfolioRow[]).map(mapRow);
 }
 
+async function portfolioPayload(input: PortfolioInput) {
+  const payload = mapInput(input);
+  return (await supportsFraming()) ? payload : withoutKeys(payload, FRAMING_KEYS);
+}
+
 export async function createPortfolioItem(input: PortfolioInput) {
-  const { error } = await supabase.from("portfolio_items").insert(mapInput(input));
+  const { error } = await supabase.from("portfolio_items").insert(await portfolioPayload(input));
   throwIfError(error);
 }
 
 export async function updatePortfolioItem({ id, ...input }: PortfolioInput & { id: number }) {
-  const { error } = await supabase.from("portfolio_items").update(mapInput(input)).eq("id", id);
+  const { error } = await supabase.from("portfolio_items").update(await portfolioPayload(input)).eq("id", id);
   throwIfError(error);
 }
 
@@ -254,7 +300,7 @@ export async function uploadAboutImage(file: File) {
 }
 
 export async function updateHeroSettings(input: { imageUrl: string | null; imageKey: string | null; imageAlt: string | null; focalX?: number; focalY?: number; zoom?: number; previousKey?: string | null }) {
-  const { error } = await supabase.from("site_settings").upsert({
+  const payload = {
     id: "global",
     hero_image_url: input.imageUrl,
     hero_image_key: input.imageKey,
@@ -262,7 +308,10 @@ export async function updateHeroSettings(input: { imageUrl: string | null; image
     hero_image_focal_x: input.focalX ?? 50,
     hero_image_focal_y: input.focalY ?? 50,
     hero_image_zoom: input.zoom ?? 1,
-  });
+  };
+  const { error } = await supabase
+    .from("site_settings")
+    .upsert((await supportsFraming()) ? payload : withoutKeys(payload, HERO_FRAMING_KEYS));
   throwIfError(error);
 
   if (input.previousKey && input.previousKey !== input.imageKey) {
@@ -278,7 +327,7 @@ export async function updateHeroSettings(input: { imageUrl: string | null; image
 export async function updateAboutSettings(input: { imageUrl: string | null; imageKey: string | null; imageAlt: string | null; focalX?: number; focalY?: number; zoom?: number; previousKey?: string | null }) {
   // Only the about_* columns are sent, so the hero image on the same row is
   // left exactly as it is.
-  const { error } = await supabase.from("site_settings").upsert({
+  const payload = {
     id: "global",
     about_image_url: input.imageUrl,
     about_image_key: input.imageKey,
@@ -286,7 +335,12 @@ export async function updateAboutSettings(input: { imageUrl: string | null; imag
     about_image_focal_x: input.focalX ?? 50,
     about_image_focal_y: input.focalY ?? 50,
     about_image_zoom: input.zoom ?? 1,
-  });
+  };
+  if (!(await supportsAboutImage())) {
+    throw new Error("The About image columns are not in the database yet. Run the pending migration in Supabase, then try again.");
+  }
+  const stripped = (await supportsFraming()) ? payload : withoutKeys(payload, ABOUT_FRAMING_KEYS);
+  const { error } = await supabase.from("site_settings").upsert(stripped);
   throwIfError(error);
 
   if (input.previousKey && input.previousKey !== input.imageKey) {

@@ -16,6 +16,7 @@ import {
   reorderPortfolioItems,
   type PortfolioInput,
   type PortfolioItem,
+  supportsFraming,
   updateAboutSettings,
   updateHeroSettings,
   updatePortfolioItem,
@@ -104,6 +105,10 @@ function AdminPortfolioContent() {
   const [isUploadingAbout, setIsUploadingAbout] = useState(false);
   const [aboutFraming, setAboutFraming] = useState<Framing>(DEFAULT_FRAMING);
   const [heroFraming, setHeroFraming] = useState<Framing>(DEFAULT_FRAMING);
+  // Framing depends on columns from a migration that may not be applied yet.
+  // Hiding the editors is better than letting a crop be silently discarded.
+  const [framingReady, setFramingReady] = useState<boolean | null>(null);
+  useEffect(() => { void supportsFraming().then(setFramingReady); }, []);
   const canManage = isAuthenticated && user?.role === "admin";
   const { data, isLoading } = useQuery({ queryKey: ["portfolio", "admin"], queryFn: listAdminPortfolioItems, enabled: canManage });
   const { data: siteSettings } = useQuery({ queryKey: ["site-settings"], queryFn: getSiteSettings, enabled: canManage });
@@ -398,7 +403,7 @@ function AdminPortfolioContent() {
       <section className="mb-6 grid gap-4 border border-white/10 bg-[#111] p-5 lg:grid-cols-[220px_minmax(0,1fr)]">
         <div className="overflow-hidden bg-black/30">{siteSettings?.heroImageUrl ? <img src={siteSettings.heroImageUrl} alt={siteSettings.heroImageAlt || "Current hero preview"} className="aspect-[16/10] h-full w-full object-cover" /> : <div className="grid aspect-[16/10] place-items-center p-4 text-center text-xs text-[#777]">Built-in hero portrait is active.</div>}</div>
         <div className="flex flex-col justify-between gap-4"><div><p className="text-[10px] uppercase tracking-[0.18em] text-[#a8ff3e]">Hero image</p><h2 className="mt-2 text-2xl">Manage the first impression.</h2><p className="mt-2 max-w-xl text-sm leading-6 text-[#9e9e9e]">Upload one portrait or hero visual. Replacing it removes the old managed file. Removing it restores the built-in fallback portrait.</p></div><div className="flex flex-wrap gap-3"><label className="inline-flex cursor-pointer items-center gap-2 bg-[#a8ff3e] px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-[#111]"><ImageUp className="h-4 w-4" /> {isUploadingHero ? "Uploading…" : siteSettings?.heroImageUrl ? "Replace hero" : "Upload hero"}<input type="file" accept="image/jpeg,image/png,image/webp" className="hidden" disabled={isUploadingHero || heroMutation.isPending} onChange={changeHeroImage} /></label>{siteSettings?.heroImageUrl ? <Button type="button" variant="outline" disabled={heroMutation.isPending} onClick={() => void removeHeroImage()} className="border-white/15 text-[#d9d9d9] hover:bg-white/5 hover:text-white">Remove hero</Button> : null}</div></div>
-        {siteSettings?.heroImageUrl ? (
+        {siteSettings?.heroImageUrl && framingReady ? (
           <div className="border-t border-white/10 pt-4 lg:col-span-2">
             <ImageFraming
               src={siteSettings.heroImageUrl}
@@ -420,7 +425,7 @@ function AdminPortfolioContent() {
       <section className="mb-6 grid gap-4 border border-white/10 bg-[#111] p-5 lg:grid-cols-[220px_minmax(0,1fr)]">
         <div className="overflow-hidden bg-black/30">{siteSettings?.aboutImageUrl ? <img src={siteSettings.aboutImageUrl} alt={siteSettings.aboutImageAlt || "Current About preview"} className="aspect-[16/10] h-full w-full" style={framingStyle({ focalX: siteSettings.aboutFocalX, focalY: siteSettings.aboutFocalY, zoom: siteSettings.aboutZoom })} /> : <div className="grid aspect-[16/10] place-items-center p-4 text-center text-xs text-[#777]">Built-in About portrait is active.</div>}</div>
         <div className="flex flex-col justify-between gap-4"><div><p className="text-[10px] uppercase tracking-[0.18em] text-[#a8ff3e]">About image</p><h2 className="mt-2 text-2xl">The portrait beside your bio.</h2><p className="mt-2 max-w-xl text-sm leading-6 text-[#9e9e9e]">This is the tilting portrait in the About section. Replacing it removes the old managed file. Removing it restores the built-in fallback portrait.</p></div><div className="flex flex-wrap gap-3"><label className="inline-flex cursor-pointer items-center gap-2 bg-[#a8ff3e] px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-[#111]"><ImageUp className="h-4 w-4" /> {isUploadingAbout ? "Uploading…" : siteSettings?.aboutImageUrl ? "Replace About image" : "Upload About image"}<input type="file" accept="image/jpeg,image/png,image/webp" className="hidden" disabled={isUploadingAbout || aboutMutation.isPending} onChange={changeAboutImage} /></label>{siteSettings?.aboutImageUrl ? <Button type="button" variant="outline" disabled={aboutMutation.isPending} onClick={() => void removeAboutImage()} className="border-white/15 text-[#d9d9d9] hover:bg-white/5 hover:text-white">Remove About image</Button> : null}</div></div>
-        {siteSettings?.aboutImageUrl ? (
+        {siteSettings?.aboutImageUrl && framingReady ? (
           <div className="border-t border-white/10 pt-4 lg:col-span-2">
             <ImageFraming
               src={siteSettings.aboutImageUrl}
@@ -474,7 +479,7 @@ function AdminPortfolioContent() {
               <div><FieldLabel>Eyebrow label</FieldLabel><Input required value={form.label} onChange={event => patchForm({ label: event.target.value })} placeholder="LIVE WEBSITE · PROJECT NAME" className="border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div>
               <div><FieldLabel>Description</FieldLabel><Textarea required value={form.description} onChange={event => patchForm({ description: event.target.value })} placeholder="A concise, honest project summary." className="min-h-24 border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div>
               <div><FieldLabel>Screenshot or workflow image</FieldLabel><div className="overflow-hidden border border-dashed border-white/20 bg-black/20">{form.imageUrl ? <img src={form.imageUrl} alt="Current item preview" className="aspect-[16/9] w-full object-cover" /> : <div className="grid aspect-[16/9] place-items-center p-5 text-center text-xs text-[#777]">Upload one clear image that represents this item.</div>}<label className="flex cursor-pointer items-center justify-center gap-2 border-t border-white/10 px-4 py-3 text-xs uppercase tracking-[0.13em] text-[#bdbdbd] transition-colors hover:bg-white/5 hover:text-[#a8ff3e]"><ImageUp className="h-4 w-4" /> {isUploading ? "Uploading…" : "Upload image"}<input type="file" accept="image/jpeg,image/png,image/webp" className="hidden" disabled={isUploading} onChange={changeImage} /></label></div></div>
-              {form.imageUrl ? <div className="border border-white/10 bg-black/20 p-4"><ImageFraming src={form.imageUrl} alt="Project image framing preview" aspect="16 / 9" label="Crop &amp; position" value={{ focalX: form.focalX, focalY: form.focalY, zoom: form.zoom }} onChange={(next: Framing) => patchForm(next)} hint="This preview matches the shape the card uses publicly. Drag to keep the readable part of the screenshot — headings, logos, buttons — inside the frame. Saved with the project." /></div> : null}
+              {form.imageUrl && framingReady ? <div className="border border-white/10 bg-black/20 p-4"><ImageFraming src={form.imageUrl} alt="Project image framing preview" aspect="16 / 9" label="Crop &amp; position" value={{ focalX: form.focalX, focalY: form.focalY, zoom: form.zoom }} onChange={(next: Framing) => patchForm(next)} hint="This preview matches the shape the card uses publicly. Drag to keep the readable part of the screenshot — headings, logos, buttons — inside the frame. Saved with the project." /></div> : null}
               <div><FieldLabel>Image description</FieldLabel><Input required value={form.imageAlt} onChange={event => patchForm({ imageAlt: event.target.value })} placeholder="Describe the image for screen readers" className="border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div>
               <div><FieldLabel optional>Live public URL</FieldLabel><Input type="url" value={form.publicUrl} onChange={event => patchForm({ publicUrl: event.target.value })} placeholder="https://your-live-project.vercel.app" className="border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div>
               <div><FieldLabel optional>{activeKind === "website" ? "Project highlights" : "Short supporting points"}</FieldLabel><Textarea value={form.detailsText} onChange={event => patchForm({ detailsText: event.target.value })} placeholder="One short point per line" className="min-h-20 border-white/15 bg-black/25 text-white placeholder:text-[#555]" /></div>

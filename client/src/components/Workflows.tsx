@@ -65,7 +65,10 @@ export function WorkflowCard({ workflow }: { workflow: Workflow }) {
 export function Workflows() {
   const { workflows } = siteConfig;
   const { data: rawWorkflows, isLoading, isError } = useQuery({ queryKey: ["portfolio", "ai_system"], queryFn: () => listPublishedPortfolioItems("ai_system") });
-  const workflowsToFeature = ((rawWorkflows ?? []) as Workflow[]).slice(0, 3);
+  // Every published AI system is shown, in the order set in the admin console.
+  // This was previously capped at the first three, which meant anything added
+  // afterwards never appeared on the site at all.
+  const workflowsToFeature = (rawWorkflows ?? []) as Workflow[];
   return (
     <section id="ai-systems" className="workflows-section">
       <div className="workflows-bg-glow" />

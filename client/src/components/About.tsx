@@ -4,7 +4,7 @@
  */
 import { useEffect, useRef, useState } from "react";
 import type { SiteSettings } from "@/lib/portfolio";
-import { framingStyle } from "@/lib/framing";
+import { framingStyle, isDefaultFraming } from "@/lib/framing";
 import { siteConfig } from "../data/siteConfig";
 
 export function About() {
@@ -16,9 +16,12 @@ export function About() {
   const aboutImageAlt = settings?.aboutImageAlt || about.imageAlt;
   // Only apply a saved framing to a managed image; the built-in fallback keeps
   // whatever the stylesheet already does with it.
-  const aboutFraming = settings?.aboutImageUrl
+  const savedAboutFraming = settings?.aboutImageUrl
     ? { focalX: settings.aboutFocalX, focalY: settings.aboutFocalY, zoom: settings.aboutZoom }
     : null;
+  // Only an owner-chosen framing is applied inline; the default would override
+  // the stylesheet's own object-position and change the composition.
+  const aboutFraming = isDefaultFraming(savedAboutFraming) ? null : savedAboutFraming;
 
   useEffect(() => {
     let active = true;
