@@ -107,10 +107,10 @@ export const siteConfig = {
   /* ---------------------------- AI Automation ---------------------------- */
   workflows: {
     label: "AI Automation",
-    headingLead: "Systems designed to make work",
-    headingEm: "simpler.",
+    headingLead: "Let the repetitive work",
+    headingEm: "run itself.",
     subtitle:
-      "Practical automations designed to streamline workflows, connect tools, reduce repetitive tasks, and save businesses valuable time.",
+      "The jobs you do the same way every week, handled in the background. Your tools talk to each other, so nothing gets copied across by hand.",
     ctaSubject: "Adnan Ai project enquiry",
     ctaBody:
       "Hi Adnan,\n\nI’d like to discuss a website, an automation, or an AI agent for my business.\n\nHere is the task I want to solve:\n\n[Describe your task]\n\nThanks!",
@@ -120,10 +120,10 @@ export const siteConfig = {
   /* ------------------------------- AI Agents ----------------------------- */
   agents: {
     label: "AI Agents",
-    headingLead: "Intelligent systems built to handle",
-    headingEm: "real work.",
+    headingLead: "Help that can actually",
+    headingEm: "do the job.",
     subtitle:
-      "AI systems designed to understand tasks, use tools, make decisions, and support real business operations.",
+      "An agent reads the request, looks things up, and finishes the task. Anything that needs a person still comes straight to you.",
   },
 
   /* -------------------------------- About -------------------------------- */
